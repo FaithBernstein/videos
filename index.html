@@ -162,24 +162,98 @@
     .selected-section .nature-sprig{bottom:-20px;right:-30px;opacity:0.07;}
     section{position:relative;}
 
+    /* ── HAMBURGER BUTTON ── */
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;width:36px;height:36px;}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:transform 0.3s,opacity 0.3s;}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-hamburger.open span:nth-child(2){opacity:0;}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
     /* ── MOBILE ── */
     @media(max-width:768px){
-      nav{padding:14px 20px;} .nav-links{gap:16px;}
-      .intro-hero{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
-      .intro-hero-left{padding:48px 24px;}
-      .intro-hero-right{height:56vw;grid-column:1;grid-row:2;}
-      .intro-hero-stats{grid-column:1;grid-row:3;padding:20px 24px;flex-wrap:wrap;gap:16px;}
-      .intro-stat-div{display:none;}
-      .section-card{height:60vw;min-height:320px;}
-      .section-card-content{padding:32px 24px;}
-      .section-card-title{font-size:clamp(36px,8vw,56px);}
+      /* Nav */
+      nav{padding:12px 20px;justify-content:space-between;}
+      .nav-logo{font-size:26px;}
+      .nav-hamburger{display:flex;}
+      .nav-links{
+        display:none;
+        position:fixed;top:57px;left:0;right:0;
+        background:rgba(250,246,240,0.98);
+        backdrop-filter:blur(10px);
+        border-bottom:1px solid var(--border);
+        flex-direction:column;gap:0;
+        z-index:99;
+        padding:8px 0 16px;
+      }
+      .nav-links.open{display:flex;}
+      .nav-links li{width:100%;}
+      .nav-btn{width:100%;text-align:left;padding:14px 24px;font-size:13px;border-bottom:none !important;}
+      .nav-btn:hover,.nav-btn.active{background:var(--cobalt-pale);color:var(--cobalt);border-bottom:none !important;}
+
+      /* Credential bar — scrollable on mobile */
+      .cred-bar{flex-direction:column;margin-top:57px;}
+      .cred-bar-badge{padding:10px 20px;flex-direction:row;gap:10px;border-right:none;border-bottom:3px solid rgba(255,255,255,0.15);}
+      .cred-bar-badge-number{font-size:36px;}
+      .cred-bar-ticker{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+      .cred-bar-track{width:max-content;flex-wrap:nowrap;}
+      .cred-bar-item{padding:12px 16px;min-width:130px;}
+
+      /* Hero */
+      .intro-hero{padding:20px 20px 14px;}
+      .intro-bio-lede{font-size:clamp(18px,5vw,22px);}
+
+      /* Video block */
+      .intro-video-block{padding:0;}
+      .intro-video-block .intro-video-wrap{aspect-ratio:9/16;overflow:hidden;}
+      .intro-video-block .intro-video-wrap iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.8%;height:177.8%;}
+
+      /* About strip */
       .about-strip{grid-template-columns:1fr;}
-      .about-strip-photo{height:300px;}
-      .about-strip-text{padding:48px 24px;}
-      section{padding:56px 20px;}
-      .page-hero{height:auto;min-height:280px;}
-      .page-hero-left{padding:36px 24px;}
-      footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px;}
+      .about-strip-photo{display:none;}
+      .about-strip-text{padding:36px 20px 48px;}
+      .about-strip-heading{font-size:clamp(28px,7vw,40px);}
+      .about-strip-btns{flex-wrap:wrap;}
+
+      /* Section cards */
+      .section-card{height:70vw;min-height:280px;}
+      .section-card-content{padding:24px 20px;}
+      .section-card-title{font-size:clamp(32px,9vw,56px);}
+      .section-card-desc{font-size:15px;margin-bottom:18px;}
+      .home-section-label{padding:36px 0 24px;}
+
+      /* Inner pages */
+      section{padding:40px 16px;}
+      section:first-of-type{padding-top:calc(57px + 48px);}
+      .section-desc{font-size:18px;line-height:1.75;}
+
+      /* Video grid — single column */
+      .video-grid{grid-template-columns:1fr;gap:28px;}
+      .video-card-headline{font-size:17px;}
+      .video-card-views{font-size:clamp(16px,4.5vw,22px);padding:6px 12px 5px;}
+
+      /* Views legend */
+      .section-meta{justify-content:flex-start;margin-bottom:20px;}
+
+      /* Page hero */
+      .page-hero{height:auto;min-height:240px;}
+      .page-hero-left{padding:32px 20px;}
+
+      /* Footer */
+      footer{flex-direction:column;gap:14px;text-align:center;padding:32px 20px;}
+      .footer-links{flex-wrap:wrap;justify-content:center;gap:16px;}
+
+      /* Bio block */
+      .intro-bio-block{padding:32px 20px 48px;}
+      .intro-bio{font-size:16px;}
+      .intro-btns{flex-wrap:wrap;gap:10px;}
+    }
+
+    @media(max-width:480px){
+      .section-card-title{font-size:clamp(28px,10vw,44px);}
+      .section-card{height:80vw;}
+      .cred-bar-badge-number{font-size:28px;}
+      .intro-bio-lede{font-size:clamp(16px,5.5vw,20px);}
+      .about-strip-text p{font-size:16px;}
     }
   </style>
 </head>
@@ -187,7 +261,10 @@
 
 <nav>
   <button class="nav-logo" data-page="home">Faith Bernstein</button>
-  <ul class="nav-links">
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><button class="nav-btn" data-page="remote">Viral Video Storytelling</button></li>
     <li><button class="nav-btn" data-page="field">Field Production</button></li>
     <li><button class="nav-btn" data-page="animation">Animation</button></li>
@@ -237,10 +314,11 @@
     </div>
     <div class="about-strip-text">
       <div class="about-strip-eyebrow">About Faith</div>
-      <p>I made my first video in high school, advocating for bike lanes along our school's main road. It was a small project, but it helped get the lanes built and showed me early on that a story can actually change things in the real world. I've never forgotten that lesson.</p>
-      <p>In the years since, I've been pitching, producing, and editing videos that have reached over a billion viewers. I've done editorial work at ABC News, Good Morning America, and Group Nine Media, along with branded storytelling for clients like Coach and New Balance. Across all of it, the goal has stayed the same: to make work that people feel, not just watch.</p>
-      <p>I do my best work at the intersection of strategy, storytelling, and execution. I'm usually looking for the human thread in a story, the emotion or tension that makes something stick. That lens shapes how I approach everything, from early concepts to final edits, regardless of platform or format.</p>
-      <p>Outside of work, I'm usually outdoors with a camera in hand, hiking, swimming in alpine lakes, biking around Seattle, or practicing on the pottery wheel.</p>
+      <p>I made my first video in high school, advocating for bike lanes along our school's main road. It was a small project (with shaky footage and that all-too-familiar iMovie stock music) but it actually helped get the lanes built and showed me early on the power of video storytelling to make a difference in the real world.</p>
+      <p>Since then, I have been pitching, producing, and editing videos that have reached over a billion viewers. I have done editorial work at ABC News, Good Morning America, and Group Nine Media, along with branded storytelling for clients like Coach and New Balance. Across all of it, the goal has stayed the same: to make work that people feel, not just watch.</p>
+      <p>A growing focus of my work has been outdoor storytelling, especially running, endurance, and the human spirit that shows up in those environments. I am drawn to the moments where people push beyond what they thought they could do and how those experiences connect back to something universal.</p>
+      <p>I've worked across the entire lifecycle of production, in high-impact breaking news moments to artistic evergreen productions from pitch to publish, including all the coordination, communication, relationship building and technical execution needed to get it done. I like to nerd out on why something performed well, dissect the opening and momentum of a piece, and find a way to knit strategy and strong storytelling together.</p>
+      <p>Outside of work, I am usually outdoors with a camera in hand, hiking, running, rockhounding (ask me about this!), swimming in alpine lakes, biking around Seattle, or practicing on the pottery wheel.</p>
 
     </div>
     <svg style="position:absolute;bottom:0;right:80px;opacity:0.06;pointer-events:none;" width="260" height="300" viewBox="0 0 260 300" fill="none">
@@ -349,6 +427,7 @@ var videos = {
     { headline: "My Morning Routine: This Fitness Trainer and Mom Shares Her #MorningGoals", role: "Editor", views: "1M Views", award: "", link: "https://www.youtube.com/watch?v=LnoqGd3lvAE" }
   ],
   remote: [
+    { headline: "This Woman Just Made Ultramarathon History in 56-Hour, 250-Mile Run in Arizona", role: "Producer, Editor", views: "8M Views", award: "", thumb: "https://i.imgur.com/GYNmRYE.jpeg", link: "https://www.facebook.com/reel/944012738476586" },
     { headline: "Woman Shatters Appalachian Trail Speed Record", role: "Producer, Editor", views: "9M Views", award: "", thumb: "https://i.imgur.com/O4qd3Ku.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" },
     { headline: "Baby Born with Ultra-Rare Dwarfism Lived Life Full of Adventure as 'Perpetual Infant'", role: "Producer, Editor", views: "10M Views", award: "", thumb: "https://i.imgur.com/furABzT.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1067651284365888" },
     { headline: "65-Year-Old Woman Is a Pull-Up Legend: 'It's Never Too Late'", role: "Producer, Editor", views: "10M Views", award: "", thumb: "https://i.imgur.com/tEbJZ1O.jpeg", link: "https://www.facebook.com/watch/?ref=embed_video&v=579913551411758" },
@@ -449,11 +528,11 @@ renderGrid('animation-grid', videos.animation);
 
 // Home grid — sports, triumph, human spirit first
 var homeVideos = [
-  videos.remote[3],  // Greatest Comeback in Ultramarathon History
-  videos.remote[0],  // Woman Shatters Appalachian Trail Speed Record — 9M
-  videos.remote[11], // Ali Truwit — shark attack to Paralympics
+  videos.remote[4],  // Greatest Comeback in Ultramarathon History
+  videos.remote[1],  // Woman Shatters Appalachian Trail Speed Record — 9M
+  videos.remote[12], // Ali Truwit — shark attack to Paralympics
   videos.field[8],   // 11-Year-Old Amputee Runs Star Wars 5K — 1M
-  videos.remote[4],  // Last Runner to Finish NYC Marathon — 500K
+  videos.remote[5],  // Last Runner to Finish NYC Marathon — 500K
   videos.field[0],   // Love at Club Q — GLAAD
 ];
 renderGrid('home-grid', homeVideos);
@@ -477,6 +556,16 @@ function buildSlideshow(id, thumbs) {
   setInterval(function(){ imgs[idx].classList.remove('active'); idx=(idx+1)%imgs.length; imgs[idx].classList.add('active'); }, 2200);
 }
 
+// Hamburger menu toggle
+var hamburger = document.getElementById('nav-hamburger');
+var navLinks = document.getElementById('nav-links');
+if (hamburger) {
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+}
+
 function showPage(id) {
   var allPages = document.querySelectorAll('.page');
   for (var i=0;i<allPages.length;i++) allPages[i].classList.remove('active');
@@ -490,7 +579,11 @@ function showPage(id) {
 }
 var allNavBtns = document.querySelectorAll('[data-page]');
 for (var i=0;i<allNavBtns.length;i++) {
-  allNavBtns[i].addEventListener('click', function(){ showPage(this.getAttribute('data-page')); });
+  allNavBtns[i].addEventListener('click', function(){
+    showPage(this.getAttribute('data-page'));
+    if (hamburger) hamburger.classList.remove('open');
+    if (navLinks) navLinks.classList.remove('open');
+  });
 }
 
 // Build slideshows for section cards
