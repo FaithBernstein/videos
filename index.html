@@ -248,6 +248,138 @@
       .intro-btns{flex-wrap:wrap;gap:10px;}
     }
 
+    /* ══════════════════════════════════════════
+       STORY — scroll-driven homepage
+       ══════════════════════════════════════════ */
+    :root{--nav:72px;--stage-h:calc(100vh - var(--nav));}
+    @supports(height:100svh){:root{--stage-h:calc(100svh - var(--nav));}}
+    .story{background:var(--black);color:var(--white);}
+
+    /* Hero */
+    .hero{position:relative;margin-top:var(--nav);height:var(--stage-h);min-height:520px;overflow:hidden;}
+    .hero-media{position:absolute;inset:0;pointer-events:none;}
+    .hero-media iframe{position:absolute;top:50%;left:50%;width:max(100%,calc(var(--stage-h)*1.7778));height:max(100%,calc(min(100vw,1400px)*0.5625));transform:translate(-50%,-50%);border:0;}
+    .hero-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,20,16,0.92) 0%,rgba(28,20,16,0.35) 45%,rgba(28,20,16,0.15) 100%);}
+    .hero-content{position:absolute;left:64px;right:64px;bottom:72px;}
+    .hero-eyebrow{font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:18px;}
+    .hero-name{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(52px,9vw,128px);line-height:0.88;letter-spacing:-0.035em;color:var(--white);}
+    .hero-count{display:flex;align-items:baseline;gap:14px;margin-top:28px;flex-wrap:wrap;}
+    .hero-count-num{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,4vw,54px);color:var(--amber);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+    .hero-count-label{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+    .scroll-cue{position:absolute;right:64px;bottom:72px;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+    .scroll-cue span{display:block;width:1px;height:56px;background:linear-gradient(var(--amber),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top;}
+    @keyframes cue{0%{transform:scaleY(0);}50%{transform:scaleY(1);}100%{transform:scaleY(1);opacity:0;}}
+
+    /* Chapter openers */
+    .chapter-open{min-height:var(--stage-h);display:flex;flex-direction:column;justify-content:center;padding:120px 64px;max-width:980px;margin:0 auto;}
+    .chapter-num{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--amber);margin-bottom:22px;}
+    .chapter-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(48px,8vw,112px);line-height:0.92;letter-spacing:-0.035em;margin-bottom:36px;}
+    .chapter-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--amber);}
+    .chapter-lede{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2vw,26px);line-height:1.6;color:rgba(255,255,255,0.78);max-width:720px;}
+
+    /* Sticky scrollytelling */
+    .scrolly{position:relative;}
+    .stage{position:sticky;top:var(--nav);height:var(--stage-h);overflow:hidden;background:#000;}
+    .layer{position:absolute;inset:0;opacity:0;transition:opacity 0.9s ease;}
+    .layer.active{opacity:1;}
+    .layer .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 9s ease-out;}
+    .layer.active .poster{transform:scale(1);}
+    .layer .poster.letterbox{transform:scale(1.45);}
+    .layer.active .poster.letterbox{transform:scale(1.34);}
+    .layer .yt{position:absolute;top:50%;left:50%;width:max(100%,calc(var(--stage-h)*1.7778));height:max(100%,calc(min(100vw,1400px)*0.5625));transform:translate(-50%,-50%);opacity:0;transition:opacity 0.8s ease;}
+    .layer .yt.playing{opacity:1;}
+    .layer .yt iframe{width:100%;height:100%;border:0;pointer-events:none;}
+    .layer::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,20,16,0.7) 0%,rgba(28,20,16,0.15) 55%,rgba(28,20,16,0.25) 100%);pointer-events:none;}
+    .scrolly-right .layer::after{background:linear-gradient(270deg,rgba(28,20,16,0.7) 0%,rgba(28,20,16,0.15) 55%,rgba(28,20,16,0.25) 100%);}
+    .steps{position:relative;z-index:2;margin-top:calc(-1 * var(--stage-h));pointer-events:none;}
+    .step{min-height:100vh;display:flex;align-items:center;padding:0 64px;}
+    .step:first-child{min-height:var(--stage-h);}
+    .step:last-child{min-height:calc(var(--stage-h) + 10vh);}
+    .scrolly-right .step{justify-content:flex-end;}
+    .card{pointer-events:auto;max-width:460px;background:rgba(20,14,11,0.84);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:30px 34px 28px;border-left:3px solid var(--amber);opacity:0.2;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .step.active .card{opacity:1;transform:none;}
+    .card-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+    .card-role{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+    .card-views{background:var(--amber);color:#1a0a00;font-family:'Playfair Display',serif;font-weight:900;font-size:14px;padding:4px 9px 3px;line-height:1;}
+    .card-award{background:var(--terracotta);color:var(--white);font-size:8px;letter-spacing:0.14em;text-transform:uppercase;padding:5px 9px;line-height:1.2;}
+    .card h3{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(22px,2.1vw,29px);line-height:1.15;letter-spacing:-0.01em;margin-bottom:12px;}
+    .card p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.55;color:rgba(255,255,255,0.75);margin-bottom:18px;}
+    .card-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(26px,2.6vw,36px);line-height:1.2;color:var(--amber-light);margin-bottom:14px;}
+    .card-link{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:3px;transition:border-color 0.2s,color 0.2s;}
+    .card-link:hover{color:var(--amber-light);border-color:var(--amber-light);}
+
+    /* Viral chapter — giant numbers + running tally */
+    .card-big{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(64px,8vw,120px);line-height:0.85;letter-spacing:-0.04em;color:var(--amber);margin-bottom:6px;}
+    .card-big small{display:block;font-family:'DM Mono',monospace;font-weight:400;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:10px;}
+    .tally{position:absolute;top:28px;right:32px;z-index:3;text-align:right;background:rgba(20,14,11,0.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:14px 18px;border-top:2px solid var(--amber);}
+    .tally-label{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+    .tally-num{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(26px,2.6vw,38px);color:var(--white);font-variant-numeric:tabular-nums;line-height:1.1;}
+    .tally-bar{height:3px;background:rgba(255,255,255,0.12);margin-top:8px;width:180px;margin-left:auto;}
+    .tally-bar i{display:block;height:100%;width:0;background:var(--amber);transition:width 0.9s ease;}
+
+    /* Full-screen pull quote */
+    .pull{position:relative;min-height:var(--stage-h);display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;padding:120px 64px;}
+    .pull-bg{position:absolute;inset:-10% 0;background-size:cover;background-position:center;opacity:0.35;will-change:transform;}
+    .pull-inner{position:relative;max-width:900px;}
+    .pull blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(44px,7vw,104px);line-height:1;letter-spacing:-0.02em;color:var(--white);}
+    .pull blockquote::before{content:'\201C';display:block;font-family:'Playfair Display',serif;font-style:normal;font-weight:900;color:var(--amber);font-size:0.9em;line-height:0.6;margin-bottom:12px;}
+    .pull cite{display:block;margin-top:30px;font-style:normal;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+    .pull cite a{color:var(--amber-light);text-decoration:none;border-bottom:1px solid rgba(224,159,74,0.4);}
+
+    /* Awards wall */
+    .awards-wall{padding:120px 64px 140px;max-width:1200px;margin:0 auto;text-align:center;}
+    .awards-wall .chapter-num{margin-bottom:40px;}
+    .awards-grid{display:flex;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.1);border-left:1px solid rgba(255,255,255,0.1);}
+    .award-tile{flex:1 1 240px;border-right:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);background:var(--black);padding:40px 22px;display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:var(--white);transition:background 0.3s;}
+    .award-tile:hover{background:#2a1f18;}
+    .award-tile-name{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;line-height:1.15;}
+    .award-tile .cred-bar-tag{font-size:8px;padding:4px 8px;}
+
+    /* Closing */
+    .closing{display:grid;grid-template-columns:420px 1fr;background:var(--cream);color:var(--black);}
+    .closing-photo{position:relative;min-height:620px;}
+    .closing-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;}
+    .closing-text{padding:96px 80px;display:flex;flex-direction:column;justify-content:center;}
+    .closing-quote{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(36px,4.4vw,62px);line-height:1;letter-spacing:-0.03em;margin-bottom:30px;}
+    .closing-quote em{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--amber);}
+    .closing-text p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.8;color:#5a4f46;margin-bottom:14px;max-width:620px;}
+    .closing-explore{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin:26px 0 14px;}
+    .closing-btns{display:flex;gap:12px;flex-wrap:wrap;}
+    .closing-btns .btn-dark{background:var(--black);border-color:var(--black);color:var(--white);}
+    .closing-btns .btn-dark:hover{background:var(--amber);border-color:var(--amber);}
+    .closing-btns .btn-outline{background:transparent;border-color:var(--black);color:var(--black);}
+    .closing-btns .btn-outline:hover{background:var(--black);color:var(--white);}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(36px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1);}
+    .reveal.in{opacity:1;transform:none;}
+    .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}.reveal.d5{transition-delay:.6s}.reveal.d6{transition-delay:.72s}
+
+    @media(prefers-reduced-motion:reduce){
+      .reveal,.card,.layer,.layer .poster{transition:none !important;}
+      .reveal{opacity:1;transform:none;}
+      .scroll-cue span{animation:none;}
+    }
+
+    @media(max-width:768px){
+      :root{--nav:57px;}
+      .hero-content{left:20px;right:20px;bottom:48px;}
+      .scroll-cue{display:none;}
+      .chapter-open{padding:96px 22px;}
+      .step{padding:0 14px;align-items:flex-end;padding-bottom:9vh;}
+      .scrolly-right .step{justify-content:flex-start;}
+      .card{max-width:none;width:100%;padding:22px 22px 20px;}
+      .card p{font-size:17px;}
+      .layer::after,.scrolly-right .layer::after{background:linear-gradient(to top,rgba(28,20,16,0.8) 0%,rgba(28,20,16,0.1) 60%);}
+      .tally{top:14px;right:14px;padding:10px 12px;}
+      .tally-bar{width:120px;}
+      .pull{padding:96px 22px;}
+      .awards-wall{padding:88px 16px 100px;}
+      .closing{grid-template-columns:1fr;}
+      .closing-photo{min-height:60vh;}
+      .closing-text{padding:56px 22px 64px;}
+    }
+
     @media(max-width:480px){
       .section-card-title{font-size:clamp(28px,10vw,44px);}
       .section-card{height:80vw;}
@@ -273,63 +405,213 @@
 
 <div class="site-wrapper">
 
-<!-- HOME -->
-<div id="home-page" class="page">
+<!-- HOME — scroll-driven story -->
+<div id="home-page" class="page story">
 
-  <!-- CREDENTIAL BAR -->
-  <div class="cred-bar">
-    <div class="cred-bar-badge">
-      <span class="cred-bar-badge-number">1 Billion+</span>
-      <span class="cred-bar-badge-label">Video Views</span>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-media">
+      <iframe src="https://player.vimeo.com/video/1175371110?autoplay=1&loop=1&byline=0&title=0&muted=1&controls=0&background=1" allow="autoplay; fullscreen" title="Faith Bernstein reel"></iframe>
     </div>
-    <div class="cred-bar-ticker">
-      <div class="cred-bar-track" id="cred-track">
-        <a class="cred-bar-item" href="https://www.goodmorningamerica.com/news/story/club-found-love-lost-loved-99962153" target="_blank" rel="noopener"><span class="cred-bar-label">GLAAD Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-        <a class="cred-bar-item" href="https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965" target="_blank" rel="noopener"><span class="cred-bar-label">Webby Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-        <a class="cred-bar-item" href="https://www.goodmorningamerica.com/news/story/untold-oppenheimer-story-female-activists-fighting-justice-after-107849537" target="_blank" rel="noopener"><span class="cred-bar-label">Deadline Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-        <a class="cred-bar-item" href="https://www.goodmorningamerica.com/culture/video/inspiring-story-black-female-reporter-washington-post-62845230" target="_blank" rel="noopener"><span class="cred-bar-label">NABJ Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-        <a class="cred-bar-item" href="https://www.thebeaverbelievers.com/" target="_blank" rel="noopener"><span class="cred-bar-label">BANFF World Media Festival</span><span class="cred-bar-tag cred-bar-tag-selection">Selection</span></a>
-        <a class="cred-bar-item" href="https://abcnews.go.com/US/deepdive/Edward-R-Murrow-Awards-Overall-Excellence-68937801" target="_blank" rel="noopener"><span class="cred-bar-label">Edward R. Murrow Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
-        <a class="cred-bar-item" href="https://www.goodmorningamerica.com/news/video/gma-wins-emmy-2nd-year-row-54824270" target="_blank" rel="noopener"><span class="cred-bar-label">Daytime Emmy Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Video Producer &middot; Seattle</div>
+      <h1 class="hero-name">Faith<br>Bernstein</h1>
+      <div class="hero-count"><span class="hero-count-num" id="hero-count">0</span><span class="hero-count-label">video views and counting</span></div>
+    </div>
+    <div class="scroll-cue">Scroll<span></span></div>
+  </header>
+
+  <!-- ORIGIN -->
+  <section class="chapter-open">
+    <div class="chapter-num reveal">Where it started</div>
+    <h2 class="chapter-title reveal d1">It started with a <em>bike lane.</em></h2>
+    <p class="chapter-lede reveal d2">I made my first video in high school, advocating for bike lanes along our school's main road. Shaky footage, iMovie stock music &mdash; but it actually helped get the lanes built, and it showed me early on the power of video to make a difference in the real world.</p>
+  </section>
+
+  <!-- CHAPTER I — OUTDOORS -->
+  <section class="chapter-open">
+    <div class="chapter-num reveal">Chapter I</div>
+    <h2 class="chapter-title reveal d1">Out <em>there.</em></h2>
+    <p class="chapter-lede reveal d2">A growing focus of my work is outdoor storytelling: running, endurance, and the human spirit that shows up in those places. I'm drawn to the moments where people push past what they thought they could do.</p>
+  </section>
+
+  <div class="scrolly" data-scrolly>
+    <div class="stage">
+      <div class="layer" data-img="https://i.imgur.com/O4qd3Ku.png"></div>
+      <div class="layer" data-img="https://i.imgur.com/GYNmRYE.jpeg"></div>
+      <div class="layer" data-yt="xJelbbYF9z8"></div>
+      <div class="layer" data-yt="LsWSSCbczQc"></div>
+      <div class="layer" data-yt="evx2dBUGjd8"></div>
+      <div class="layer" data-img="https://i.imgur.com/uvJzXna.png"></div>
+      <div class="layer" data-yt="-qd2XyGFTzk"></div>
+    </div>
+    <div class="steps">
+      <div class="step" data-layer="0"><div class="card">
+        <div class="card-meta"><span class="card-views">9M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>Woman Shatters Appalachian Trail Speed Record</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="1"><div class="card">
+        <div class="card-meta"><span class="card-views">8M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>56 hours. 250 miles. Ultramarathon history in Arizona.</h3>
+        <a class="card-link" href="https://www.facebook.com/reel/944012738476586" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="2"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
+        <h3>This Might Be the Greatest Comeback in Ultramarathon History</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=xJelbbYF9z8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="3"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
+        <h3>One year after a shark attack, Ali Truwit prepares to swim in the Paralympics</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=LsWSSCbczQc" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="4"><div class="card">
+        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
+        <h3>An 11-year-old amputee runs his dream race</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=evx2dBUGjd8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="5"><div class="card">
+        <div class="card-meta"><span class="card-views">500K views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>The last runner to finish the New York City Marathon, and the journey to get there</h3>
+        <a class="card-link" href="https://www.instagram.com/reels/DQulQweDQQs/" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="6"><div class="card">
+        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
+        <h3>After a racist encounter in Central Park, Chris Cooper took us birding there</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=-qd2XyGFTzk" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+    </div>
+  </div>
+
+  <section class="pull">
+    <div class="pull-bg" data-parallax style="background-image:url('https://i.imgur.com/tEbJZ1O.jpeg')"></div>
+    <div class="pull-inner">
+      <blockquote class="reveal">It's never too late.</blockquote>
+      <cite class="reveal d1">65-year-old pull-up legend &middot; 10M views &middot; <a href="https://www.facebook.com/watch/?ref=embed_video&v=579913551411758" target="_blank" rel="noopener">Watch</a></cite>
+    </div>
+  </section>
+
+  <!-- CHAPTER II — VIRAL -->
+  <section class="chapter-open">
+    <div class="chapter-num reveal">Chapter II</div>
+    <h2 class="chapter-title reveal d1">Going <em>viral.</em></h2>
+    <p class="chapter-lede reveal d2">I like to nerd out on why something performed well: the opening, the momentum, the moment people decide to share. Strategy and strong storytelling, knit together.</p>
+  </section>
+
+  <div class="scrolly scrolly-right" data-scrolly data-tally="1000">
+    <div class="stage">
+      <div class="tally"><div class="tally-label">Views, these six stories</div><div class="tally-num" data-tally-num>0</div><div class="tally-bar"><i data-tally-bar></i></div></div>
+      <div class="layer" data-img="https://i.imgur.com/yEKBJUX.jpeg"></div>
+      <div class="layer" data-img="https://i.imgur.com/2DZ4YYK.jpeg"></div>
+      <div class="layer" data-img="https://i.imgur.com/dQXyXv1.jpeg"></div>
+      <div class="layer" data-img="https://i.imgur.com/zkTtNjO.png"></div>
+      <div class="layer" data-img="https://i.imgur.com/gDnaUeU.jpeg"></div>
+      <div class="layer" data-yt="zb_oMA-v_wI"></div>
+    </div>
+    <div class="steps">
+      <div class="step" data-layer="0" data-views="89"><div class="card">
+        <div class="card-big">89M<small>views</small></div>
+        <h3>Squirrel's Been Visiting Her Human Mom for Almost a Decade</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1695205090560470" target="_blank" rel="noopener">Watch &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="1" data-views="83"><div class="card">
+        <div class="card-big">83M<small>views</small></div>
+        <h3>Enormous Beagle Loses over 50 Pounds and Hasn't Stopped Smiling</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=2470418523262491" target="_blank" rel="noopener">Watch &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="2" data-views="58"><div class="card">
+        <div class="card-big">58M<small>views</small></div>
+        <h3>Puppy with Swimmers Syndrome Teaches Herself to Run</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1610343402433662" target="_blank" rel="noopener">Watch &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="3" data-views="47"><div class="card">
+        <div class="card-big">47M<small>views</small></div>
+        <h3>Rescued Magpie Helps Woman Believe in Herself Again</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1748094518604860" target="_blank" rel="noopener">Watch &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="4" data-views="21"><div class="card">
+        <div class="card-big">21M<small>views</small></div>
+        <h3>Guy Adopts Turkey, and Raises His Babies</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1652227818245220" target="_blank" rel="noopener">Watch &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="5" data-views="6"><div class="card">
+        <div class="card-quote">&ldquo;She's perfect.&rdquo;</div>
+        <h3>Single Dad Adopts Baby with Down Syndrome Rejected by 20 Families</h3>
+        <p>6M views. Across my career, these stories have been watched more than a billion times.</p>
+        <a class="card-link" href="https://www.youtube.com/watch?v=zb_oMA-v_wI" target="_blank" rel="noopener">Watch &#8599;</a>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- CHAPTER III — IMPACT -->
+  <section class="chapter-open">
+    <div class="chapter-num reveal">Chapter III</div>
+    <h2 class="chapter-title reveal d1">Stories that <em>matter.</em></h2>
+    <p class="chapter-lede reveal d2">Many of these stories take on the biggest issues of our time (gun violence, abortion, climate change, racism) and try to make them feel personal. Above all, I make sure every subject feels safe, supported, and heard.</p>
+  </section>
+
+  <div class="scrolly" data-scrolly>
+    <div class="stage">
+      <div class="layer" data-yt="sty4aH10FRE"></div>
+      <div class="layer" data-yt="-JokheVpUmU"></div>
+      <div class="layer" data-yt="U_k2n9MCzDI"></div>
+      <div class="layer" data-yt="7P3_47VglVg"></div>
+    </div>
+    <div class="steps">
+      <div class="step" data-layer="0"><div class="card">
+        <div class="card-meta"><span class="card-award">GLAAD Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
+        <h3>Love at Club Q</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=sty4aH10FRE" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="1"><div class="card">
+        <div class="card-meta"><span class="card-award">Webby Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
+        <h3>School shooting survivors reflect on life after tragedy, from Sandy Hook to Uvalde</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=-JokheVpUmU" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="2"><div class="card">
+        <div class="card-meta"><span class="card-award">Deadline Award Nominee</span><span class="card-role">Director, Producer, Editor</span></div>
+        <div class="card-quote">&ldquo;Forgotten collateral damage&rdquo;</div>
+        <h3>The stories you didn't see in <em>Oppenheimer</em></h3>
+        <a class="card-link" href="https://youtu.be/U_k2n9MCzDI" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="3"><div class="card">
+        <div class="card-meta"><span class="card-award">NABJ Award Nominee</span><span class="card-role">Producer, Project Manager</span></div>
+        <h3>Herstory Lessons: the first Black female reporter at The Washington Post</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=7P3_47VglVg" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+    </div>
+  </div>
+
+  <section class="awards-wall">
+    <div class="chapter-num reveal">Recognition</div>
+    <div class="awards-grid">
+      <a class="award-tile reveal" href="https://www.goodmorningamerica.com/news/video/gma-wins-emmy-2nd-year-row-54824270" target="_blank" rel="noopener"><span class="award-tile-name">Daytime Emmy Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
+      <a class="award-tile reveal d1" href="https://abcnews.go.com/US/deepdive/Edward-R-Murrow-Awards-Overall-Excellence-68937801" target="_blank" rel="noopener"><span class="award-tile-name">Edward R. Murrow Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
+      <a class="award-tile reveal d2" href="https://www.thebeaverbelievers.com/" target="_blank" rel="noopener"><span class="award-tile-name">BANFF World Media Festival</span><span class="cred-bar-tag cred-bar-tag-selection">Selection</span></a>
+      <a class="award-tile reveal d3" href="https://www.goodmorningamerica.com/news/story/club-found-love-lost-loved-99962153" target="_blank" rel="noopener"><span class="award-tile-name">GLAAD Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+      <a class="award-tile reveal d4" href="https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965" target="_blank" rel="noopener"><span class="award-tile-name">Webby Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+      <a class="award-tile reveal d5" href="https://www.goodmorningamerica.com/news/story/untold-oppenheimer-story-female-activists-fighting-justice-after-107849537" target="_blank" rel="noopener"><span class="award-tile-name">Deadline Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+      <a class="award-tile reveal d6" href="https://www.goodmorningamerica.com/culture/video/inspiring-story-black-female-reporter-washington-post-62845230" target="_blank" rel="noopener"><span class="award-tile-name">NABJ Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="closing-photo"><img src="https://i.imgur.com/t3m1FSy.png" alt="Faith Bernstein"></div>
+    <div class="closing-text">
+      <h2 class="closing-quote reveal">Work people <em>feel,</em><br>not just watch.</h2>
+      <p class="reveal d1">I've pitched, produced, and edited for ABC News, Good Morning America, and Group Nine Media, along with branded storytelling for clients like Coach and New Balance, across the whole lifecycle of production, from breaking news to evergreen pieces, pitch to publish.</p>
+      <p class="reveal d2">Outside of work, I'm usually outdoors with a camera in hand: hiking, running, rockhounding (ask me about this!), swimming in alpine lakes, biking around Seattle, or at the pottery wheel.</p>
+      <div class="closing-explore reveal d3">Explore the full portfolio</div>
+      <div class="closing-btns reveal d3">
+        <button class="btn btn-dark" data-page="remote">Viral Video Storytelling</button>
+        <button class="btn btn-outline" data-page="field">Field Production</button>
+        <button class="btn btn-outline" data-page="animation">Animation</button>
       </div>
     </div>
-  </div>
-
-  <!-- VIDEO BLOCK -->
-  <div class="intro-video-block">
-    <div class="intro-video-wrap" style="pointer-events:none;">
-      <iframe src="https://player.vimeo.com/video/1175371110?autoplay=1&loop=1&byline=0&title=0&muted=1&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div class="about-strip">
-    <div class="about-strip-photo">
-      <img src="https://i.imgur.com/t3m1FSy.png" alt="Faith Bernstein">
-    </div>
-    <div class="about-strip-text">
-      <div class="about-strip-eyebrow">About Faith</div>
-      <p>I made my first video in high school, advocating for bike lanes along our school's main road. It was a small project (with shaky footage and that all-too-familiar iMovie stock music) but it actually helped get the lanes built and showed me early on the power of video storytelling to make a difference in the real world.</p>
-      <p>Since then, I have been pitching, producing, and editing videos that have reached over a billion viewers. I have done editorial work at ABC News, Good Morning America, and Group Nine Media, along with branded storytelling for clients like Coach and New Balance. Across all of it, the goal has stayed the same: to make work that people feel, not just watch.</p>
-      <p>A growing focus of my work has been outdoor storytelling, especially running, endurance, and the human spirit that shows up in those environments. I am drawn to the moments where people push beyond what they thought they could do and how those experiences connect back to something universal.</p>
-      <p>I've worked across the entire lifecycle of production, in high-impact breaking news moments to artistic evergreen productions from pitch to publish, including all the coordination, communication, relationship building and technical execution needed to get it done. I like to nerd out on why something performed well, dissect the opening and momentum of a piece, and find a way to knit strategy and strong storytelling together.</p>
-      <p>Outside of work, I am usually outdoors with a camera in hand, hiking, running, rockhounding (ask me about this!), swimming in alpine lakes, biking around Seattle, or practicing on the pottery wheel.</p>
-
-    </div>
-    <svg style="position:absolute;bottom:0;right:80px;opacity:0.06;pointer-events:none;" width="260" height="300" viewBox="0 0 260 300" fill="none">
-      <path d="M130 290 C128 220 132 150 136 80 C138 55 139 30 137 10" stroke="#2e4a1e" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M135 220 C112 205 88 194 62 191" stroke="#2e4a1e" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M62 191 C82 183 99 170 113 154" stroke="#2e4a1e" stroke-width="0.9" stroke-linecap="round"/>
-      <path d="M134 190 C111 173 86 163 59 161" stroke="#2e4a1e" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M133 158 C112 143 89 134 65 133" stroke="#2e4a1e" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M135 220 C158 205 181 194 206 191" stroke="#8a4a2a" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M206 191 C187 183 172 170 160 154" stroke="#8a4a2a" stroke-width="0.9" stroke-linecap="round"/>
-      <path d="M134 190 C157 173 181 163 206 161" stroke="#8a4a2a" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M133 158 C156 143 179 134 203 133" stroke="#8a4a2a" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M132 126 C113 113 93 106 71 105" stroke="#2e4a1e" stroke-width="1.1" stroke-linecap="round"/>
-      <path d="M132 126 C151 113 170 106 191 105" stroke="#8a4a2a" stroke-width="1.1" stroke-linecap="round"/>
-    </svg>
-  </div>
+  </section>
 
 </div>
 
@@ -585,6 +867,170 @@ for (var i=0;i<allNavBtns.length;i++) {
 buildSlideshow('field-slideshow', getThumbs(videos.field));
 buildSlideshow('remote-slideshow', getThumbs(videos.remote));
 buildSlideshow('animation-slideshow', getThumbs(videos.animation));
+
+/* ══════════════════════════════════════════
+   STORY — scroll-driven homepage
+   Media layers: data-img="url" shows a still with a slow zoom;
+   data-yt="YouTubeID" plays a muted looping clip.
+   Optional on a data-yt layer: data-start="seconds" (default: 30% in)
+   and data-len="seconds" (default 10) to pick the clip.
+   ══════════════════════════════════════════ */
+(function(){
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
+  var allowClips = !reduceMotion && !saveData;
+
+  // Posters
+  var layers = document.querySelectorAll('.story .layer');
+  for (var i=0;i<layers.length;i++) {
+    var L = layers[i], img = document.createElement('img');
+    img.className = 'poster'; img.alt = ''; img.loading = 'lazy';
+    if (L.dataset.img) { img.src = L.dataset.img; }
+    else if (L.dataset.yt) {
+      img.src = 'https://img.youtube.com/vi/'+L.dataset.yt+'/maxresdefault.jpg';
+      img.onload = function(){ if (this.naturalWidth <= 120 && !this.dataset.fb) { this.dataset.fb = 1; this.classList.add('letterbox'); this.src = this.src.replace('maxresdefault','hqdefault'); } };
+    }
+    L.insertBefore(img, L.firstChild);
+  }
+
+  // YouTube clips
+  var ytReady = false, ytQueue = [];
+  function whenYT(fn){ ytReady ? fn() : ytQueue.push(fn); }
+  window.onYouTubeIframeAPIReady = function(){ ytReady = true; ytQueue.forEach(function(f){ f(); }); ytQueue = []; };
+  if (allowClips && document.querySelector('.story [data-yt]')) {
+    var tag = document.createElement('script'); tag.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(tag);
+  }
+  function ensurePlayer(L){
+    if (!allowClips || !L || !L.dataset.yt || L._holder) return;
+    var holder = document.createElement('div'); holder.className = 'yt';
+    var inner = document.createElement('div'); holder.appendChild(inner); L.appendChild(holder); L._holder = holder;
+    whenYT(function(){
+      L._player = new YT.Player(inner, {
+        videoId: L.dataset.yt,
+        playerVars: { autoplay:0, mute:1, controls:0, disablekb:1, fs:0, iv_load_policy:3, modestbranding:1, playsinline:1, rel:0 },
+        events: {
+          onReady: function(e){
+            e.target.mute();
+            var d = e.target.getDuration() || 0;
+            L._start = L.dataset.start ? +L.dataset.start : Math.floor(d * 0.3);
+            L._len = +(L.dataset.len || 10);
+            L._ready = true;
+            if (L.classList.contains('active')) playLayer(L);
+          },
+          onStateChange: function(e){
+            if (e.data === 1) { clearTimeout(L._t); L._t = setTimeout(function(){ if (L.classList.contains('active')) holder.classList.add('playing'); }, 500); }
+          },
+          onError: function(){ L._failed = true; holder.parentNode && holder.parentNode.removeChild(holder); }
+        }
+      });
+    });
+  }
+  function playLayer(L){
+    if (!L._ready || L._failed) return;
+    try { L._player.seekTo(L._start, true); L._player.playVideo(); } catch(e){}
+  }
+  function pauseLayer(L){
+    if (L._holder) L._holder.classList.remove('playing');
+    if (L._ready && !L._failed) { try { L._player.pauseVideo(); } catch(e){} }
+  }
+  setInterval(function(){
+    var act = document.querySelectorAll('.story .layer.active');
+    for (var i=0;i<act.length;i++) {
+      var L = act[i];
+      if (L._ready && !L._failed) { try { if (L._player.getCurrentTime() > L._start + L._len) L._player.seekTo(L._start, true); } catch(e){} }
+    }
+  }, 400);
+
+  // Scrollytelling sections
+  var scrollies = document.querySelectorAll('[data-scrolly]');
+  for (var s=0;s<scrollies.length;s++) (function(sc){
+    var stageLayers = sc.querySelectorAll('.layer');
+    var steps = sc.querySelectorAll('.step');
+    var inView = false, current = -1;
+    var tallyNum = sc.querySelector('[data-tally-num]'), tallyBar = sc.querySelector('[data-tally-bar]');
+    var tallyMax = +(sc.dataset.tally || 0), tallyShown = 0;
+
+    function setStep(idx){
+      for (var i=0;i<steps.length;i++) steps[i].classList.toggle('active', i === idx);
+      var li = +steps[idx].dataset.layer;
+      if (li !== current) {
+        current = li;
+        for (var j=0;j<stageLayers.length;j++) {
+          var on = j === li; stageLayers[j].classList.toggle('active', on);
+          if (on) { ensurePlayer(stageLayers[j]); if (inView) playLayer(stageLayers[j]); } else pauseLayer(stageLayers[j]);
+        }
+        ensurePlayer(stageLayers[li+1]); // warm up the next clip
+      }
+      if (tallyNum) {
+        var sum = 0; for (var k=0;k<=idx;k++) sum += +(steps[k].dataset.views || 0);
+        animateTally(sum);
+      }
+    }
+    function animateTally(target){
+      var from = tallyShown, t0 = performance.now(), dur = reduceMotion ? 0 : 900;
+      tallyBar.style.width = Math.min(100, target / tallyMax * 100) + '%';
+      (function tick(now){
+        var p = dur ? Math.min(1, (now - t0) / dur) : 1, e = 1 - Math.pow(1 - p, 3);
+        tallyShown = Math.round(from + (target - from) * e);
+        tallyNum.textContent = tallyShown + 'M';
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) setStep(Array.prototype.indexOf.call(steps, en.target)); });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    for (var i=0;i<steps.length;i++) io.observe(steps[i]);
+
+    // Play only while the section is on screen; preload clips when it's close
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        inView = en.isIntersecting;
+        if (current < 0) { stageLayers[0].classList.add('active'); current = 0; }
+        var L = stageLayers[current];
+        if (inView) { ensurePlayer(L); playLayer(L); } else if (L) pauseLayer(L);
+      });
+    }).observe(sc);
+    new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting) { ensurePlayer(stageLayers[0]); ensurePlayer(stageLayers[1]); }
+    }, { rootMargin: '150% 0px' }).observe(sc);
+  })(scrollies[s]);
+
+  // Fade-up reveals
+  var rio = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  var revs = document.querySelectorAll('.reveal');
+  for (var r=0;r<revs.length;r++) rio.observe(revs[r]);
+
+  // Parallax on pull-quote backgrounds
+  var px = document.querySelectorAll('[data-parallax]');
+  if (px.length && !reduceMotion) {
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        for (var i=0;i<px.length;i++) {
+          var r = px[i].parentNode.getBoundingClientRect();
+          var p = (r.top + r.height/2 - window.innerHeight/2) / window.innerHeight;
+          px[i].style.transform = 'translateY(' + (p * -8) + '%)';
+        }
+        ticking = false;
+      });
+    }, { passive:true });
+  }
+
+  // Hero view counter
+  var hc = document.getElementById('hero-count');
+  if (hc) {
+    var goal = 1000000000, t0 = performance.now(), dur = reduceMotion ? 0 : 2600;
+    (function tick(now){
+      var p = dur ? Math.min(1, (now - t0) / dur) : 1, e = 1 - Math.pow(1 - p, 4);
+      hc.textContent = Math.round(goal * e).toLocaleString('en-US') + (p >= 1 ? '+' : '');
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+})();
 
 // Show home page on load
 showPage('home');
