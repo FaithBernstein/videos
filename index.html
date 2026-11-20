@@ -293,6 +293,8 @@
     .layer[data-vertical] .poster{filter:blur(22px) brightness(0.55);transform:scale(1.15);}
     .layer[data-vertical].active .poster{transform:scale(1.15);}
     .layer[data-vertical] .yt{left:auto;right:9%;top:0;transform:none;width:calc(var(--stage-h)*0.5625);height:100%;box-shadow:0 30px 80px rgba(0,0,0,0.6);}
+    .layer[data-pillar] .yt{overflow:hidden;}
+    .layer[data-pillar] .yt iframe{position:absolute;top:0;left:50%;height:100%;width:calc(var(--stage-h)*1.7778);transform:translateX(-50%);}
     .layer::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,20,16,0.7) 0%,rgba(28,20,16,0.15) 55%,rgba(28,20,16,0.25) 100%);pointer-events:none;}
     .scrolly-right .layer::after{background:linear-gradient(270deg,rgba(28,20,16,0.7) 0%,rgba(28,20,16,0.15) 55%,rgba(28,20,16,0.25) 100%);}
     .steps{position:relative;z-index:2;margin-top:calc(-1 * var(--stage-h));pointer-events:none;}
@@ -376,6 +378,8 @@
       .card p{font-size:17px;}
       .layer::after,.scrolly-right .layer::after{background:linear-gradient(to top,rgba(28,20,16,0.8) 0%,rgba(28,20,16,0.1) 60%);}
       .layer[data-vertical] .yt{left:50%;right:auto;top:50%;transform:translate(-50%,-50%);width:max(100%,calc(var(--stage-h)*0.5625));height:max(100%,calc(100vw*1.7778));box-shadow:none;}
+      .layer[data-pillar] .yt{width:100%;height:100%;}
+      .layer[data-pillar] .yt iframe{top:50%;height:max(100%,calc(100vw*1.7778));width:calc(max(var(--stage-h),100vw*1.7778)*1.7778);transform:translate(-50%,-50%);}
       .tally{top:14px;right:14px;padding:10px 12px;}
       .tally-bar{width:120px;}
       .pull{padding:96px 22px;}
@@ -443,49 +447,55 @@
 
   <div class="scrolly" data-scrolly>
     <div class="stage">
-      <div class="layer" data-yt="tzK-LmXpy8s"></div>
+      <div class="layer" data-yt="-qd2XyGFTzk"></div>
+      <div class="layer" data-yt="Xt2SPXiIYpA"></div>
+      <div class="layer" data-yt="evx2dBUGjd8"></div>
+      <div class="layer" data-yt="tzK-LmXpy8s" data-vertical data-pillar data-img="https://i.imgur.com/O4qd3Ku.png"></div>
       <div class="layer" data-yt="4ZF8A-evh9U" data-vertical data-img="https://i.imgur.com/GYNmRYE.jpeg"></div>
       <div class="layer" data-yt="xJelbbYF9z8"></div>
       <div class="layer" data-yt="LsWSSCbczQc"></div>
-      <div class="layer" data-yt="evx2dBUGjd8"></div>
       <div class="layer" data-yt="Mi09WhyMAKg" data-vertical data-img="https://i.imgur.com/uvJzXna.png"></div>
-      <div class="layer" data-yt="-qd2XyGFTzk"></div>
     </div>
     <div class="steps">
       <div class="step" data-layer="0"><div class="card">
-        <div class="card-meta"><span class="card-views">9M views</span><span class="card-role">Producer, Editor</span></div>
-        <h3>Woman Shatters Appalachian Trail Speed Record</h3>
-        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
+        <h3>After a racist encounter in Central Park, Chris Cooper took us birding there</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=-qd2XyGFTzk" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
       <div class="step" data-layer="1"><div class="card">
-        <div class="card-meta"><span class="card-views">8M views</span><span class="card-role">Producer, Editor</span></div>
-        <h3>56 hours. 250 miles. Ultramarathon history in Arizona.</h3>
-        <a class="card-link" href="https://www.facebook.com/reel/944012738476586" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+        <div class="card-meta"><span class="card-role">Director, Producer, Camera, Editor</span></div>
+        <h3>A Black-owned coffee company on a mission to increase diversity in the outdoors</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=Xt2SPXiIYpA" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
       <div class="step" data-layer="2"><div class="card">
-        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
-        <h3>This Might Be the Greatest Comeback in Ultramarathon History</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=xJelbbYF9z8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="3"><div class="card">
-        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
-        <h3>One year after a shark attack, Ali Truwit prepares to swim in the Paralympics</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=LsWSSCbczQc" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="4"><div class="card">
         <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
         <h3>An 11-year-old amputee runs his dream race</h3>
         <a class="card-link" href="https://www.youtube.com/watch?v=evx2dBUGjd8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
+      <div class="step" data-layer="3"><div class="card">
+        <div class="card-meta"><span class="card-views">9M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>Woman Shatters Appalachian Trail Speed Record</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="4"><div class="card">
+        <div class="card-meta"><span class="card-views">8M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>56 hours. 250 miles. Ultramarathon history in Arizona.</h3>
+        <a class="card-link" href="https://www.facebook.com/reel/944012738476586" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
       <div class="step" data-layer="5"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
+        <h3>This Might Be the Greatest Comeback in Ultramarathon History</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=xJelbbYF9z8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="6"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
+        <h3>One year after a shark attack, Ali Truwit prepares to swim in the Paralympics</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=LsWSSCbczQc" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="7"><div class="card">
         <div class="card-meta"><span class="card-views">500K views</span><span class="card-role">Producer, Editor</span></div>
         <h3>The last runner to finish the New York City Marathon, and the journey to get there</h3>
         <a class="card-link" href="https://www.instagram.com/reels/DQulQweDQQs/" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="6"><div class="card">
-        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
-        <h3>After a racist encounter in Central Park, Chris Cooper took us birding there</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=-qd2XyGFTzk" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
     </div>
   </div>
@@ -498,9 +508,61 @@
     </div>
   </section>
 
-  <!-- CHAPTER II — VIRAL -->
+  <!-- CHAPTER II — IMPACT -->
   <section class="chapter-open">
     <div class="chapter-num reveal">Chapter II</div>
+    <h2 class="chapter-title reveal d1">Stories that <em>matter.</em></h2>
+    <p class="chapter-lede reveal d2">Many of these stories take on the biggest issues of our time (gun violence, abortion, climate change, racism) and try to make them feel personal. Above all, I make sure every subject feels safe, supported, and heard.</p>
+  </section>
+
+  <div class="scrolly" data-scrolly>
+    <div class="stage">
+      <div class="layer" data-yt="-JokheVpUmU"></div>
+      <div class="layer" data-yt="sty4aH10FRE"></div>
+      <div class="layer" data-yt="U_k2n9MCzDI"></div>
+      <div class="layer" data-yt="7P3_47VglVg"></div>
+    </div>
+    <div class="steps">
+      <div class="step" data-layer="0"><div class="card">
+        <div class="card-meta"><span class="card-award">Webby Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
+        <h3>School shooting survivors reflect on life after tragedy, from Sandy Hook to Uvalde</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=-JokheVpUmU" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="1"><div class="card">
+        <div class="card-meta"><span class="card-award">GLAAD Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
+        <h3>Love at Club Q</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=sty4aH10FRE" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="2"><div class="card">
+        <div class="card-meta"><span class="card-award">Deadline Award Nominee</span><span class="card-role">Director, Producer, Editor</span></div>
+        <div class="card-quote">&ldquo;Forgotten collateral damage&rdquo;</div>
+        <h3>The stories you didn't see in <em>Oppenheimer</em></h3>
+        <a class="card-link" href="https://youtu.be/U_k2n9MCzDI" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="3"><div class="card">
+        <div class="card-meta"><span class="card-award">NABJ Award Nominee</span><span class="card-role">Producer, Project Manager</span></div>
+        <h3>Herstory Lessons: the first Black female reporter at The Washington Post</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=7P3_47VglVg" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+    </div>
+  </div>
+
+  <section class="awards-wall">
+    <div class="chapter-num reveal">Recognition</div>
+    <div class="awards-grid">
+      <a class="award-tile reveal" href="https://www.goodmorningamerica.com/news/video/gma-wins-emmy-2nd-year-row-54824270" target="_blank" rel="noopener"><span class="award-tile-name">Daytime Emmy Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
+      <a class="award-tile reveal d1" href="https://abcnews.go.com/US/deepdive/Edward-R-Murrow-Awards-Overall-Excellence-68937801" target="_blank" rel="noopener"><span class="award-tile-name">Edward R. Murrow Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
+      <a class="award-tile reveal d2" href="https://www.thebeaverbelievers.com/" target="_blank" rel="noopener"><span class="award-tile-name">BANFF World Media Festival</span><span class="cred-bar-tag cred-bar-tag-selection">Selection</span></a>
+      <a class="award-tile reveal d3" href="https://www.goodmorningamerica.com/news/story/club-found-love-lost-loved-99962153" target="_blank" rel="noopener"><span class="award-tile-name">GLAAD Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+      <a class="award-tile reveal d4" href="https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965" target="_blank" rel="noopener"><span class="award-tile-name">Webby Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+      <a class="award-tile reveal d5" href="https://www.goodmorningamerica.com/news/story/untold-oppenheimer-story-female-activists-fighting-justice-after-107849537" target="_blank" rel="noopener"><span class="award-tile-name">Deadline Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+      <a class="award-tile reveal d6" href="https://www.goodmorningamerica.com/culture/video/inspiring-story-black-female-reporter-washington-post-62845230" target="_blank" rel="noopener"><span class="award-tile-name">NABJ Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
+    </div>
+  </section>
+
+  <!-- CHAPTER III — VIRAL -->
+  <section class="chapter-open">
+    <div class="chapter-num reveal">Chapter III</div>
     <h2 class="chapter-title reveal d1">Going <em>viral.</em></h2>
     <p class="chapter-lede reveal d2">I like to nerd out on why something performed well: the opening, the momentum, the moment people decide to share. Strategy and strong storytelling, knit together.</p>
   </section>
@@ -549,58 +611,6 @@
       </div></div>
     </div>
   </div>
-
-  <!-- CHAPTER III — IMPACT -->
-  <section class="chapter-open">
-    <div class="chapter-num reveal">Chapter III</div>
-    <h2 class="chapter-title reveal d1">Stories that <em>matter.</em></h2>
-    <p class="chapter-lede reveal d2">Many of these stories take on the biggest issues of our time (gun violence, abortion, climate change, racism) and try to make them feel personal. Above all, I make sure every subject feels safe, supported, and heard.</p>
-  </section>
-
-  <div class="scrolly" data-scrolly>
-    <div class="stage">
-      <div class="layer" data-yt="sty4aH10FRE"></div>
-      <div class="layer" data-yt="-JokheVpUmU"></div>
-      <div class="layer" data-yt="U_k2n9MCzDI"></div>
-      <div class="layer" data-yt="7P3_47VglVg"></div>
-    </div>
-    <div class="steps">
-      <div class="step" data-layer="0"><div class="card">
-        <div class="card-meta"><span class="card-award">GLAAD Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
-        <h3>Love at Club Q</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=sty4aH10FRE" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="1"><div class="card">
-        <div class="card-meta"><span class="card-award">Webby Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
-        <h3>School shooting survivors reflect on life after tragedy, from Sandy Hook to Uvalde</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=-JokheVpUmU" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="2"><div class="card">
-        <div class="card-meta"><span class="card-award">Deadline Award Nominee</span><span class="card-role">Director, Producer, Editor</span></div>
-        <div class="card-quote">&ldquo;Forgotten collateral damage&rdquo;</div>
-        <h3>The stories you didn't see in <em>Oppenheimer</em></h3>
-        <a class="card-link" href="https://youtu.be/U_k2n9MCzDI" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="3"><div class="card">
-        <div class="card-meta"><span class="card-award">NABJ Award Nominee</span><span class="card-role">Producer, Project Manager</span></div>
-        <h3>Herstory Lessons: the first Black female reporter at The Washington Post</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=7P3_47VglVg" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-    </div>
-  </div>
-
-  <section class="awards-wall">
-    <div class="chapter-num reveal">Recognition</div>
-    <div class="awards-grid">
-      <a class="award-tile reveal" href="https://www.goodmorningamerica.com/news/video/gma-wins-emmy-2nd-year-row-54824270" target="_blank" rel="noopener"><span class="award-tile-name">Daytime Emmy Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
-      <a class="award-tile reveal d1" href="https://abcnews.go.com/US/deepdive/Edward-R-Murrow-Awards-Overall-Excellence-68937801" target="_blank" rel="noopener"><span class="award-tile-name">Edward R. Murrow Award</span><span class="cred-bar-tag cred-bar-tag-winner">Winner</span></a>
-      <a class="award-tile reveal d2" href="https://www.thebeaverbelievers.com/" target="_blank" rel="noopener"><span class="award-tile-name">BANFF World Media Festival</span><span class="cred-bar-tag cred-bar-tag-selection">Selection</span></a>
-      <a class="award-tile reveal d3" href="https://www.goodmorningamerica.com/news/story/club-found-love-lost-loved-99962153" target="_blank" rel="noopener"><span class="award-tile-name">GLAAD Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-      <a class="award-tile reveal d4" href="https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965" target="_blank" rel="noopener"><span class="award-tile-name">Webby Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-      <a class="award-tile reveal d5" href="https://www.goodmorningamerica.com/news/story/untold-oppenheimer-story-female-activists-fighting-justice-after-107849537" target="_blank" rel="noopener"><span class="award-tile-name">Deadline Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-      <a class="award-tile reveal d6" href="https://www.goodmorningamerica.com/culture/video/inspiring-story-black-female-reporter-washington-post-62845230" target="_blank" rel="noopener"><span class="award-tile-name">NABJ Award</span><span class="cred-bar-tag cred-bar-tag-nominee">Nominee</span></a>
-    </div>
-  </section>
 
   <!-- CLOSING -->
   <section class="closing">
