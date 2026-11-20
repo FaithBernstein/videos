@@ -289,6 +289,10 @@
     .layer .yt{position:absolute;top:50%;left:50%;width:max(100%,calc(var(--stage-h)*1.7778));height:max(100%,calc(min(100vw,1400px)*0.5625));transform:translate(-50%,-50%);opacity:0;transition:opacity 0.8s ease;}
     .layer .yt.playing{opacity:1;}
     .layer .yt iframe{width:100%;height:100%;border:0;pointer-events:none;}
+    .layer[data-vertical]::after{background:linear-gradient(90deg,rgba(28,20,16,0.6) 0%,rgba(28,20,16,0) 50%);}
+    .layer[data-vertical] .poster{filter:blur(22px) brightness(0.55);transform:scale(1.15);}
+    .layer[data-vertical].active .poster{transform:scale(1.15);}
+    .layer[data-vertical] .yt{left:auto;right:9%;top:0;transform:none;width:calc(var(--stage-h)*0.5625);height:100%;box-shadow:0 30px 80px rgba(0,0,0,0.6);}
     .layer::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,20,16,0.7) 0%,rgba(28,20,16,0.15) 55%,rgba(28,20,16,0.25) 100%);pointer-events:none;}
     .scrolly-right .layer::after{background:linear-gradient(270deg,rgba(28,20,16,0.7) 0%,rgba(28,20,16,0.15) 55%,rgba(28,20,16,0.25) 100%);}
     .steps{position:relative;z-index:2;margin-top:calc(-1 * var(--stage-h));pointer-events:none;}
@@ -371,6 +375,7 @@
       .card{max-width:none;width:100%;padding:22px 22px 20px;}
       .card p{font-size:17px;}
       .layer::after,.scrolly-right .layer::after{background:linear-gradient(to top,rgba(28,20,16,0.8) 0%,rgba(28,20,16,0.1) 60%);}
+      .layer[data-vertical] .yt{left:50%;right:auto;top:50%;transform:translate(-50%,-50%);width:max(100%,calc(var(--stage-h)*0.5625));height:max(100%,calc(100vw*1.7778));box-shadow:none;}
       .tally{top:14px;right:14px;padding:10px 12px;}
       .tally-bar{width:120px;}
       .pull{padding:96px 22px;}
@@ -438,12 +443,12 @@
 
   <div class="scrolly" data-scrolly>
     <div class="stage">
-      <div class="layer" data-img="https://i.imgur.com/O4qd3Ku.png"></div>
-      <div class="layer" data-img="https://i.imgur.com/GYNmRYE.jpeg"></div>
+      <div class="layer" data-yt="tzK-LmXpy8s"></div>
+      <div class="layer" data-yt="4ZF8A-evh9U" data-vertical data-img="https://i.imgur.com/GYNmRYE.jpeg"></div>
       <div class="layer" data-yt="xJelbbYF9z8"></div>
       <div class="layer" data-yt="LsWSSCbczQc"></div>
       <div class="layer" data-yt="evx2dBUGjd8"></div>
-      <div class="layer" data-img="https://i.imgur.com/uvJzXna.png"></div>
+      <div class="layer" data-yt="Mi09WhyMAKg" data-vertical data-img="https://i.imgur.com/uvJzXna.png"></div>
       <div class="layer" data-yt="-qd2XyGFTzk"></div>
     </div>
     <div class="steps">
@@ -503,11 +508,11 @@
   <div class="scrolly scrolly-right" data-scrolly data-tally="1000">
     <div class="stage">
       <div class="tally"><div class="tally-label">Views, these six stories</div><div class="tally-num" data-tally-num>0</div><div class="tally-bar"><i data-tally-bar></i></div></div>
-      <div class="layer" data-img="https://i.imgur.com/yEKBJUX.jpeg"></div>
+      <div class="layer" data-yt="MPIj4nt5vqY"></div>
       <div class="layer" data-img="https://i.imgur.com/2DZ4YYK.jpeg"></div>
-      <div class="layer" data-img="https://i.imgur.com/dQXyXv1.jpeg"></div>
+      <div class="layer" data-yt="cQ_PlD_0zDo"></div>
       <div class="layer" data-img="https://i.imgur.com/zkTtNjO.png"></div>
-      <div class="layer" data-img="https://i.imgur.com/gDnaUeU.jpeg"></div>
+      <div class="layer" data-yt="G-2ArXHYWg0"></div>
       <div class="layer" data-yt="zb_oMA-v_wI"></div>
     </div>
     <div class="steps">
