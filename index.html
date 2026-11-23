@@ -268,13 +268,14 @@
       .nav-btn{font-size:10px;letter-spacing:0.04em;}
     }
     /* ── PHOTOGRAPHY ── */
-    .photo-gallery{display:flex;flex-direction:column;gap:16px;}
+    .photo-gallery{display:flex;flex-direction:column;gap:12px;max-width:1040px;margin:0 auto;}
+    #photography-page .section-desc{max-width:1040px;margin-left:auto;margin-right:auto;}
     .photo-gallery img{display:block;width:100%;height:auto;object-fit:cover;border-radius:3px;background:var(--cream-dark);}
-    .pg-stack{display:grid;grid-template-columns:9fr 10fr;gap:16px;align-items:stretch;}
-    .pg-col{display:flex;flex-direction:column;gap:16px;}
+    .pg-stack{display:grid;grid-template-columns:9fr 10fr;gap:12px;align-items:stretch;}
+    .pg-col{display:flex;flex-direction:column;gap:12px;}
     .pg-col .pg-fill{flex:1 1 auto;height:0;min-height:0;object-position:center bottom;}
-    .pg-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
-    .pg-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+    .pg-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+    .pg-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
     @media(max-width:768px){
       .pg-stack,.pg-pair,.pg-trio{grid-template-columns:1fr;}
       .pg-col .pg-fill{flex:none;height:auto;aspect-ratio:4/3;}
@@ -435,11 +436,6 @@
         </div>
       </div>
       <img src="/photography/swim.jpg" alt="Two swimmers wading into a sparkling mountain lake, backlit by the sun" loading="lazy" decoding="async" style="aspect-ratio:3/2">
-      <div class="pg-trio">
-        <img src="/photography/moss.jpg" alt="Hiker in a red jacket on a mossy fallen log in an old-growth rainforest" loading="lazy" decoding="async" style="aspect-ratio:2/3">
-        <img src="/photography/alpinelake.jpg" alt="Still turquoise alpine lake beneath cloud-capped granite peaks" loading="lazy" decoding="async" style="aspect-ratio:2/3">
-        <img src="/photography/huck.jpg" alt="Hiker backlit by the low sun on a trail lined with glowing red huckleberry bushes" loading="lazy" decoding="async" style="aspect-ratio:2/3;object-position:25% center">
-      </div>
       <img src="/photography/bluehour.jpg" alt="Ultralight tent pitched above an alpine lake beneath Mt. Baker at blue hour" loading="lazy" decoding="async" style="aspect-ratio:3200/1556">
       <img src="/photography/sunsetpano.jpg" alt="Snowshoer on a snowy ridge under a blazing pink sunset with Mt. Baker on the horizon" loading="lazy" decoding="async" style="aspect-ratio:3200/1826">
     </div>
