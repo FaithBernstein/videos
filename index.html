@@ -270,6 +270,7 @@
     .scroll-cue span{display:block;width:1px;height:56px;background:linear-gradient(var(--amber),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top;}
     @keyframes cue{0%{transform:scaleY(0);}50%{transform:scaleY(1);}100%{transform:scaleY(1);opacity:0;}}
 
+
     /* Chapter openers */
     .chapter-open{min-height:var(--stage-h);display:flex;flex-direction:column;justify-content:center;padding:120px 64px;max-width:980px;margin:0 auto;}
     .chapter-num{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--amber);margin-bottom:22px;}
@@ -358,6 +359,17 @@
     .closing-btns .btn-outline{background:transparent;border-color:var(--black);color:var(--black);}
     .closing-btns .btn-outline:hover{background:var(--black);color:var(--white);}
 
+    /* ── Generic aspect-aware clip sizing (16:9 iframe, --ar = picture aspect inside it) ── */
+    .layer{--ar:1.7778;}
+    .layer .yt{--W:min(100vw,1400px);--H:var(--stage-h);--hif:max(var(--H), calc(var(--W) / var(--ar)));left:50%;top:50%;right:auto;transform:translate(-50%,-50%);height:var(--hif);width:calc(var(--hif) * 1.7778);box-shadow:none;}
+    .layer .yt iframe{position:absolute;inset:0;width:100%;height:100%;transform:none;left:0;}
+    /* ── Vertical showcase ── */
+    .vscrolly .stage{background:#120d0a;}
+    .vframe{--fh:calc(var(--stage-h) * 0.86);--fw:calc(var(--fh) * 0.5625);position:absolute;top:50%;right:14%;transform:translateY(-50%);height:var(--fh);width:var(--fw);border-radius:22px;overflow:hidden;background:#000;box-shadow:0 40px 90px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.06);}
+    .vframe .layer .yt{--W:var(--fw);--H:var(--fh);}
+    .vframe .layer::after{display:none;}
+    .vframe .layer .poster,.vframe .layer.active .poster{transform:none;transition:none;}
+    .vscrolly .card{border-left-color:var(--terracotta-light);}
     /* Reveal on scroll */
     .reveal{opacity:0;transform:translateY(36px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1);}
     .reveal.in{opacity:1;transform:none;}
@@ -382,6 +394,8 @@
       .layer[data-vertical] .yt{left:50%;right:auto;top:50%;transform:translate(-50%,-50%);width:max(100%,calc(var(--stage-h)*0.5625));height:max(100%,calc(100vw*1.7778));box-shadow:none;}
       .layer[data-pillar] .yt{width:100%;height:100%;}
       .layer[data-pillar] .yt iframe{top:50%;height:max(100%,calc(100vw / var(--ar,0.5625)));width:calc(max(var(--stage-h),100vw / var(--ar,0.5625))*1.7778);transform:translate(-50%,-50%);}
+      .vframe{--fh:var(--stage-h);--fw:100vw;inset:0;top:0;right:0;transform:none;height:100%;width:100%;border-radius:0;box-shadow:none;}
+      .vscrolly .layer::after,.vframe .layer::after{display:block;background:linear-gradient(to top,rgba(28,20,16,0.8) 0%,rgba(28,20,16,0) 55%);}
       .tally{top:14px;right:14px;padding:10px 12px;}
       .tally-bar{width:120px;}
       .pull{padding:96px 22px;}
@@ -440,149 +454,170 @@
     <p class="chapter-lede reveal d2">I made my first video in high school, advocating for bike lanes along our school's main road. Shaky footage, iMovie stock music &mdash; but it actually helped get the lanes built, and it showed me early on the power of video to make a difference in the real world.</p>
   </section>
 
-  <!-- CHAPTER I — OUTDOORS -->
+  <!-- CHAPTER I — VISUALS -->
   <section class="chapter-open">
     <div class="chapter-num reveal">Chapter I</div>
-    <h2 class="chapter-title reveal d1">Out <em>there.</em></h2>
-    <p class="chapter-lede reveal d2">A growing focus of my work is outdoor storytelling: running, endurance, and the human spirit that shows up in those places. I'm drawn to the moments where people push past what they thought they could do.</p>
+    <h2 class="chapter-title reveal d1">Behind the <em>camera.</em></h2>
+    <p class="chapter-lede reveal d2">On location, I’m often behind the camera myself or working closely with a DP. I ask the questions that get people to say the thing they’ve never said on camera, and I make sure we leave with everything we need for the edit.</p>
   </section>
 
   <div class="scrolly" data-scrolly>
     <div class="stage">
       <div class="layer" data-yt="-qd2XyGFTzk" data-start="146" data-len="12"></div>
-      <div class="layer" data-yt="Xt2SPXiIYpA" data-start="144" data-len="12"></div>
-      <div class="layer" data-yt="evx2dBUGjd8" data-start="170" data-len="12"></div>
-      <div class="layer" data-yt="tzK-LmXpy8s" data-start="26" data-len="12" data-vertical data-pillar style="--ar:0.5625" data-img="https://i.imgur.com/O4qd3Ku.png"></div>
-      <div class="layer" data-yt="4ZF8A-evh9U" data-vertical data-start="10" data-len="12" data-img="https://i.imgur.com/GYNmRYE.jpeg"></div>
-      <div class="layer" data-yt="xJelbbYF9z8" data-start="422" data-len="12"></div>
-      <div class="layer" data-yt="LsWSSCbczQc" data-start="3" data-len="12"></div>
-      <div class="layer" data-yt="Mi09WhyMAKg" data-vertical data-start="49" data-len="12" data-img="https://i.imgur.com/uvJzXna.png"></div>
-    </div>
-    <div class="steps">
-      <div class="step" data-layer="0"><div class="card">
-        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
-        <h3>After a racist encounter in Central Park, Chris Cooper took us birding there</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=-qd2XyGFTzk" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="1"><div class="card">
-        <div class="card-meta"><span class="card-role">Director, Producer, Camera, Editor</span></div>
-        <h3>A Black-owned coffee company on a mission to increase diversity in the outdoors</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=Xt2SPXiIYpA" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="2"><div class="card">
-        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
-        <h3>An 11-year-old amputee runs his dream race</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=evx2dBUGjd8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="3"><div class="card">
-        <div class="card-meta"><span class="card-views">9M views</span><span class="card-role">Producer, Editor</span></div>
-        <h3>Woman Shatters Appalachian Trail Speed Record</h3>
-        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="4"><div class="card">
-        <div class="card-meta"><span class="card-views">8M views</span><span class="card-role">Producer, Editor</span></div>
-        <h3>56 hours. 250 miles. Ultramarathon history in Arizona.</h3>
-        <a class="card-link" href="https://www.facebook.com/reel/944012738476586" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="5"><div class="card">
-        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
-        <h3>This Might Be the Greatest Comeback in Ultramarathon History</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=xJelbbYF9z8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="6"><div class="card">
-        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
-        <h3>One year after a shark attack, Ali Truwit prepares to swim in the Paralympics</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=LsWSSCbczQc" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="7"><div class="card">
-        <div class="card-meta"><span class="card-views">500K views</span><span class="card-role">Producer, Editor</span></div>
-        <h3>The last runner to finish the New York City Marathon, and the journey to get there</h3>
-        <a class="card-link" href="https://www.instagram.com/reels/DQulQweDQQs/" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-    </div>
-  </div>
-
-  <section class="pull">
-    <div class="pull-bg" data-parallax style="background-image:url('https://i.imgur.com/tEbJZ1O.jpeg')"></div>
-    <div class="pull-inner">
-      <blockquote class="reveal">It's never too late.</blockquote>
-      <cite class="reveal d1">65-year-old pull-up legend &middot; 10M views &middot; <a href="https://www.facebook.com/watch/?ref=embed_video&v=579913551411758" target="_blank" rel="noopener">Watch</a></cite>
-    </div>
-  </section>
-
-  <!-- CHAPTER II — FIELD -->
-  <section class="chapter-open">
-    <div class="chapter-num reveal">Chapter II</div>
-    <h2 class="chapter-title reveal d1">Behind the <em>camera.</em></h2>
-    <p class="chapter-lede reveal d2">On location, I'm often behind the camera myself or working closely with a DP. I ask the questions that get people to say the thing they've never said on camera, and I make sure we leave with everything we need for the edit.</p>
-  </section>
-
-  <div class="scrolly scrolly-right" data-scrolly>
-    <div class="stage">
-      <div class="layer" data-yt="Ws0fWrOazoQ" data-start="164" data-len="12"></div>
-      <div class="layer" data-yt="PG1t8cbC6QM" data-start="155" data-len="12"></div>
-      <div class="layer" data-yt="3_ObiS4X7Go" data-start="100" data-len="10" data-vertical data-pillar style="--ar:1"></div>
-      <div class="layer" data-yt="WaF9iic-Wkw" data-start="100" data-len="12"></div>
-    </div>
-    <div class="steps">
-      <div class="step" data-layer="0"><div class="card">
-        <div class="card-meta"><span class="card-role">Director, Producer, Camera, Editor</span></div>
-        <h3>Meet the hockey team made up entirely of trans and nonbinary athletes</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=Ws0fWrOazoQ" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="1"><div class="card">
-        <div class="card-meta"><span class="card-role">Director, Producer, Camera, Editor</span></div>
-        <h3>Indigenous Basketball League</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=PG1t8cbC6QM" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="2"><div class="card">
-        <div class="card-meta"><span class="card-views">2M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
-        <h3>We asked Marie Kondo to fold a bag of potato chips…</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=3_ObiS4X7Go" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-      <div class="step" data-layer="3"><div class="card">
-        <div class="card-meta"><span class="card-role">Director, Editor</span></div>
-        <h3>Meet the model who calls herself a real-life Bratz doll</h3>
-        <a class="card-link" href="https://www.youtube.com/watch?v=WaF9iic-Wkw" target="_blank" rel="noopener">Watch the full video &#8599;</a>
-      </div></div>
-    </div>
-  </div>
-
-  <!-- CHAPTER III — IMPACT -->
-  <section class="chapter-open">
-    <div class="chapter-num reveal">Chapter III</div>
-    <h2 class="chapter-title reveal d1">Stories that <em>matter.</em></h2>
-    <p class="chapter-lede reveal d2">Many of these stories take on the biggest issues of our time (gun violence, abortion, climate change, racism) and try to make them feel personal. Above all, I make sure every subject feels safe, supported, and heard.</p>
-  </section>
-
-  <div class="scrolly" data-scrolly>
-    <div class="stage">
       <div class="layer" data-yt="-JokheVpUmU" data-start="198" data-len="12"></div>
       <div class="layer" data-yt="sty4aH10FRE" data-start="1075" data-len="12"></div>
       <div class="layer" data-yt="U_k2n9MCzDI" data-start="505" data-len="10"></div>
+      <div class="layer" data-yt="cdTzffzKL5c" data-start="26" data-len="12"></div>
+      <div class="layer" data-yt="o-y3gpRcMlQ" data-start="28" data-len="12"></div>
+      <div class="layer" data-yt="Ws0fWrOazoQ" data-start="164" data-len="12"></div>
+      <div class="layer" data-yt="Xt2SPXiIYpA" data-start="144" data-len="12"></div>
+      <div class="layer" data-vimeo="176664703" data-start="30" data-len="12" data-img="https://i.imgur.com/Bn3k2bk.jpeg"></div>
+      <div class="layer" data-yt="WaF9iic-Wkw" data-start="100" data-len="12"></div>
+      <div class="layer" data-vimeo="322096549" data-start="30" data-len="12" data-img="https://i.imgur.com/5bT6wtS.jpeg"></div>
+      <div class="layer" data-yt="BX0k_h6vXYo" data-start="74" data-len="12"></div>
+      <div class="layer" data-yt="zitHgGLENm0" data-start="178" data-len="12" style="--ar:1"></div>
       <div class="layer" data-yt="7P3_47VglVg" data-start="160" data-len="12"></div>
+      <div class="layer" data-img="https://i.imgur.com/MnleoII.jpeg"></div>
     </div>
     <div class="steps">
       <div class="step" data-layer="0"><div class="card">
+        <div class="card-meta"><span class="card-views">1M+ views</span><span class="card-role">Producer, Camera, Editor</span></div>
+        <h3>After a racist park encounter, Chris Cooper takes us birding in Central Park</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=-qd2XyGFTzk" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="1"><div class="card">
         <div class="card-meta"><span class="card-award">Webby Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
         <h3>School shooting survivors reflect on life after tragedy, from Sandy Hook to Uvalde</h3>
         <a class="card-link" href="https://www.youtube.com/watch?v=-JokheVpUmU" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
-      <div class="step" data-layer="1"><div class="card">
+      <div class="step" data-layer="2"><div class="card">
         <div class="card-meta"><span class="card-award">GLAAD Award Nominee</span><span class="card-role">Director, Lead Producer, Camera</span></div>
         <h3>Love at Club Q</h3>
         <a class="card-link" href="https://www.youtube.com/watch?v=sty4aH10FRE" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
-      <div class="step" data-layer="2"><div class="card">
+      <div class="step" data-layer="3"><div class="card">
         <div class="card-meta"><span class="card-award">Deadline Award Nominee</span><span class="card-role">Director, Producer, Editor</span></div>
-        <div class="card-quote">&ldquo;Forgotten collateral damage&rdquo;</div>
-        <h3>The stories you didn't see in <em>Oppenheimer</em></h3>
+        <h3>“Forgotten collateral damage”: The stories you didn’t see in Oppenheimer</h3>
         <a class="card-link" href="https://youtu.be/U_k2n9MCzDI" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
-      <div class="step" data-layer="3"><div class="card">
+      <div class="step" data-layer="4"><div class="card">
+        <div class="card-meta"><span class="card-role">Branded</span></div>
+        <h3>New Balance 997</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=cdTzffzKL5c" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="5"><div class="card">
+        <div class="card-meta"><span class="card-role">Branded</span></div>
+        <h3>Coach: A New York Story</h3>
+        <a class="card-link" href="https://www.acmedynasty.com/video-ultimate.html?id=197" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="6"><div class="card">
+        <div class="card-meta"><span class="card-role">Director, Producer, Camera, Editor</span></div>
+        <h3>Meet the hockey team made up entirely of trans and nonbinary athletes</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=Ws0fWrOazoQ" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="7"><div class="card">
+        <div class="card-meta"><span class="card-role">Director, Producer, Camera, Editor</span></div>
+        <h3>A Black-owned coffee company on a mission to increase diversity in the outdoors</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=Xt2SPXiIYpA" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="8"><div class="card">
+        <div class="card-meta"><span class="card-award">The Atlantic Editor’s Pick</span><span class="card-role">Producer, Camera, Editor</span></div>
+        <h3>The disheartening experience of waiting for a kidney</h3>
+        <a class="card-link" href="https://vimeo.com/176664703" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="9"><div class="card">
+        <div class="card-meta"><span class="card-role">Director, Editor</span></div>
+        <h3>Meet the model who calls herself a real-life Bratz doll</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=WaF9iic-Wkw" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="10"><div class="card">
+        <div class="card-meta"><span class="card-award">BANFF Official Selection</span><span class="card-role">Post-Production Intern</span></div>
+        <h3>The Beaver Believers</h3>
+        <a class="card-link" href="https://vimeo.com/322096549" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="11"><div class="card">
+        <div class="card-meta"><span class="card-views">500K+ views</span><span class="card-role">Director, Lead Producer, Editor</span></div>
+        <h3>Meet the 89-year-old Puerto Rican owner of NYC’s oldest music store</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=BX0k_h6vXYo" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="12"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Writer, Project Manager</span></div>
+        <h3>Herstory Lessons: Title IX and the fight for women’s equality in sports</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=zitHgGLENm0" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="13"><div class="card">
         <div class="card-meta"><span class="card-award">NABJ Award Nominee</span><span class="card-role">Producer, Project Manager</span></div>
-        <h3>Herstory Lessons: the first Black female reporter at The Washington Post</h3>
+        <h3>Herstory Lessons: The first Black female reporter for The Washington Post</h3>
         <a class="card-link" href="https://www.youtube.com/watch?v=7P3_47VglVg" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="14"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Writer, Project Manager</span></div>
+        <h3>This is the story of one woman who shaped Martin Luther King Jr.’s vision</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=913793576171244" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- CHAPTER II — VERTICAL -->
+  <section class="chapter-open">
+    <div class="chapter-num reveal">Chapter II</div>
+    <h2 class="chapter-title reveal d1">Stories that <em>travel.</em></h2>
+    <p class="chapter-lede reveal d2">Remotely produced, built for the phone in your hand: finding the subject, clearing the footage, and cutting a story that holds you from the first frame. These have been watched hundreds of millions of times.</p>
+  </section>
+
+  <div class="scrolly vscrolly" data-scrolly>
+    <div class="stage">
+      <div class="vframe">
+      <div class="layer" data-yt="4ZF8A-evh9U" data-start="10" data-len="12" style="--ar:0.5625"></div>
+      <div class="layer" data-yt="tzK-LmXpy8s" data-start="26" data-len="12" style="--ar:0.5625"></div>
+      <div class="layer" data-yt="xJelbbYF9z8" data-start="422" data-len="12"></div>
+      <div class="layer" data-yt="Mi09WhyMAKg" data-start="49" data-len="12" style="--ar:0.5625"></div>
+      <div class="layer" data-img="https://i.imgur.com/furABzT.png"></div>
+      <div class="layer" data-yt="mx0hfU_9Lu0" data-start="175" data-len="12" style="--ar:0.5625"></div>
+      <div class="layer" data-img="https://i.imgur.com/zkTtNjO.png"></div>
+      <div class="layer" data-yt="MPIj4nt5vqY" data-start="108" data-len="10" style="--ar:1"></div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" data-layer="0"><div class="card">
+        <div class="card-meta"><span class="card-views">8M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>This woman just made ultramarathon history in a 56-hour, 250-mile run in Arizona</h3>
+        <a class="card-link" href="https://www.facebook.com/reel/944012738476586" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="1"><div class="card">
+        <div class="card-meta"><span class="card-views">9M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>Woman shatters Appalachian Trail speed record</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="2"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
+        <h3>This might be the greatest comeback in ultramarathon history</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=xJelbbYF9z8" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="3"><div class="card">
+        <div class="card-meta"><span class="card-views">500K views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>The last runner to finish the New York City Marathon shares his harrowing journey to triumph</h3>
+        <a class="card-link" href="https://www.instagram.com/reels/DQulQweDQQs/" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="4"><div class="card">
+        <div class="card-meta"><span class="card-views">10M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>Baby born with ultra-rare dwarfism lived a life full of adventure as a “perpetual infant”</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1067651284365888" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="5"><div class="card">
+        <div class="card-meta"><span class="card-role">Producer, Editor</span></div>
+        <h3>National Park rangers speak out on mass layoffs and the impact on visitors</h3>
+        <a class="card-link" href="https://www.youtube.com/watch?v=mx0hfU_9Lu0" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="6"><div class="card">
+        <div class="card-meta"><span class="card-views">47M views</span><span class="card-role">Producer, Editor, Graphics</span></div>
+        <h3>Rescued magpie helps woman believe in herself again</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1748094518604860" target="_blank" rel="noopener">Watch the full video &#8599;</a>
+      </div></div>
+      <div class="step" data-layer="7"><div class="card">
+        <div class="card-meta"><span class="card-views">89M views</span><span class="card-role">Producer, Editor</span></div>
+        <h3>Squirrel’s been visiting her human mom for almost a decade</h3>
+        <a class="card-link" href="https://www.facebook.com/watch/?ref=embed_video&v=1695205090560470" target="_blank" rel="noopener">Watch the full video &#8599;</a>
       </div></div>
     </div>
   </div>
@@ -955,7 +990,31 @@ buildSlideshow('animation-slideshow', getThumbs(videos.animation));
   if (allowClips && document.querySelector('.story [data-yt]')) {
     var tag = document.createElement('script'); tag.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(tag);
   }
+  var vimReady = false, vimQueue = [];
+  function whenVimeo(fn){ vimReady ? fn() : vimQueue.push(fn); }
+  if (allowClips && document.querySelector('.story [data-vimeo]')) {
+    var vt = document.createElement('script'); vt.src = 'https://player.vimeo.com/api/player.js';
+    vt.onload = function(){ vimReady = true; vimQueue.forEach(function(f){ f(); }); vimQueue = []; };
+    document.head.appendChild(vt);
+  }
+  function ensureVimeo(L){
+    var holder = document.createElement('div'); holder.className = 'yt';
+    var f = document.createElement('iframe');
+    f.src = 'https://player.vimeo.com/video/' + L.dataset.vimeo + '?muted=1&autoplay=0&controls=0&title=0&byline=0&portrait=0&dnt=1&autopause=0&playsinline=1';
+    f.allow = 'autoplay; fullscreen'; f.setAttribute('frameborder','0');
+    holder.appendChild(f); L.appendChild(holder); L._holder = holder; L._kind = 'vimeo';
+    whenVimeo(function(){
+      var p = new Vimeo.Player(f); L._player = p;
+      p.ready().then(function(){
+        p.setVolume(0); L._start = +(L.dataset.start || 30); L._len = +(L.dataset.len || 10); L._ready = true;
+        if (L.classList.contains('active')) playLayer(L);
+      }).catch(function(){ L._failed = true; holder.remove(); });
+      p.on('play', function(){ clearTimeout(L._t); L._t = setTimeout(function(){ if (L.classList.contains('active')) holder.classList.add('playing'); }, 500); });
+      p.on('error', function(){ L._failed = true; holder.remove(); });
+    });
+  }
   function ensurePlayer(L){
+    if (allowClips && L && L.dataset.vimeo && !L._holder) return ensureVimeo(L);
     if (!allowClips || !L || !L.dataset.yt || L._holder) return;
     var holder = document.createElement('div'); holder.className = 'yt';
     var inner = document.createElement('div'); holder.appendChild(inner); L.appendChild(holder); L._holder = holder;
@@ -982,17 +1041,17 @@ buildSlideshow('animation-slideshow', getThumbs(videos.animation));
   }
   function playLayer(L){
     if (!L._ready || L._failed) return;
-    try { L._player.seekTo(L._start, true); L._player.playVideo(); } catch(e){}
+    try { if (L._kind === 'vimeo') { L._player.setCurrentTime(L._start).then(function(){ return L._player.play(); }).catch(function(){}); } else { L._player.seekTo(L._start, true); L._player.playVideo(); } } catch(e){}
   }
   function pauseLayer(L){
     if (L._holder) L._holder.classList.remove('playing');
-    if (L._ready && !L._failed) { try { L._player.pauseVideo(); } catch(e){} }
+    if (L._ready && !L._failed) { try { L._kind === 'vimeo' ? L._player.pause().catch(function(){}) : L._player.pauseVideo(); } catch(e){} }
   }
   setInterval(function(){
     var act = document.querySelectorAll('.story .layer.active');
     for (var i=0;i<act.length;i++) {
       var L = act[i];
-      if (L._ready && !L._failed) { try { if (L._player.getCurrentTime() > L._start + L._len) L._player.seekTo(L._start, true); } catch(e){} }
+      if (L._ready && !L._failed) { try { if (L._kind === 'vimeo') { (function(L){ L._player.getCurrentTime().then(function(t){ if (t > L._start + L._len) L._player.setCurrentTime(L._start); }); })(L); } else if (L._player.getCurrentTime() > L._start + L._len) L._player.seekTo(L._start, true); } catch(e){} }
     }
   }, 400);
 
