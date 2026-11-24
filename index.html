@@ -412,6 +412,32 @@
       .intro-bio-lede{font-size:clamp(16px,5.5vw,20px);}
       .about-strip-text p{font-size:16px;}
     }
+    /* ── NAV: keep five items on one line at mid widths ── */
+    @media(min-width:769px) and (max-width:1300px){
+      .nav-logo{font-size:28px;white-space:nowrap;}
+      .nav-links{gap:24px;}
+      .nav-btn{font-size:11px;letter-spacing:0.08em;white-space:nowrap;}
+    }
+    @media(min-width:769px) and (max-width:960px){
+      nav{padding-left:24px;padding-right:24px;}
+      .nav-logo{font-size:22px;}
+      .nav-links{gap:14px;}
+      .nav-btn{font-size:10px;letter-spacing:0.04em;}
+    }
+    /* ── PHOTOGRAPHY ── */
+    .photo-gallery{display:flex;flex-direction:column;gap:12px;max-width:1040px;margin:0 auto;}
+    #photography-page .section-desc{max-width:1040px;margin-left:auto;margin-right:auto;}
+    .photo-gallery img{display:block;width:100%;height:auto;object-fit:cover;border-radius:3px;background:var(--cream-dark);}
+    .pg-stack{display:grid;grid-template-columns:9fr 10fr;gap:12px;align-items:stretch;}
+    .pg-col{display:flex;flex-direction:column;gap:12px;}
+    .pg-col .pg-fill{flex:1 1 auto;height:0;min-height:0;object-position:center bottom;}
+    .pg-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+    .pg-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+    @media(max-width:768px){
+      .pg-stack,.pg-pair,.pg-trio{grid-template-columns:1fr;}
+      .pg-col .pg-fill{flex:none;height:auto;aspect-ratio:4/3;}
+      #photography-page section{padding-top:calc(57px + 32px) !important;}
+    }
   </style>
 </head>
 <body>
@@ -425,6 +451,7 @@
     <li><button class="nav-btn" data-page="remote">Viral Video Storytelling</button></li>
     <li><button class="nav-btn" data-page="field">Field Production</button></li>
     <li><button class="nav-btn" data-page="animation">Animation</button></li>
+    <li><button class="nav-btn" data-page="photography">Outdoor Photography</button></li>
   </ul>
 </nav>
 
@@ -746,6 +773,41 @@
       <div class="views-legend">▶ Views<span class="views-legend-sub">views across all platforms</span></div>
     </div>
     <div class="video-grid" id="animation-grid"></div>
+  </section>
+</div>
+
+<!-- PHOTOGRAPHY -->
+<div id="photography-page" class="page">
+  <section style="padding-top:calc(72px + 72px);">
+    <p class="section-desc">If you catch me in my free time, you’ll most likely find me outside. I’ve always felt at home in nature, and I love finding ways to explore, adventure, and connect with friends while I’m out there.<br><br>I bring a camera on almost every trip, and I shoot the same way I produce: looking for the real moments between people, and the fleeting beauty of changing light that will never fall the same way again. Below are some of my favorite frames from life in the great outdoors.</p>
+    <div class="photo-gallery">
+      <div class="pg-stack">
+        <img src="/photography/rainier.jpg" alt="Hiker in a yellow jacket and red beanie photographing Mt. Rainier glowing pink at sunrise, reflected in a misty lake" decoding="async" style="aspect-ratio:2/3">
+        <div class="pg-col">
+          <img src="/photography/filmcam.jpg" alt="Laughing woman holding up a film camera and sunglasses on a sunlit bluff above the sea" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+          <img src="/photography/laughing.jpg" alt="Woman in a bucket hat and fleece laughing on the trail" loading="lazy" decoding="async" class="pg-fill">
+        </div>
+      </div>
+      <img src="/photography/campsite.jpg" alt="Friends cooking at a waterfront campsite at golden hour, tents glowing among the trees" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+      <img src="/photography/trailrun.jpg" alt="Trail runner in a colorful jacket running through golden autumn meadows toward a distant snowy peak" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+      <img src="/photography/summit.jpg" alt="Smiling woman sitting in her tent at a rocky summit camp above jagged peaks" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+      <div class="pg-trio">
+        <img src="/photography/shuksan.jpg" alt="Silhouetted woman balancing on a ridge in front of Mt. Shuksan, mirrored in a pink twilight tarn" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+        <img src="/photography/dunes.jpg" alt="Lone hiker crossing rippled golden sand dunes at sunset" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+        <img src="/photography/dolomites.jpg" alt="Lone hiker on a grassy ridge under towering storm clouds in the Dolomites" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+      </div>
+      <img src="/photography/larch.jpg" alt="Hiker in a red jacket framed by golden larch branches dusted with fresh snow" loading="lazy" decoding="async" style="aspect-ratio:16/9">
+      <div class="pg-stack">
+        <img src="/photography/climbers.jpg" alt="Two climbers silhouetted on a steep rock face above a forested valley" loading="lazy" decoding="async" style="aspect-ratio:2/3">
+        <div class="pg-col">
+          <img src="/photography/ferry.jpg" alt="Two cyclists gazing out a ferry window at islands in golden light" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+          <img src="/photography/bike.jpg" alt="Mountain biker riding a gravel road toward a huge Dolomite rock wall" loading="lazy" decoding="async" class="pg-fill" style="object-position:center center">
+        </div>
+      </div>
+      <img src="/photography/swim.jpg" alt="Two swimmers wading into a sparkling mountain lake, backlit by the sun" loading="lazy" decoding="async" style="aspect-ratio:3/2">
+      <img src="/photography/bluehour.jpg" alt="Ultralight tent pitched above an alpine lake beneath Mt. Baker at blue hour" loading="lazy" decoding="async" style="aspect-ratio:3200/1556">
+      <img src="/photography/sunsetpano.jpg" alt="Snowshoer on a snowy ridge under a blazing pink sunset with Mt. Baker on the horizon" loading="lazy" decoding="async" style="aspect-ratio:3200/1826">
+    </div>
   </section>
 </div>
 
