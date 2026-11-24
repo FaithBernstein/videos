@@ -135,6 +135,32 @@
     .video-card-views::after{content:'views';position:static;display:block;font-family:'DM Mono',monospace;font-size:7px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.5);margin-top:1px;opacity:1;pointer-events:none;background:none;padding:0;}
     .video-card-headline{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--black);line-height:1.35;}
 
+
+    /* ══════════ Immersive video pages ══════════ */
+    #field-page, #remote-page{background:#15100c;color:var(--cream);}
+    #field-page .section-desc, #remote-page .section-desc{color:rgba(245,239,228,0.78);max-width:880px;}
+    #field-page section > svg{opacity:0.12 !important;}
+    #field-page .video-card, #remote-page .video-card{background:#231a14;border-radius:4px;box-shadow:0 18px 50px rgba(0,0,0,0.35);}
+    #field-page .video-card-headline, #remote-page .video-card-headline{color:var(--cream);font-size:21px;}
+    #field-page .video-grid, #remote-page .video-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 32px;}
+    #field-page .video-card-wrap:first-child, #remote-page .video-card-wrap:first-child{grid-column:1 / -1;}
+    #field-page .video-card-wrap:first-child .video-card, #remote-page .video-card-wrap:first-child .video-card{aspect-ratio:21/9;}
+    #field-page .video-card-wrap:first-child .video-card-headline, #remote-page .video-card-wrap:first-child .video-card-headline{font-size:clamp(24px,2.4vw,32px);font-family:'Playfair Display',serif;font-weight:700;}
+    .video-card-info{padding-top:14px;}
+    .video-thumb-inner img{transform:scale(1.04);transition:transform 8s ease-out;}
+    .video-card.inview .video-thumb-inner img{transform:scale(1);}
+    .video-card:hover .video-thumb-inner img{transform:scale(1.03);transition:transform 0.6s ease;}
+    .card-clip{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 0.8s ease;z-index:1;pointer-events:none;}
+    .card-clip.playing{opacity:1;}
+    .card-clip iframe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:0;pointer-events:none;}
+    .video-card-wrap{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s cubic-bezier(.2,.7,.2,1);}
+    .video-card-wrap.shown{opacity:1;transform:none;}
+    @media(prefers-reduced-motion:reduce){.video-card-wrap{opacity:1;transform:none;transition:none;}.video-thumb-inner img{transition:none;transform:none;}}
+    @media(max-width:768px){
+      #field-page .video-grid, #remote-page .video-grid{grid-template-columns:1fr;gap:36px;}
+      #field-page .video-card-wrap:first-child .video-card, #remote-page .video-card-wrap:first-child .video-card{aspect-ratio:16/9;}
+      #field-page .video-card-headline, #remote-page .video-card-headline{font-size:18px;}
+    }
     /* ── BODY TEXT ── */
     .about-text p{color:#5a4f46;line-height:1.9;margin-bottom:18px;font-size:15px;font-family:'Cormorant Garamond',serif;}
 
@@ -293,7 +319,6 @@
   <ul class="nav-links" id="nav-links">
     <li><button class="nav-btn" data-page="remote">Viral Video Storytelling</button></li>
     <li><button class="nav-btn" data-page="field">Field Production</button></li>
-    <li><button class="nav-btn" data-page="animation">Animation</button></li>
     <li><button class="nav-btn" data-page="photography">Outdoor Photography</button></li>
   </ul>
 </nav>
@@ -393,17 +418,6 @@
   </section>
 </div>
 
-<!-- ANIMATION -->
-<div id="animation-page" class="page">
-  <section style="padding-top:calc(72px + 72px);">
-    <p class="section-desc">I love this format because it lets me rescue stories that would otherwise disappear. Forgotten figures in history, ideas too complex for a talking head, psychological phenomena that need to be shown to land. I come in with the research, the characters, the script, and the creative direction, and work alongside a graphics team to bring it all to life.</p>
-    <div class="section-meta">
-      <div class="views-legend">▶ Views<span class="views-legend-sub">views across all platforms</span></div>
-    </div>
-    <div class="video-grid" id="animation-grid"></div>
-  </section>
-</div>
-
 <!-- PHOTOGRAPHY -->
 <div id="photography-page" class="page">
   <section style="padding-top:calc(72px + 72px);">
@@ -462,19 +476,19 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var videos = {
   field: [
-    { headline: "Love at Club Q", role: "Director, Lead Producer, Camera", views: "", award: "GLAAD Award Nominee", link: "https://www.youtube.com/watch?v=sty4aH10FRE" },
+    { headline: "Love at Club Q", role: "Director, Lead Producer, Camera", views: "", award: "GLAAD Award Nominee", link: "https://www.youtube.com/watch?v=sty4aH10FRE", clip: "1075,12" },
     { headline: "After Racist Park Encounter, Chris Cooper Takes Us Birding in Central Park", role: "Producer, Camera, Editor", views: "1M+ Views", award: "", link: "https://www.youtube.com/watch?v=-qd2XyGFTzk" },
-    { headline: "\"Forgotten Collateral Damage\": The Stories You Didn't See in 'Oppenheimer'", role: "Director, Producer, Editor", views: "", award: "Deadline Award Nominee", link: "https://youtu.be/U_k2n9MCzDI" },
-    { headline: "School Shooting Survivors Reflect on Life after Tragedy from Sandy Hook to Uvalde", role: "Director, Lead Producer, Camera", views: "", award: "Webby Award Nominee", link: "https://www.youtube.com/watch?v=-JokheVpUmU" },
-    { headline: "Meet the 89-Year-Old Puerto Rican Owner of NYC's Oldest Music Store", role: "Director, Lead Producer, Editor", views: "500K+ Views", award: "", link: "https://www.youtube.com/watch?v=BX0k_h6vXYo" },
+    { headline: "\"Forgotten Collateral Damage\": The Stories You Didn't See in 'Oppenheimer'", role: "Director, Producer, Editor", views: "", award: "Deadline Award Nominee", link: "https://youtu.be/U_k2n9MCzDI", clip: "505,10" },
+    { headline: "School Shooting Survivors Reflect on Life after Tragedy from Sandy Hook to Uvalde", role: "Director, Lead Producer, Camera", views: "", award: "Webby Award Nominee", link: "https://www.youtube.com/watch?v=-JokheVpUmU", clip: "198,12" },
+    { headline: "Meet the 89-Year-Old Puerto Rican Owner of NYC's Oldest Music Store", role: "Director, Lead Producer, Editor", views: "500K+ Views", award: "", link: "https://www.youtube.com/watch?v=BX0k_h6vXYo", clip: "74,12" },
     { headline: "Meet the Hockey Team Made Up Entirely of Trans and Nonbinary Athletes", role: "Director, Producer, Camera, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=Ws0fWrOazoQ" },
     { headline: "Indigenous Basketball League", role: "Director, Producer, Camera, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=PG1t8cbC6QM" },
     { headline: "11-Year-Old Amputee Runs His Dream Races, Disney's Star Wars 5K", role: "Producer, Camera, Editor", views: "1M+ Views", award: "", link: "https://www.youtube.com/watch?v=evx2dBUGjd8" },
     { headline: "Black-Owned Coffee Company on a Mission to Increase Diversity in the Outdoors", role: "Director, Producer, Camera, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=Xt2SPXiIYpA" },
     { headline: "We Asked Marie Kondo to Fold a Bag of Potato Chips...", role: "Producer, Camera, Editor", views: "2M+ Views", award: "", link: "https://www.youtube.com/watch?v=3_ObiS4X7Go" },
     { headline: "How Gen Z's Meme Culture May Impact the 2024 Election", role: "Director, Producer, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=b94d4Tf1EHI" },
-    { headline: "Gun Violence Killed Her Daughter. Now This Chicago Mom Is Fighting Urban Terrorism", role: "Director, Producer, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=ObTFhYvtkaI" },
-    { headline: "Meet the Model Who Calls Herself a Real Life Bratz Doll", role: "Director, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=WaF9iic-Wkw" },
+    { headline: "Gun Violence Killed Her Daughter. Now This Chicago Mom Is Fighting Urban Terrorism", role: "Director, Producer, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=ObTFhYvtkaI", clip: "335,12" },
+    { headline: "Meet the Model Who Calls Herself a Real Life Bratz Doll", role: "Director, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=WaF9iic-Wkw", clip: "100,12" },
     { headline: "Life after Roe: Woman Has 44 Hours with Baby after Carrying Non-Viable Pregnancy", role: "Producer", views: "1M+ Views", award: "", link: "https://www.youtube.com/watch?v=Bk2OMq8dkKM" },
     { headline: "The Disheartening Experience of Waiting for a Kidney", role: "Producer, Camera, Editor", views: "", award: "The Atlantic Editor's Pick", thumb: "https://i.imgur.com/Bn3k2bk.jpeg", link: "https://vimeo.com/176664703" },
     { headline: "The Beaver Believers", role: "Post-Production Intern", views: "", award: "BANFF Film Festival Official Selection", thumb: "https://i.imgur.com/5bT6wtS.jpeg", link: "https://vimeo.com/322096549" },
@@ -482,14 +496,17 @@ var videos = {
     { headline: "Paralyzed in a School Shooting, Letters from Strangers Gave This Survivor Hope", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/221212_gma_digital_MissyLetters2_hpMain_4x3_1600.jpg", link: "https://www.goodmorningamerica.com/video/95046253" },
     { headline: "Record-Breaking: 2 Women Are Setting the Pace for an Amazing Marathon Feat", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/191104_gma_digital_marathon_hpMain_16x9_992.jpg", link: "https://www.goodmorningamerica.com/video/66755681" },
     { headline: "Greta Thunberg on Global Climate Change Movement: 'This Is Just the Beginning'", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/greta-thunberg-file-gty-jef-200421_hpMain_16x9_1600.jpg", link: "https://www.goodmorningamerica.com/video/65758250" },
-    { headline: "Retiring UCLA Gymnastics Coach Sees Bright Future for Sport", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/190607_gma_digital_gymnastics_hpMain_16x9_1600.jpg", link: "https://www.goodmorningamerica.com/video/63563608" }
+    { headline: "Retiring UCLA Gymnastics Coach Sees Bright Future for Sport", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/190607_gma_digital_gymnastics_hpMain_16x9_1600.jpg", link: "https://www.goodmorningamerica.com/video/63563608" },
+    { headline: "Herstory Lessons: The Inspiring Story of the 1st Black Female Reporter for The Washington Post", role: "Producer, Project Manager", views: "", award: "NABJ Award Nominee", link: "https://www.youtube.com/watch?v=7P3_47VglVg", clip: "160,12" },
+    { headline: "Herstory Lessons: Title IX and the Fight for Women's Equality in Sports", role: "Producer, Writer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=zitHgGLENm0", clip: "178,12,1" },
+    { headline: "This Is the Story of One Woman Who Shaped Martin Luther King Jr.'s Vision", role: "Producer, Writer, Project Manager", views: "", award: "", thumb: "https://i.imgur.com/MnleoII.jpeg", link: "https://www.facebook.com/watch/?ref=embed_video&v=913793576171244" }
   ],
   remote: [
     { headline: "This Woman Just Made Ultramarathon History in 56-Hour, 250-Mile Run in Arizona", role: "Producer, Editor", views: "8M Views", award: "", thumb: "https://i.imgur.com/GYNmRYE.jpeg", link: "https://www.facebook.com/reel/944012738476586" },
     { headline: "Woman Shatters Appalachian Trail Speed Record", role: "Producer, Editor", views: "9M Views", award: "", thumb: "https://i.imgur.com/O4qd3Ku.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" },
     { headline: "Baby Born with Ultra-Rare Dwarfism Lived Life Full of Adventure as 'Perpetual Infant'", role: "Producer, Editor", views: "10M Views", award: "", thumb: "https://i.imgur.com/furABzT.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1067651284365888" },
     { headline: "65-Year-Old Woman Is a Pull-Up Legend: 'It's Never Too Late'", role: "Producer, Editor", views: "10M Views", award: "", thumb: "https://i.imgur.com/tEbJZ1O.jpeg", link: "https://www.facebook.com/watch/?ref=embed_video&v=579913551411758" },
-    { headline: "This Might Be the Greatest Comeback in Ultramarathon History", role: "Producer, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=xJelbbYF9z8" },
+    { headline: "This Might Be the Greatest Comeback in Ultramarathon History", role: "Producer, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=xJelbbYF9z8", clip: "422,12" },
     { headline: "Last Runner to Finish New York City Marathon Shares Harrowing Journey to Triumph", role: "Producer, Editor", views: "500K Views", award: "", thumb: "https://i.imgur.com/uvJzXna.png", link: "https://www.instagram.com/reels/DQulQweDQQs/" },
     { headline: "Rescued Magpie Helps Woman Believe in Herself Again", role: "Producer, Editor, Graphics", views: "47M Views", award: "", thumb: "https://i.imgur.com/zkTtNjO.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1748094518604860" },
     { headline: "Squirrel's Been Visiting Her Human Mom for Almost a Decade", role: "Producer, Editor", views: "89M Views", award: "", thumb: "https://i.imgur.com/yEKBJUX.jpeg", link: "https://www.facebook.com/watch/?ref=embed_video&v=1695205090560470" },
@@ -500,18 +517,8 @@ var videos = {
     { headline: "How Two Friends Started a Size-Inclusive Cycling Group, 'All Bodies on Bikes'", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/221220_gma_digital_allbodiesonbikes_reszied_hpMain_16x9_1600.jpg", link: "https://www.goodmorningamerica.com/video/95617762" },
     { headline: "Meet the Black Skydiver Behind the Social Media Movement to Diversify the Outdoors", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/220223_gma_digital_melaninbasecamp_hpMain_16x9_1600.jpg", link: "https://www.goodmorningamerica.com/video/83048366" },
     { headline: "How This Woman's Epic High Diving Has Brought Her to a Place of Self-Love", role: "", views: "", award: "", thumb: "https://s.abcnews.com/images/GMA/210701_gma_digital_highdive_hpMain_16x9_1600.jpg", link: "https://www.goodmorningamerica.com/video/78594210" }
-  ],
-  animation: [
-    { headline: "Herstory Lessons: The Inspiring Story of the 1st Black Female Reporter for The Washington Post", role: "Producer, Project Manager", views: "", award: "NABJ Award Nominee", link: "https://www.youtube.com/watch?v=7P3_47VglVg" },
-    { headline: "Herstory Lessons: Title IX and the Fight for Women's Equality in Sports", role: "Producer, Writer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=zitHgGLENm0" },
-    { headline: "This Is the Story of One Woman Who Shaped Martin Luther King Jr.'s Vision", role: "Producer, Writer, Project Manager", views: "", award: "", thumb: "https://i.imgur.com/MnleoII.jpeg", link: "https://www.facebook.com/watch/?ref=embed_video&v=913793576171244" },
-    { headline: "Are You a People Pleaser? Here Are 4 Ways to Reimagine Life", role: "Producer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=HecFrSKLM-k" },
-    { headline: "Beware of 'Lifestyle Creep': Why You Shouldn't Suddenly Spend More When You Earn More", role: "Producer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=VA3dVUs4RGw" },
-    { headline: "Meet the Fearless Labor Activist Who Coined the Positive Protest Slogan 'Sí Se Puede'", role: "Producer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=I3ZyUDAh4B0" },
-    { headline: "Heather Penney Was One of the First Female Fighter Pilots and Was Prepared to Give Her Life to Stop the 9/11 Attacks", role: "Producer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=9m4DHsWf4fY" },
-    { headline: "Women Can Now Fight Alongside Men in Combat Thanks in Part to This Former US Marine", role: "Producer, Project Manager", views: "", award: "", link: "https://www.youtube.com/watch?v=Ju4nbCyfCsc" },
-    { headline: "Virus Economics 101: How Covid-19 Totally Exposed America's Economic Weaknesses", role: "Producer, Editor, Graphics", views: "", award: "", link: "https://www.youtube.com/watch?v=U_MPHWMwyPM" }
   ]
+
 };
 
 function getYouTubeId(url) {
@@ -544,8 +551,10 @@ function makeCard(v) {
   } else {
     thumbHtml = '<div style="width:100%;height:100%;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;"><svg width="36" height="36" viewBox="0 0 36 36"><rect width="36" height="36" rx="18" fill="#ddd5c8"/><path d="M14 11l10 7-10 7V11z" fill="#8a7f74"/></svg></div>';
   }
+  var clipAttr = '';
+  if (v.clip && ytId) { var c = v.clip.split(','); clipAttr = ' data-yt="'+ytId+'" data-start="'+c[0]+'" data-len="'+c[1]+'"'+(c[2]?' data-ar="'+c[2]+'"':''); }
   return '<div class="video-card-wrap">'+
-    '<div class="video-card">'+
+    '<div class="video-card"'+clipAttr+'>'+
       '<div class="video-thumb-inner">'+thumbHtml+'</div>'+
       '<div class="video-card-overlay"><div class="video-card-role">'+v.role+'</div></div>'+
       '<div class="video-card-play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3l11 6-11 6V3z" fill="#2e4a1e"/></svg></div>'+
@@ -562,17 +571,13 @@ function renderGrid(id, items) {
 }
 renderGrid('field-grid', videos.field);
 renderGrid('remote-grid', videos.remote);
-renderGrid('animation-grid', videos.animation);
 
 // Home grid — sports, triumph, human spirit first
+function findVideo(t){ var all=videos.field.concat(videos.remote); for (var i=0;i<all.length;i++) if (all[i].headline.indexOf(t)===0) return all[i]; return null; }
 var homeVideos = [
-  videos.remote[4],  // Greatest Comeback in Ultramarathon History
-  videos.remote[1],  // Woman Shatters Appalachian Trail Speed Record — 9M
-  videos.remote[12], // Ali Truwit — shark attack to Paralympics
-  videos.field[8],   // 11-Year-Old Amputee Runs Star Wars 5K — 1M
-  videos.remote[5],  // Last Runner to Finish NYC Marathon — 500K
-  videos.field[0],   // Love at Club Q — GLAAD
-];
+  'This Might Be the Greatest Comeback', 'Woman Shatters Appalachian Trail', '1 Year after Shark Attack',
+  '11-Year-Old Amputee', 'Last Runner to Finish New York City Marathon', 'Love at Club Q'
+].map(findVideo).filter(Boolean);
 renderGrid('home-grid', homeVideos);
 
 function getThumbs(items) {
@@ -624,10 +629,53 @@ for (var i=0;i<allNavBtns.length;i++) {
   });
 }
 
+
+// ── Immersive cards: reveal on scroll, and play a silent preview of clean videos ──
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var save = navigator.connection && navigator.connection.saveData;
+  var wraps = document.querySelectorAll('#field-page .video-card-wrap, #remote-page .video-card-wrap');
+  var rio = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('shown'); var c=e.target.querySelector('.video-card'); if (c) c.classList.add('inview'); rio.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  for (var i=0;i<wraps.length;i++) rio.observe(wraps[i]);
+  if (reduce || save) return;
+  var cards = [].slice.call(document.querySelectorAll('.video-card[data-yt]'));
+  if (!cards.length) return;
+  var ready = false, queue = [];
+  function whenYT(f){ ready ? f() : queue.push(f); }
+  var prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function(){ ready = true; if (prev) try{prev();}catch(e){} queue.forEach(function(f){f();}); queue = []; };
+  if (window.YT && window.YT.Player) ready = true; else { var t=document.createElement('script'); t.src='https://www.youtube.com/iframe_api'; document.head.appendChild(t); }
+  function size(C){ if (!C._frame) return; var w=C.clientWidth, h=C.clientHeight, ar=+(C.dataset.ar||1.7778), hif=Math.max(h, w/ar); C._frame.style.height=hif+'px'; C._frame.style.width=(hif*16/9)+'px'; }
+  function build(C){
+    if (C._clip) return; var box=document.createElement('div'); box.className='card-clip'; var inner=document.createElement('div'); box.appendChild(inner);
+    C.insertBefore(box, C.children[1] || null); C._clip = box;
+    whenYT(function(){
+      C._p = new YT.Player(inner, { videoId: C.dataset.yt, playerVars:{ autoplay:0, mute:1, controls:0, disablekb:1, fs:0, iv_load_policy:3, modestbranding:1, playsinline:1, rel:0 },
+        events:{ onReady:function(e){ C._frame = box.querySelector('iframe'); size(C); e.target.mute(); C._ok = true; if (C._on) start(C); },
+                 onStateChange:function(e){ if (e.data===1){ clearTimeout(C._t); C._t=setTimeout(function(){ if (C._on) box.classList.add('playing'); },450); } },
+                 onError:function(){ C._bad = true; box.remove(); } } });
+    });
+  }
+  function start(C){ if (!C._ok || C._bad) return; try{ C._p.seekTo(+C.dataset.start, true); C._p.playVideo(); }catch(e){} }
+  function stop(C){ if (!C) return; if (C._clip) C._clip.classList.remove('playing'); if (C._ok && !C._bad) try{ C._p.pauseVideo(); }catch(e){} }
+  var playingSet = [];
+  function choose(){
+    var next = cards.filter(function(C){ if (!C.offsetParent) return false; var r=C.getBoundingClientRect(); var vis=Math.min(r.bottom,innerHeight)-Math.max(r.top,0); return vis >= r.height*0.6; });
+    playingSet.forEach(function(C){ if (next.indexOf(C) < 0) { C._on = false; stop(C); } });
+    next.forEach(function(C){ if (!C._on) { C._on = true; build(C); start(C); } });
+    playingSet = next;
+  }
+  var ticking=false; function onScroll(){ if (ticking) return; ticking=true; requestAnimationFrame(function(){ ticking=false; choose(); }); }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ cards.forEach(size); onScroll(); });
+  document.addEventListener('click', function(e){ if (e.target.closest && e.target.closest('[data-page]')) { playingSet.forEach(function(C){ C._on=false; stop(C); }); playingSet=[]; setTimeout(choose, 400); } });
+  setInterval(function(){ playingSet.forEach(function(C){ if (C._ok && !C._bad) try{ if (C._p.getCurrentTime() > +C.dataset.start + +C.dataset.len) C._p.seekTo(+C.dataset.start, true); }catch(e){} }); }, 400);
+  setTimeout(choose, 600);
+})();
+
 // Build slideshows for section cards
 buildSlideshow('field-slideshow', getThumbs(videos.field));
 buildSlideshow('remote-slideshow', getThumbs(videos.remote));
-buildSlideshow('animation-slideshow', getThumbs(videos.animation));
 
 // Show home page on load
 showPage('home');
