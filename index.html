@@ -805,12 +805,13 @@ var SIG_PROJECTS = [
     scope: "13 letters · 19 videos · 2.3M views on TikTok",
     stats: [["13","survivor letters"],["19","videos"],["2.3M","views on TikTok"],["Webby","award nominee"]],
     featured: ["Streamed on ABC News Live", "Featured on ABC News' \u201cStart Here\u201d podcast, Dec 2022"],
-    desc: "Ten years after Sandy Hook, we asked more than a dozen survivors of school shootings, across the country and across generations, to write to the next survivor: what to expect in the days, months and years ahead, and what they wish they had known. Each letter is paired with its own short film and portrait.",
+    brief: true,
+    desc: "For the 10-year remembrance of Sandy Hook, we were given a heavy but important brief: capture the lasting impact school shootings have on students and teachers, sometimes decades later, and confront the grim reality that these shootings keep happening. So we asked 13 survivors, across generations and across the country, to write a letter to the next survivor: what to expect in the days, months and years ahead, and what they wish they had known. Each letter became its own short film and portrait.",
     myrole: [
       "Found and casted 13 survivors, built relationships and guided them through the letter writing process",
       "Planned all logistics for a 2-week, 7-state shoot with a lean crew",
       "Produced on-location with subjects, ensuring both that they felt safe and supported and that brand standards were met visually and editorially",
-      "Directed, produced and edited videos, social posts, and webpage layout for the digital rollout",
+      "Directed and produced 19 videos, plus the social posts and web page layout, for the digital rollout",
       "Worked alongside our DP to art direct portraits and additional visual elements for social media and graphics"
     ],
     lead: ["-JokheVpUmU","School shooting survivors reflect on life after tragedy from Sandy Hook to Uvalde"],
@@ -911,7 +912,7 @@ var SIG_PROJECTS = [
       '<div class="sig-player"><button type="button" class="sig-poster" style="all:unset;position:absolute;inset:0;cursor:pointer;background:#000 url(https://i.ytimg.com/vi/'+p.lead[0]+'/hqdefault.jpg) center/cover" aria-label="Play '+esc(p.lead[1])+'">'+(p.loop?'<video src="'+p.loop+'" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>':'')+'<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(250,244,232,.92);display:flex;align-items:center;justify-content:center;color:#14110e;font-size:26px">▶</span></button></div>' +
       '<p class="sig-now">'+esc(p.lead[1])+'</p>' +
       '<div class="sig-stats" style="grid-template-columns:repeat('+p.stats.length+',minmax(0,1fr))">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
-      '<p class="sig-desc">'+esc(p.desc)+'</p>' +
+      (p.brief ? '<div class="sig-sub">The brief</div>' : '') + '<p class="sig-desc">'+esc(p.desc)+'</p>' +
       (p.featured ? '<div class="sig-sub">Also featured</div><div class="sig-featured">'+p.featured.map(function(f){ return '<span>'+esc(f)+'</span>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">More from the package · '+(p.videos.length+1)+' videos</div>' +
       '<div class="sig-strip">' +
