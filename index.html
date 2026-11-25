@@ -326,6 +326,11 @@
     .sig-close:hover{background:rgba(250,244,232,.1);}
     .sig-player{position:relative;width:100%;max-width:calc(68vh * 16 / 9);aspect-ratio:16/9;margin:0 auto;background:#000;border-radius:4px;overflow:hidden;}
     .sig-player.square{max-width:min(100%,68vh);aspect-ratio:1/1;}
+    .sig-player.tall{max-width:min(100%,calc(74vh * 9 / 16));aspect-ratio:9/16;}
+    .sig-vid .note{display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-light);margin-top:5px;}
+    .sig-vid .tt{position:absolute;top:8px;right:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#faf4e8;background:#000;border-radius:999px;padding:4px 8px;}
+    .sig-featured{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+    .sig-featured span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#faf4e8;border:1px solid rgba(250,244,232,.35);border-radius:999px;padding:8px 12px;}
     .sig-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
     .sig-now{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#faf4e8;text-align:center;margin:14px 0 0;}
     .sig-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(250,244,232,.15);border:1px solid rgba(250,244,232,.15);border-radius:4px;overflow:hidden;margin:28px 0;}
@@ -675,11 +680,14 @@ var SIG_PROJECTS = [
     sub: "School shooting survivors pen letters to future survivors",
     role: "Senior Producer & Director · Camera · Editor · Booker",
     cover: "https://i.abcnewsfe.com/a/800b2994-a4dd-4ff4-85e2-a4755874f15d/SandyHookMainImage_v04_DG_1670448331969_hpMain_16x9.jpg?w=992",
-    scope: "13 letters · 17 videos · portrait series",
-    stats: [["13","survivor letters"],["17","videos"],["25 yrs","of shootings, 1997–2022"],["13","survivor portraits"]],
+    scope: "13 letters · 19 videos · 2.3M views on TikTok",
+    stats: [["13","survivor letters"],["19","videos"],["2.3M","views on TikTok"],["25 yrs","of shootings, 1997–2022"]],
+    featured: ["Streamed on ABC News Live", "Featured on ABC News' \u201cStart Here\u201d podcast, Dec 2022"],
     desc: "Ten years after Sandy Hook, we asked more than a dozen survivors of school shootings, across the country and across generations, to write to the next survivor: what to expect in the days, months and years ahead, and what they wish they had known. Each letter is paired with its own short film and portrait.",
     lead: ["-JokheVpUmU","School shooting survivors reflect on life after tragedy from Sandy Hook to Uvalde"],
     videos: [
+      ["tt:7215315061072547114","13 survivors’ letters, re-shared after the Nashville shooting","tall","2.3M views on TikTok"],
+      ["ryNw-s6aeCM","10 years since Sandy Hook, this 17-year-old opens up on being a survivor","","Streamed on ABC News Live"],
       ["KTsVJt0wLEA","Jackie Hegarty · Sandy Hook"],["rkwkJkI_Gsc","Jazmin Cazares · Robb Elementary"],["7QKMKfgxWVA","Dan Williams · Chardon High"],["cIXRnlqPERU","Zoe Touray · Oxford High"],
       ["J7LAJPAB16g","Natalie Barden · Sandy Hook"],["0qyP6jKYfnM","Missy Jenkins Smith · Heath High"],["k2KeUH6vYMs","Bryanna Love · St. Louis CVPA"],["iVm4ACUNH6s","Heather Martin · Columbine"],
       ["HxHa4T898x8","Mandy Jenkins · Heath High"],["CYvvxEEGLlM","Isabelle Laymance · Santa Fe High"],["tVPfM0Da_o4","Brandon Abzug · Parkland"],["RMeRUkrKBdc","Missy Mendo · Columbine"],
@@ -728,7 +736,8 @@ var SIG_PROJECTS = [
   var fieldGrid = document.getElementById('field-grid');
   if (!fieldGrid) return;
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function ytEmbed(id){ return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'; }
+  function ytEmbed(id){ if (id.indexOf('tt:')===0) return 'https://www.tiktok.com/embed/v2/'+id.slice(3); return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'; }
+  function thumb(p,id){ return id.indexOf('tt:')===0 ? p.cover : 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg'; }
   var wrap = document.createElement('div');
   wrap.className = 'sig';
   wrap.innerHTML = '<div class="sig-label">Signature projects</div><div class="sig-cards">' +
@@ -742,7 +751,7 @@ var SIG_PROJECTS = [
   var panel = wrap.querySelector('#sig-panel');
   function play(p, id, title, shape){
     var pl = panel.querySelector('.sig-player');
-    pl.className = 'sig-player' + (shape === 'square' ? ' square' : '');
+    pl.className = 'sig-player' + (shape ? ' ' + shape : '');
     pl.innerHTML = '<iframe src="'+ytEmbed(id)+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="'+esc(title)+'"></iframe>';
     panel.querySelector('.sig-now').textContent = title;
     panel.querySelectorAll('.sig-vid').forEach(function(b){ b.classList.toggle('on', b.dataset.id === id); });
@@ -755,10 +764,11 @@ var SIG_PROJECTS = [
       '<p class="sig-now">'+esc(p.lead[1])+'</p>' +
       '<div class="sig-stats">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
       '<p class="sig-desc">'+esc(p.desc)+'</p>' +
+      (p.featured ? '<div class="sig-sub">Also featured</div><div class="sig-featured">'+p.featured.map(function(f){ return '<span>'+esc(f)+'</span>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">More from the package · '+(p.videos.length+1)+' videos</div>' +
       '<div class="sig-strip">' +
         [[p.lead[0], p.lead[1]]].concat(p.videos).map(function(v){
-          return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="https://i.ytimg.com/vi/'+v[0]+'/mqdefault.jpg" alt="" loading="lazy"></div><p>'+esc(v[1])+'</p></button>';
+          return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="'+thumb(p,v[0])+'" alt="" loading="lazy">'+(v[0].indexOf('tt:')===0?'<span class="tt">TikTok</span>':'')+'</div><p>'+esc(v[1])+(v[3]?'<span class="note">'+esc(v[3])+'</span>':'')+'</p></button>';
         }).join('') + '</div>' +
       '<div class="sig-sub">Portraits</div>' +
       '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
