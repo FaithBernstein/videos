@@ -497,6 +497,8 @@
       <div class="views-legend">▶ Views<span class="views-legend-sub">views across all platforms</span></div>
     </div>
     <div class="video-grid" id="field-grid"></div>
+    <div class="sig-label" style="margin-top:72px;">Branded content</div>
+    <div class="video-grid" id="field-branded-grid"></div>
   </section>
 </div>
 
@@ -569,6 +571,9 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var videos = {
+  branded: [
+    { headline: "One Pair of Concepts x New Balance 997s", role: "", views: "", award: "", link: "https://www.youtube.com/watch?v=cdTzffzKL5c" }
+  ],
   field: [
     { headline: "After Racist Park Encounter, Chris Cooper Takes Us Birding in Central Park", role: "Producer, Camera, Editor", views: "1M+ Views", award: "", link: "https://www.youtube.com/watch?v=-qd2XyGFTzk" },
     { headline: "Meet the 89-Year-Old Puerto Rican Owner of NYC's Oldest Music Store", role: "Director, Lead Producer, Editor", views: "1M Views", award: "", link: "https://www.youtube.com/watch?v=BX0k_h6vXYo" },
@@ -652,6 +657,7 @@ function renderGrid(id, items) {
   if (el) el.innerHTML = items.map(makeCard).join('');
 }
 renderGrid('field-grid', videos.field);
+renderGrid('field-branded-grid', videos.branded);
 renderGrid('remote-grid', videos.remote.slice(1));
 (function buildRemoteFeatured(){
   var grid = document.getElementById('remote-grid');
@@ -744,6 +750,8 @@ function stopPremieres() {
   grid.addEventListener('click', onCardClick);
   var feat = document.getElementById(key+'-featured');
   if (feat) feat.addEventListener('click', onCardClick);
+  var branded = document.getElementById(key+'-branded-grid');
+  if (branded) branded.addEventListener('click', onCardClick);
 });
 document.addEventListener('click', function(ev){ if (ev.target.closest('.nav-btn, [data-page]')) stopPremieres(); }, true);
 
