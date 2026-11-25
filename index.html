@@ -355,7 +355,7 @@
     .sig-foot small{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,244,232,.6);}
     .sig-foot a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#14110e;background:var(--amber);text-decoration:none;padding:12px 18px;border-radius:999px;}
     .sig-foot a:hover{background:var(--amber-light);}
-    @media (max-width:800px){.sig-cards{grid-template-columns:1fr}.sig-panel{padding:18px}.sig-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sig-portraits{grid-template-columns:repeat(3,minmax(0,1fr))}.sig-head{flex-direction:column}}
+    @media (max-width:800px){.sig-cards{grid-template-columns:1fr}.sig-panel{padding:18px}.sig-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sig-portraits{grid-template-columns:repeat(3,minmax(0,1fr))}.sig-head{flex-direction:column}}
 
     .sig-loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
     .hulu-badge{position:absolute;top:22px;left:22px;z-index:2;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#0b0c0f;background:#1ce783;border-radius:999px;padding:8px 14px;}
@@ -370,6 +370,7 @@
     .sig-moving figure{margin:0;}
     .sig-moving video,.sig-moving img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 30%;border-radius:3px;display:block;background:#2a241f;}
     .sig-moving figcaption{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,244,232,.7);margin-top:7px;}
+    .sig-credit-top{display:block;margin:34px 0 -18px;}
     .sig-credit{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-light);}
     @media (max-width:800px){.sig-moving{grid-template-columns:repeat(2,minmax(0,1fr))}.hulu-logo{font-size:26px}}
 
@@ -755,7 +756,7 @@ var SIG_PROJECTS = [
     role: "Senior Producer & Director · Camera · Editor · Booker",
     cover: "https://i.abcnewsfe.com/a/800b2994-a4dd-4ff4-85e2-a4755874f15d/SandyHookMainImage_v04_DG_1670448331969_hpMain_16x9.jpg?w=992",
     scope: "13 letters · 19 videos · 2.3M views on TikTok",
-    stats: [["13","survivor letters"],["19","videos"],["2.3M","views on TikTok"],["[#]","social posts"]],
+    stats: [["13","survivor letters"],["19","videos"],["2.3M","views on TikTok"]],
     featured: ["Streamed on ABC News Live", "Featured on ABC News' \u201cStart Here\u201d podcast, Dec 2022"],
     desc: "Ten years after Sandy Hook, we asked more than a dozen survivors of school shootings, across the country and across generations, to write to the next survivor: what to expect in the days, months and years ahead, and what they wish they had known. Each letter is paired with its own short film and portrait.",
     myrole: [
@@ -768,9 +769,9 @@ var SIG_PROJECTS = [
     lead: ["-JokheVpUmU","School shooting survivors reflect on life after tragedy from Sandy Hook to Uvalde"],
     videos: [
       ["tt:7215315061072547114","13 survivors’ letters, re-shared after the Nashville shooting","tall","2.3M views on TikTok"],
+      ["rkwkJkI_Gsc","Jazmin Cazares · Robb Elementary"],["7QKMKfgxWVA","Dan Williams · Chardon High"],["cIXRnlqPERU","Zoe Touray · Oxford High"],
       ["ryNw-s6aeCM","10 years since Sandy Hook, this 17-year-old opens up on being a survivor","","Streamed on ABC News Live"],
-      ["KTsVJt0wLEA","Jackie Hegarty · Sandy Hook"],["rkwkJkI_Gsc","Jazmin Cazares · Robb Elementary"],["7QKMKfgxWVA","Dan Williams · Chardon High"],["cIXRnlqPERU","Zoe Touray · Oxford High"],
-      ["J7LAJPAB16g","Natalie Barden · Sandy Hook"],["0qyP6jKYfnM","Missy Jenkins Smith · Heath High"],["k2KeUH6vYMs","Bryanna Love · St. Louis CVPA"],["iVm4ACUNH6s","Heather Martin · Columbine"],
+      ["J7LAJPAB16g","Natalie Barden · Sandy Hook"],["0qyP6jKYfnM","Missy Jenkins Smith · Heath High"],["k2KeUH6vYMs","Bryanna Love · St. Louis CVPA"],["iVm4ACUNH6s","Heather Martin · Columbine"],["KTsVJt0wLEA","Jackie Hegarty · Sandy Hook"],
       ["HxHa4T898x8","Mandy Jenkins · Heath High"],["CYvvxEEGLlM","Isabelle Laymance · Santa Fe High"],["tVPfM0Da_o4","Brandon Abzug · Parkland"],["RMeRUkrKBdc","Missy Mendo · Columbine"],
       ["Dw4ZIjNUoGw","Nicole Melchionno · Sandy Hook"],["BoVJv1anXv8","Why this necklace, ribbon and mural mean so much"],["CFTdJPfK0vo","Paralyzed in a school shooting, letters gave her hope"],["tWuIEKWQ_-w","Oxford survivors bond with Uvalde survivors","square"]
     ],
@@ -862,7 +863,7 @@ var SIG_PROJECTS = [
       (p.hulu ? '<a class="hulu-bar" href="'+p.hulu+'" target="_blank" rel="noopener"><span class="hulu-logo">hulu</span><span class="hulu-text"><b>Love at Club Q</b> is streaming on Hulu</span><span class="hulu-cta">Watch on Hulu ↗</span></a>' : '') +
       '<div class="sig-player"><button type="button" class="sig-poster" style="all:unset;position:absolute;inset:0;cursor:pointer;background:#000 url(https://i.ytimg.com/vi/'+p.lead[0]+'/hqdefault.jpg) center/cover" aria-label="Play '+esc(p.lead[1])+'">'+(p.loop?'<video src="'+p.loop+'" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>':'')+'<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(250,244,232,.92);display:flex;align-items:center;justify-content:center;color:#14110e;font-size:26px">▶</span></button></div>' +
       '<p class="sig-now">'+esc(p.lead[1])+'</p>' +
-      '<div class="sig-stats">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
+      '<div class="sig-stats" style="grid-template-columns:repeat('+p.stats.length+',minmax(0,1fr))">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
       '<p class="sig-desc">'+esc(p.desc)+'</p>' +
       (p.featured ? '<div class="sig-sub">Also featured</div><div class="sig-featured">'+p.featured.map(function(f){ return '<span>'+esc(f)+'</span>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">More from the package · '+(p.videos.length+1)+' videos</div>' +
@@ -870,10 +871,10 @@ var SIG_PROJECTS = [
         [[p.lead[0], p.lead[1]]].concat(p.videos).map(function(v){
           return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="'+thumb(p,v[0])+'" alt="" loading="lazy">'+(v[0].indexOf('tt:')===0?'<span class="tt">TikTok</span>':'')+'</div><p>'+esc(v[1])+(v[3]?'<span class="note">'+esc(v[3])+'</span>':'')+'</p></button>';
         }).join('') + '</div>' +
-      (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ var media = m[0].indexOf('img:')===0 ? '<img src="'+m[0].slice(4)+'" alt="'+esc(m[1])+'" loading="lazy">' : '<video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video>'; return '<figure>'+media+'<figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
+      '<div class="sig-credit sig-credit-top">'+esc(p.credit)+'</div>' + (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ var media = m[0].indexOf('img:')===0 ? '<img src="'+m[0].slice(4)+'" alt="'+esc(m[1])+'" loading="lazy">' : '<video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video>'; return '<figure>'+media+'<figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">Portraits</div>' +
       '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
-      '<div class="sig-foot"><span class="sig-credit">'+esc(p.credit)+'</span><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
+      '<div class="sig-foot"><span></span><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
     panel.classList.add('on');
     panel.querySelector('.sig-close').addEventListener('click', close);
     panel.querySelector('.sig-poster').addEventListener('click', function(){ play(p, p.lead[0], p.lead[1]); });
