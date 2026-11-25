@@ -356,6 +356,22 @@
     .sig-foot a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#14110e;background:var(--amber);text-decoration:none;padding:12px 18px;border-radius:999px;}
     .sig-foot a:hover{background:var(--amber-light);}
     @media (max-width:800px){.sig-cards{grid-template-columns:1fr}.sig-panel{padding:18px}.sig-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sig-portraits{grid-template-columns:repeat(3,minmax(0,1fr))}.sig-head{flex-direction:column}}
+
+    .sig-loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .hulu-badge{position:absolute;top:22px;left:22px;z-index:2;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#0b0c0f;background:#1ce783;border-radius:999px;padding:8px 14px;}
+    .hulu-badge b{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;text-transform:lowercase;letter-spacing:-.02em;font-size:15px;margin-left:4px;}
+    .hulu-bar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:6px 0 24px;padding:16px 20px;border-radius:6px;background:#0b0c0f;border:1px solid #1ce783;text-decoration:none;color:#faf4e8;transition:background .2s;}
+    .hulu-bar:hover{background:#111a14;color:#faf4e8;}
+    .hulu-logo{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:34px;letter-spacing:-.04em;color:#1ce783;line-height:1;}
+    .hulu-text{flex:1;font-family:'Cormorant Garamond',serif;font-size:22px;}
+    .hulu-text b{font-family:'Playfair Display',serif;}
+    .hulu-cta{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#0b0c0f;background:#1ce783;border-radius:999px;padding:11px 16px;}
+    .sig-moving{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+    .sig-moving figure{margin:0;}
+    .sig-moving video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;display:block;background:#2a241f;}
+    .sig-moving figcaption{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,244,232,.7);margin-top:7px;}
+    .sig-credit{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-light);}
+    @media (max-width:800px){.sig-moving{grid-template-columns:repeat(2,minmax(0,1fr))}.hulu-logo{font-size:26px}}
 </style>
 </head>
 <body>
@@ -701,7 +717,9 @@ var SIG_PROJECTS = [
       ["https://i.abcnewsfe.com/a/7157204c-431f-40b0-a5b8-2d2395d49f10/heather-martin-abc-jt-221130_1669860514217_hpMain_1x1.jpg?w=608","Heather Martin, Columbine"],
       ["https://i.abcnewsfe.com/a/757d088d-3002-4e23-bba0-174ba83b403c/Missy-Jenkins-Smith-abc-gmh-221201_1669920606284_hpMain_1x1.jpg?w=608","Missy Jenkins Smith, Heath High"]
     ],
-    credit: "Portraits: ABC News. Photographers: Adam Wolffbrandt, Meredith Longo, Jeff Swartz & Brandon Thibodeaux.",
+    credit: "Portraits produced & art directed by Faith Bernstein",
+    loop: "https://abcnews.com/images/GMA/dearsurvivorloop2.mp4",
+    moving: [["https://abcnews.com/images/GMA/jackiecompressed.mp4","Jackie Hegarty"],["https://abcnews.com/images/GMA/jazmincompressed.mp4","Jazmin Cazares"],["https://abcnews.com/images/GMA/dancompressed.mp4","Dan Williams"],["https://abcnews.com/images/GMA/zoecompressed.mp4","Zoe Touray"],["https://abcnews.com/images/GMA/nataliecompressed.mp4","Natalie Barden"],["https://abcnews.com/images/GMA/missyjenkinscompressed.mp4","Missy Jenkins Smith"],["https://abcnews.com/images/GMA/bryannacompressed.mp4","Bryanna Love"],["https://abcnews.com/images/GMA/heathercompressed.mp4","Heather Martin"],["https://abcnews.com/images/GMA/mandycompressed.mp4","Mandy Jenkins"],["https://abcnews.com/images/GMA/isabellecompressed.mp4","Isabelle Laymance"],["https://abcnews.com/images/GMA/brandoncompressed.mp4","Brandon Abzug"],["https://abcnews.com/images/GMA/nicolecompressed.mp4","Nicole Melchionno"]],
     link: "https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965",
     award: "Webby Award Nominee"
   },
@@ -712,8 +730,8 @@ var SIG_PROJECTS = [
     sub: "Gunned down in an LGBTQ+ safe space, these survivors refuse to hide in fear",
     role: "Senior Producer & Director · Camera · Editor",
     cover: "https://s.abcnews.com/images/US/pride-svetlana-abc-ps-230612_1686597191123_hpMain_2.jpg",
-    scope: "5 survivor profiles · 5 videos · portrait series",
-    stats: [["5","survivor profiles"],["5","videos"],["1","GLAAD nomination"],["Pride","Month series"]],
+    scope: "Streaming on Hulu · 5 survivor profiles · 5 videos",
+    stats: [["Hulu","streaming documentary"],["5","survivor profiles"],["5","videos"],["GLAAD","award nominee"]],
     desc: "Seven months after the mass shooting at Club Q in Colorado Springs, survivors and families reflect on love, loss and what a safe space means now. The package anchored GMA's \"Protecting Pride: Resilience After Tragedy\" series for Pride Month.",
     lead: ["sty4aH10FRE","Club Q is where they found love. It's also where they lost those they loved."],
     videos: [
@@ -727,9 +745,12 @@ var SIG_PROJECTS = [
       ["https://i.abcnewsfe.com/a/b93890f8-b553-46a8-b96f-497b594dfe83/pride-charlene-abc-ps-230612_1686597191119_hpEmbed_3x2.jpg","Charlene Slaugh"],
       ["https://i.abcnewsfe.com/a/a234ca41-93b4-4e75-bba7-9de0ae94d85f/Adriana-Vance-abc-gmh-230613_1686670649185_hpEmbed_3x2.jpg","Adriana Vance"]
     ],
-    credit: "Portraits: Adam Wolffbrandt/ABC News.",
+    credit: "Portraits produced & art directed by Faith Bernstein",
+    loop: "https://s.abcnews.com/images/GMA/061423_ClubQsurvivorsLOOP.mp4",
+    moving: [["https://s.abcnews.com/images/GMA/61423_ClubQLoveStoryLoop.mp4","Love at Club Q"],["https://s.abcnews.com/images/GMA/TiaraLatriceKellyLoop6723.mp4","Tiara Latrice Kelley"]],
+    hulu: "https://www.hulu.com/series/love-at-club-q-85bd5111-5ff3-4bd3-abb2-c3663cc5e1a3",
     link: "https://www.goodmorningamerica.com/news/story/gunned-lgbtq-safe-space-club-survivors-refuse-hide-99962150",
-    award: "GLAAD Award Nominee"
+    award: "Now streaming on Hulu · GLAAD Award Nominee"
   }
 ];
 (function buildSignature(){
@@ -740,10 +761,10 @@ var SIG_PROJECTS = [
   function thumb(p,id){ return id.indexOf('tt:')===0 ? p.cover : 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg'; }
   var wrap = document.createElement('div');
   wrap.className = 'sig';
-  wrap.innerHTML = '<div class="sig-label">Signature projects</div><div class="sig-cards">' +
+  wrap.innerHTML = '<div class="sig-label">Signature digital campaigns</div><div class="sig-cards">' +
     SIG_PROJECTS.map(function(p){
       return '<button type="button" class="sig-card" data-sig="'+p.id+'" aria-label="Open project: '+esc(p.title)+'">' +
-        '<img src="'+p.cover+'" alt="" loading="lazy"><span class="shade"></span><span class="open">Open project</span>' +
+        '<img src="'+p.cover+'" alt="" loading="lazy">'+(p.loop?'<video class="sig-loop" src="'+p.loop+'" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>':'')+'<span class="shade"></span>'+(p.hulu?'<span class="hulu-badge">Streaming on <b>hulu</b></span>':'')+'<span class="open">Open project</span>' +
         '<span class="body"><span class="kicker">'+esc(p.award)+'</span><h3>'+esc(p.title)+'</h3><span class="scope">'+esc(p.scope)+'</span></span></button>';
     }).join('') + '</div><div class="sig-panel" id="sig-panel" role="region" aria-live="polite"></div>';
   var meta = fieldGrid.parentNode.querySelector('.section-meta') || fieldGrid;
@@ -760,7 +781,8 @@ var SIG_PROJECTS = [
     wrap.querySelectorAll('.sig-card').forEach(function(c){ c.classList.toggle('active', c.dataset.sig === p.id); });
     panel.innerHTML =
       '<div class="sig-head"><div><div class="kicker" style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,244,232,.7)">'+esc(p.kicker)+'</div><h3>'+esc(p.title)+'</h3><div class="sig-role">'+esc(p.role)+'</div></div><button type="button" class="sig-close">Close ×</button></div>' +
-      '<div class="sig-player"><button type="button" class="sig-poster" style="all:unset;position:absolute;inset:0;cursor:pointer;background:#000 url(https://i.ytimg.com/vi/'+p.lead[0]+'/hqdefault.jpg) center/cover" aria-label="Play '+esc(p.lead[1])+'"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(250,244,232,.92);display:flex;align-items:center;justify-content:center;color:#14110e;font-size:26px">▶</span></button></div>' +
+      (p.hulu ? '<a class="hulu-bar" href="'+p.hulu+'" target="_blank" rel="noopener"><span class="hulu-logo">hulu</span><span class="hulu-text"><b>Love at Club Q</b> is streaming on Hulu</span><span class="hulu-cta">Watch on Hulu ↗</span></a>' : '') +
+      '<div class="sig-player"><button type="button" class="sig-poster" style="all:unset;position:absolute;inset:0;cursor:pointer;background:#000 url(https://i.ytimg.com/vi/'+p.lead[0]+'/hqdefault.jpg) center/cover" aria-label="Play '+esc(p.lead[1])+'">'+(p.loop?'<video src="'+p.loop+'" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>':'')+'<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(250,244,232,.92);display:flex;align-items:center;justify-content:center;color:#14110e;font-size:26px">▶</span></button></div>' +
       '<p class="sig-now">'+esc(p.lead[1])+'</p>' +
       '<div class="sig-stats">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
       '<p class="sig-desc">'+esc(p.desc)+'</p>' +
@@ -770,9 +792,10 @@ var SIG_PROJECTS = [
         [[p.lead[0], p.lead[1]]].concat(p.videos).map(function(v){
           return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="'+thumb(p,v[0])+'" alt="" loading="lazy">'+(v[0].indexOf('tt:')===0?'<span class="tt">TikTok</span>':'')+'</div><p>'+esc(v[1])+(v[3]?'<span class="note">'+esc(v[3])+'</span>':'')+'</p></button>';
         }).join('') + '</div>' +
+      (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ return '<figure><video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video><figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">Portraits</div>' +
       '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
-      '<div class="sig-foot"><small>'+esc(p.credit)+'</small><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
+      '<div class="sig-foot"><span class="sig-credit">'+esc(p.credit)+'</span><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
     panel.classList.add('on');
     panel.querySelector('.sig-close').addEventListener('click', close);
     panel.querySelector('.sig-poster').addEventListener('click', function(){ play(p, p.lead[0], p.lead[1]); });
