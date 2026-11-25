@@ -572,7 +572,8 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var videos = {
   branded: [
-    { headline: "One Pair of Concepts x New Balance 997s", role: "", views: "", award: "", link: "https://www.youtube.com/watch?v=cdTzffzKL5c" }
+    { headline: "One Pair of Concepts x New Balance 997s", role: "", views: "", award: "", link: "https://www.youtube.com/watch?v=cdTzffzKL5c" },
+    { headline: "Coach", role: "", views: "", award: "", thumb: "/branded/coach.jpg", link: "/branded/coach.mp4" }
   ],
   field: [
     { headline: "After Racist Park Encounter, Chris Cooper Takes Us Birding in Central Park", role: "Producer, Camera, Editor", views: "1M+ Views", award: "", link: "https://www.youtube.com/watch?v=-qd2XyGFTzk" },
@@ -711,6 +712,7 @@ function embedFor(url) {
   else if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) src = 'https://player.vimeo.com/video/'+m[1]+'?autoplay=1&title=0&byline=0';
   else if (/facebook\.com\//.test(url)) { src = 'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(url)+'&show_text=false&show_captions=false&autoplay=true'; shape = 'tall'; }
   else if ((m = url.match(/instagram\.com\/reels?\/([\w-]+)/))) { src = 'https://www.instagram.com/reel/'+m[1]+'/embed'; shape = 'tall'; }
+  else if (/\.mp4(\?|$)/.test(url)) return { src: url, shape: 'wide', video: true };
   if (!src) return null;
   if (SQUARE_VIDEOS.some(function(k){ return url.indexOf(k) > -1; })) shape = 'square';
   if (TALL_VIDEOS.some(function(k){ return url.indexOf(k) > -1; })) shape = 'tall';
@@ -739,7 +741,7 @@ function stopPremieres() {
     var wrap = link.closest('.video-card-wrap');
     stopPremieres();
     prem.className = 'premiere on' + (e.shape !== 'wide' ? ' ' + e.shape : '');
-    prem.querySelector('.premiere-frame').innerHTML = '<iframe src="'+e.src+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="Video player"></iframe>';
+    prem.querySelector('.premiere-frame').innerHTML = e.video ? '<video src="'+e.src+'" controls autoplay playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;background:#000"></video>' : '<iframe src="'+e.src+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="Video player"></iframe>';
     prem.querySelector('.premiere-title').textContent = wrap.querySelector('.video-card-headline').textContent;
     prem.querySelector('.premiere-role').textContent = wrap.querySelector('.video-card-role').textContent;
     var vEl = wrap.querySelector('.video-card-views'), pv = prem.querySelector('.premiere-views');
