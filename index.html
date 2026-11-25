@@ -919,7 +919,7 @@ var SIG_PROJECTS = [
           return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="'+thumb(p,v[0])+'" alt="" loading="lazy">'+(v[0].indexOf('tt:')===0?'<span class="tt">TikTok</span>':'')+'</div><p>'+esc(v[1])+(v[3]?'<span class="note">'+esc(v[3])+'</span>':'')+'</p></button>';
         }).join('') + '</div>' +
       '<div class="sig-credit sig-credit-top">'+esc(p.credit)+'</div>' + (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ var media = m[0].indexOf('img:')===0 ? '<img src="'+m[0].slice(4)+'" alt="'+esc(m[1])+'" loading="lazy">' : '<video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video>'; return '<figure>'+media+'<figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
-      '<div class="sig-sub">Portraits</div>' +
+      '<div class="sig-sub">Still portraits</div>' +
       '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
       '<div class="sig-foot"><span></span><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
     panel.classList.add('on');
