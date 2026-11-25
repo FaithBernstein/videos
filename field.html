@@ -104,6 +104,7 @@ header nav a.btn{padding:12px 18px}
 .player.on{display:flex}
 .player .frame{position:relative;width:min(1200px,100%);aspect-ratio:16/9;max-height:calc(100vh - 112px);background:#000;border-radius:6px;overflow:hidden}
 .player.tall .frame{width:auto;height:min(86vh,900px);aspect-ratio:9/16}
+.player.square .frame{width:auto;height:min(86vh,800px);aspect-ratio:1/1;max-width:100%}
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .player .x{position:absolute;top:16px;right:20px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(250,244,232,.5);background:transparent;color:var(--cream);font-size:24px;line-height:1;cursor:pointer}
 .player .x:hover{background:rgba(250,244,232,.12)}
@@ -244,10 +245,10 @@ var FILMS = [
   ["Perpetual Infant","Baby Born with Ultra-Rare Dwarfism Lived Life Full of Adventure as 'Perpetual Infant'","Producer · Editor","10M Views","dwarf","40% 50%","https://www.facebook.com/watch/?v=1067651284365888","A family selfie among golden aspens"],
   ["Western States","This Might Be the Greatest Comeback in Ultramarathon History","Producer · Editor","","comeback","55% 50%","https://www.youtube.com/watch?v=xJelbbYF9z8","A runner breaking the finish tape at the Western States Endurance Run"],
   ["NYC Marathon","Last Runner to Finish New York City Marathon Shares Harrowing Journey to Triumph","Producer · Editor","500K Views","nyc","50% 45%","https://www.instagram.com/reel/DQulQweDQQs/","The last finisher of the New York City Marathon celebrating with friends at night"],
-  ["Rescued Magpie","Rescued Magpie Helps Woman Believe in Herself Again","Producer · Editor · Graphics","47M Views","magpie","40% 50%","https://www.facebook.com/watch/?v=1748094518604860","A woman laughing cheek to cheek with a magpie"],
+  ["Rescued Magpie","Rescued Magpie Helps Woman Believe in Herself Again","Producer · Editor · Graphics","47M Views","magpie","40% 50%","https://www.facebook.com/watch/?v=1748094518604860","A woman laughing cheek to cheek with a magpie","square"],
   ["Park Rangers","National Park Rangers Speak Out on Mass Layoffs, Impact to Visitors","Producer · Editor","","rangers","50% 40%","https://www.facebook.com/watch/?v=1808553756664015","Four national park rangers in uniform"],
   ["Campfire Coffee","Black-Owned Coffee Company on a Mission to Increase Diversity in the Outdoors","Director · Producer · Camera · Editor","","coffee","50% 50%","https://www.youtube.com/watch?v=Xt2SPXiIYpA","Two coffee company founders in camp chairs in a forest"],
-  ["Ali Truwit","1 Year after Shark Attack, Ali Truwit Is Preparing to Swim in Paralympics","Producer · Editor","","ali","50% 30%","https://www.youtube.com/watch?v=LsWSSCbczQc","Paralympic swimmer Ali Truwit in a swim cap and goggles",1],
+  ["Ali Truwit","1 Year after Shark Attack, Ali Truwit Is Preparing to Swim in Paralympics","Producer · Editor","","ali","50% 30%","https://www.youtube.com/watch?v=LsWSSCbczQc","Paralympic swimmer Ali Truwit in a swim cap and goggles","tall"],
   ["All Bodies on Bikes","How two friends started a size-inclusive cycling group, ‘All Bodies on Bikes’","[Your role]","","bikes","40% 50%","https://www.goodmorningamerica.com/video/95617762","Two cyclists riding a forest road with bikepacking bags"],
   ["Black Skydiver","Meet the Black skydiver behind the social media movement to diversify the outdoors","[Your role]","","skydiver","45% 50%","https://www.goodmorningamerica.com/video/83048366","A skydiver in freefall high above farmland"],
   ["High Diving","How this woman’s epic high diving has brought her to a place of self love","[Your role]","","dive","40% 40%","https://www.goodmorningamerica.com/video/78594210","A high diver mid-flight above deep blue water"]
@@ -287,7 +288,7 @@ function buildDeck(list, accId, segId){
       '<div class="opened"><div class="top">'+(views?'<span class="disp pill">'+esc(views)+'</span>':'<span></span>')+
         '<span class="mono count">'+num+' / '+list.length+'</span></div>'+
         '<div class="bottom"><div><h3 class="disp">'+esc(title)+'</h3><p class="mono role">'+esc(role)+'</p></div>'+
-        '<button type="button" class="watch" data-play="'+esc(f[6])+'" data-title="'+esc(title)+'"'+(f[8]?' data-tall="1"':'')+'>▶ Watch</button></div></div>'+
+        '<button type="button" class="watch" data-play="'+esc(f[6])+'" data-title="'+esc(title)+'"'+(f[8]?' data-shape="'+f[8]+'"':'')+'>▶ Watch</button></div></div>'+
     '</div>';
     sh+='<button type="button" class="'+(i===0?'on':'')+'" data-i="'+i+'" aria-label="Open '+esc(short)+'"><span></span></button>';
   });
@@ -331,14 +332,15 @@ function embedFor(url){
   return null;
 }
 var player=document.getElementById('player'), frame=document.getElementById('player-frame'), cap=document.getElementById('player-cap'), lastFocus=null;
-function openPlayer(url,title,tall){
+function openPlayer(url,title,shape){
   var e=embedFor(url);
-  if(e&&tall) e.tall=true;
+  if(e&&shape){e.tall=shape==='tall';e.square=shape==='square';}
   if(!e){window.open(url,'_blank','noopener');return;}
   lastFocus=document.activeElement;
   frame.innerHTML='<iframe src="'+e.src+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="'+esc(title||'Video')+'"></iframe>';
   cap.textContent=title||'';
-  player.classList.toggle('tall',e.tall);
+  player.classList.toggle('tall',!!e.tall);
+  player.classList.toggle('square',!!e.square);
   player.classList.add('on');
   document.body.style.overflow='hidden';
   document.getElementById('player-x').focus();
@@ -351,7 +353,7 @@ document.addEventListener('click',function(ev){
   var t=ev.target.closest('[data-play]');
   if(!t) return;
   ev.preventDefault();
-  openPlayer(t.getAttribute('data-play'),t.getAttribute('data-title'),t.hasAttribute('data-tall'));
+  openPlayer(t.getAttribute('data-play'),t.getAttribute('data-title'),t.getAttribute('data-shape'));
 });
 document.getElementById('player-x').addEventListener('click',closePlayer);
 player.addEventListener('click',function(ev){if(ev.target===player) closePlayer();});
