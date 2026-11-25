@@ -247,7 +247,7 @@ var FILMS = [
   ["Rescued Magpie","Rescued Magpie Helps Woman Believe in Herself Again","Producer · Editor · Graphics","47M Views","magpie","40% 50%","https://www.facebook.com/watch/?v=1748094518604860","A woman laughing cheek to cheek with a magpie"],
   ["Park Rangers","National Park Rangers Speak Out on Mass Layoffs, Impact to Visitors","Producer · Editor","","rangers","50% 40%","https://www.facebook.com/watch/?v=1808553756664015","Four national park rangers in uniform"],
   ["Campfire Coffee","Black-Owned Coffee Company on a Mission to Increase Diversity in the Outdoors","Director · Producer · Camera · Editor","","coffee","50% 50%","https://www.youtube.com/watch?v=Xt2SPXiIYpA","Two coffee company founders in camp chairs in a forest"],
-  ["Ali Truwit","1 Year after Shark Attack, Ali Truwit Is Preparing to Swim in Paralympics","Producer · Editor","","ali","50% 30%","https://www.youtube.com/watch?v=LsWSSCbczQc","Paralympic swimmer Ali Truwit in a swim cap and goggles"],
+  ["Ali Truwit","1 Year after Shark Attack, Ali Truwit Is Preparing to Swim in Paralympics","Producer · Editor","","ali","50% 30%","https://www.youtube.com/watch?v=LsWSSCbczQc","Paralympic swimmer Ali Truwit in a swim cap and goggles",1],
   ["All Bodies on Bikes","How two friends started a size-inclusive cycling group, ‘All Bodies on Bikes’","[Your role]","","bikes","40% 50%","https://www.goodmorningamerica.com/video/95617762","Two cyclists riding a forest road with bikepacking bags"],
   ["Black Skydiver","Meet the Black skydiver behind the social media movement to diversify the outdoors","[Your role]","","skydiver","45% 50%","https://www.goodmorningamerica.com/video/83048366","A skydiver in freefall high above farmland"],
   ["High Diving","How this woman’s epic high diving has brought her to a place of self love","[Your role]","","dive","40% 40%","https://www.goodmorningamerica.com/video/78594210","A high diver mid-flight above deep blue water"]
@@ -287,7 +287,7 @@ function buildDeck(list, accId, segId){
       '<div class="opened"><div class="top">'+(views?'<span class="disp pill">'+esc(views)+'</span>':'<span></span>')+
         '<span class="mono count">'+num+' / '+list.length+'</span></div>'+
         '<div class="bottom"><div><h3 class="disp">'+esc(title)+'</h3><p class="mono role">'+esc(role)+'</p></div>'+
-        '<button type="button" class="watch" data-play="'+esc(f[6])+'" data-title="'+esc(title)+'">▶ Watch</button></div></div>'+
+        '<button type="button" class="watch" data-play="'+esc(f[6])+'" data-title="'+esc(title)+'"'+(f[8]?' data-tall="1"':'')+'>▶ Watch</button></div></div>'+
     '</div>';
     sh+='<button type="button" class="'+(i===0?'on':'')+'" data-i="'+i+'" aria-label="Open '+esc(short)+'"><span></span></button>';
   });
@@ -332,8 +332,9 @@ function embedFor(url){
   return null;
 }
 var player=document.getElementById('player'), frame=document.getElementById('player-frame'), cap=document.getElementById('player-cap'), lastFocus=null;
-function openPlayer(url,title){
+function openPlayer(url,title,tall){
   var e=embedFor(url);
+  if(e&&tall) e.tall=true;
   if(!e){window.open(url,'_blank','noopener');return;}
   lastFocus=document.activeElement;
   frame.innerHTML='<iframe src="'+e.src+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="'+esc(title||'Video')+'"></iframe>';
@@ -351,7 +352,7 @@ document.addEventListener('click',function(ev){
   var t=ev.target.closest('[data-play]');
   if(!t) return;
   ev.preventDefault();
-  openPlayer(t.getAttribute('data-play'),t.getAttribute('data-title'));
+  openPlayer(t.getAttribute('data-play'),t.getAttribute('data-title'),t.hasAttribute('data-tall'));
 });
 document.getElementById('player-x').addEventListener('click',closePlayer);
 player.addEventListener('click',function(ev){if(ev.target===player) closePlayer();});
