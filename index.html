@@ -374,7 +374,7 @@
     .sig-credit{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-light);}
     @media (max-width:800px){.sig-moving{grid-template-columns:repeat(2,minmax(0,1fr))}.hulu-logo{font-size:26px}}
 
-    .sig-myrole{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:start;margin:22px 0 0;padding:16px 18px;border:1px solid rgba(224,159,74,.35);border-radius:6px;background:rgba(224,159,74,.05);max-width:900px;}
+    .sig-myrole{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:start;margin:34px 0 0;padding:16px 18px;border:1px solid rgba(224,159,74,.35);border-radius:6px;background:rgba(224,159,74,.05);max-width:900px;}
     .sig-myrole-h{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-light);padding-top:4px;}
     .sig-myrole ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr;gap:6px;}
     .sig-myrole li{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.4;color:rgba(250,244,232,.85);padding-left:18px;position:relative;}
@@ -912,7 +912,6 @@ var SIG_PROJECTS = [
       '<p class="sig-now">'+esc(p.lead[1])+'</p>' +
       '<div class="sig-stats" style="grid-template-columns:repeat('+p.stats.length+',minmax(0,1fr))">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
       (p.brief ? '<div class="sig-sub">The brief</div>' : '') + '<p class="sig-desc">'+esc(p.desc)+'</p>' +
-      (p.myrole ? '<div class="sig-myrole"><div class="sig-myrole-h">My role</div><ul>'+p.myrole.map(function(r){ return '<li>'+esc(r)+'</li>'; }).join('')+'</ul></div>' : '') +
       (p.featured ? '<div class="sig-sub">Also featured</div><div class="sig-featured">'+p.featured.map(function(f){ return '<span>'+esc(f)+'</span>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">More from the package · '+(p.videos.length+1)+' videos</div>' +
       '<div class="sig-strip">' +
@@ -922,6 +921,7 @@ var SIG_PROJECTS = [
       (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ var media = m[0].indexOf('img:')===0 ? '<img src="'+m[0].slice(4)+'" alt="'+esc(m[1])+'" loading="lazy">' : '<video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video>'; return '<figure>'+media+'<figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">Still portraits</div>' +
       '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
+      (p.myrole ? '<div class="sig-myrole"><div class="sig-myrole-h">My role</div><ul>'+p.myrole.map(function(r){ return '<li>'+esc(r)+'</li>'; }).join('')+'</ul></div>' : '') +
       '<div class="sig-foot"><span></span><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
     panel.classList.add('on');
     panel.querySelector('.sig-close').addEventListener('click', close);
