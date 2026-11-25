@@ -368,7 +368,7 @@
     .hulu-cta{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#0b0c0f;background:#1ce783;border-radius:999px;padding:11px 16px;}
     .sig-moving{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
     .sig-moving figure{margin:0;}
-    .sig-moving video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;display:block;background:#2a241f;}
+    .sig-moving video,.sig-moving img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 30%;border-radius:3px;display:block;background:#2a241f;}
     .sig-moving figcaption{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,244,232,.7);margin-top:7px;}
     .sig-credit{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-light);}
     @media (max-width:800px){.sig-moving{grid-template-columns:repeat(2,minmax(0,1fr))}.hulu-logo{font-size:26px}}
@@ -717,7 +717,7 @@ var SIG_PROJECTS = [
     ],
     credit: "Portraits produced & art directed by Faith Bernstein",
     loop: "https://abcnews.com/images/GMA/dearsurvivorloop2.mp4",
-    moving: [["https://abcnews.com/images/GMA/jackiecompressed.mp4","Jackie Hegarty"],["https://abcnews.com/images/GMA/jazmincompressed.mp4","Jazmin Cazares"],["https://abcnews.com/images/GMA/dancompressed.mp4","Dan Williams"],["https://abcnews.com/images/GMA/zoecompressed.mp4","Zoe Touray"],["https://abcnews.com/images/GMA/nataliecompressed.mp4","Natalie Barden"],["https://abcnews.com/images/GMA/missyjenkinscompressed.mp4","Missy Jenkins Smith"],["https://abcnews.com/images/GMA/bryannacompressed.mp4","Bryanna Love"],["https://abcnews.com/images/GMA/heathercompressed.mp4","Heather Martin"],["https://abcnews.com/images/GMA/mandycompressed.mp4","Mandy Jenkins"],["https://abcnews.com/images/GMA/isabellecompressed.mp4","Isabelle Laymance"],["https://abcnews.com/images/GMA/brandoncompressed.mp4","Brandon Abzug"],["https://abcnews.com/images/GMA/nicolecompressed.mp4","Nicole Melchionno"]],
+    moving: [["https://abcnews.com/images/GMA/jackiecompressed.mp4","Jackie Hegarty"],["https://abcnews.com/images/GMA/jazmincompressed.mp4","Jazmin Cazares"],["https://abcnews.com/images/GMA/dancompressed.mp4","Dan Williams"],["https://abcnews.com/images/GMA/zoecompressed.mp4","Zoe Touray"],["img:https://i.abcnewsfe.com/a/8a0797ca-7c8f-4dbd-ab0e-c6217ef5f1f3/Natalie-Barden-abc-gmh-221201_1669920606287_hpMain_1x1.jpg?w=608","Natalie Barden"],["https://abcnews.com/images/GMA/missyjenkinscompressed.mp4","Missy Jenkins Smith"],["https://abcnews.com/images/GMA/bryannacompressed.mp4","Bryanna Love"],["https://abcnews.com/images/GMA/heathercompressed.mp4","Heather Martin"],["https://abcnews.com/images/GMA/mandycompressed.mp4","Mandy Jenkins"],["https://abcnews.com/images/GMA/isabellecompressed.mp4","Isabelle Laymance"],["https://abcnews.com/images/GMA/brandoncompressed.mp4","Brandon Abzug"],["https://abcnews.com/images/GMA/nicolecompressed.mp4","Nicole Melchionno"]],
     link: "https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965",
     award: "Webby Award Nominee"
   },
@@ -795,7 +795,7 @@ var SIG_PROJECTS = [
         [[p.lead[0], p.lead[1]]].concat(p.videos).map(function(v){
           return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="'+thumb(p,v[0])+'" alt="" loading="lazy">'+(v[0].indexOf('tt:')===0?'<span class="tt">TikTok</span>':'')+'</div><p>'+esc(v[1])+(v[3]?'<span class="note">'+esc(v[3])+'</span>':'')+'</p></button>';
         }).join('') + '</div>' +
-      (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ return '<figure><video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video><figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
+      (p.moving ? '<div class="sig-sub">Moving portraits</div><div class="sig-moving">'+p.moving.map(function(m){ var media = m[0].indexOf('img:')===0 ? '<img src="'+m[0].slice(4)+'" alt="'+esc(m[1])+'" loading="lazy">' : '<video src="'+m[0]+'" autoplay muted loop playsinline preload="metadata"></video>'; return '<figure>'+media+'<figcaption>'+esc(m[1])+'</figcaption></figure>'; }).join('')+'</div>' : '') +
       '<div class="sig-sub">Portraits</div>' +
       '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
       '<div class="sig-foot"><span class="sig-credit">'+esc(p.credit)+'</span><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
