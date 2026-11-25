@@ -767,6 +767,11 @@ var SIG_PROJECTS = [
     }).join('') + '</div><div class="sig-panel" id="sig-panel" role="region" aria-live="polite"></div>';
   var meta = fieldGrid.parentNode.querySelector('.section-meta') || fieldGrid;
   fieldGrid.parentNode.insertBefore(wrap, meta);
+  var oneOff = document.createElement('div');
+  oneOff.className = 'sig-label';
+  oneOff.style.marginTop = '8px';
+  oneOff.textContent = 'Original field & studio productions';
+  fieldGrid.parentNode.insertBefore(oneOff, meta);
   var panel = wrap.querySelector('#sig-panel');
   function play(p, id, title, shape){
     var pl = panel.querySelector('.sig-player');
