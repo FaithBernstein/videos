@@ -326,8 +326,7 @@ function embedFor(url){
   var m;
   if((m=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/))) return {src:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',tall:false};
   if((m=url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) return {src:'https://player.vimeo.com/video/'+m[1]+'?autoplay=1&title=0&byline=0',tall:false};
-  if(/facebook\.com\/reel\//.test(url)) return {src:'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(url)+'&show_text=false&autoplay=true',tall:true};
-  if(/facebook\.com\//.test(url)) return {src:'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(url)+'&show_text=false&autoplay=true',tall:false};
+  if(/facebook\.com\//.test(url)) return {src:'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(url)+'&show_text=false&autoplay=true',tall:true};
   if((m=url.match(/instagram\.com\/reels?\/([\w-]+)/))) return {src:'https://www.instagram.com/reel/'+m[1]+'/embed',tall:true};
   return null;
 }
