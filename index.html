@@ -381,25 +381,53 @@
     .sig-myrole li::before{content:'';position:absolute;left:0;top:.55em;width:10px;height:2px;background:var(--amber);}
     @media (max-width:800px){.sig-myrole{grid-template-columns:1fr}.sig-myrole ul{grid-template-columns:1fr}}
 
-    /* ── REMOTE FEATURED (vertical, single) ── */
+    /* ── REMOTE FEATURED (single vertical; variants a/b/c via ?feat=) ── */
     .feat-row{margin:0 0 64px;}
-    .feat-card{position:relative;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:48px;align-items:center;}
-    .feat-frame{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:#14110e;box-shadow:0 18px 40px rgba(20,17,14,.18);}
+    .feat-card{position:relative;}
+    .feat-frame{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:#14110e;box-shadow:0 18px 40px rgba(20,17,14,.22);}
     .feat-media{position:absolute;inset:0;overflow:hidden;}
     .feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
     .feat-yt{position:absolute;top:50%;left:50%;border:0;pointer-events:none;transform:translate(-50%,-50%);}
     .feat-yt.tall{width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);}
     .feat-yt.pillar{height:100%;width:calc(100% * 16 / 9 * 16 / 9);}
+    .feat-yt.cover{width:100%;height:calc(100vw * 16 / 9);min-height:100%;}
     .feat-play{position:absolute;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;background:rgba(250,244,232,.92);color:#14110e;display:flex;align-items:center;justify-content:center;font-size:15px;padding-left:3px;box-sizing:border-box;}
     .feat-body{pointer-events:none;}
     .feat-card .video-card-views{position:static;display:inline-block;margin-bottom:18px;border-radius:2px;}
-    .feat-card .video-card-headline{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(26px,2.6vw,38px);line-height:1.1;letter-spacing:-.01em;color:#14110e;}
+    .feat-card .video-card-headline{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(26px,2.6vw,40px);line-height:1.1;letter-spacing:-.01em;color:#14110e;}
     .feat-card .video-card-role{position:static;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-top:16px;background:none;padding:0;}
-    .feat-watch{display:inline-block;margin-top:24px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#14110e;border:1px solid #14110e;border-radius:999px;padding:10px 16px;transition:background .2s,color .2s;}
+    .feat-watch{display:inline-block;margin-top:28px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#14110e;border:1px solid #14110e;border-radius:999px;padding:11px 18px;transition:background .2s,color .2s;}
     .feat-card:hover .feat-watch{background:#14110e;color:#faf4e8;}
     .feat-card .video-card-link{position:absolute;inset:0;z-index:3;}
     .feat-card.playing .feat-frame{outline:3px solid var(--amber);outline-offset:3px;}
-    @media (max-width:800px){.feat-card{grid-template-columns:1fr;gap:20px}.feat-frame{max-width:300px;width:100%}}
+    /* a — cinematic band */
+    .feat-a .feat-card{border-radius:8px;overflow:hidden;background:#14110e;}
+    .fa-bg{position:absolute;inset:-40px;overflow:hidden;filter:blur(28px) saturate(1.2);transform:scale(1.1);}
+    .fa-tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,17,14,.35) 0%,rgba(20,17,14,.72) 55%,rgba(20,17,14,.85) 100%);}
+    .fa-inner{position:relative;display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:64px;align-items:center;padding:56px 64px;}
+    .feat-a .video-card-headline{color:#faf4e8;}
+    .feat-a .video-card-role{color:var(--amber-light);}
+    .fa-kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,244,232,.7);margin-bottom:18px;}
+    .feat-a .feat-watch{color:#faf4e8;border-color:rgba(250,244,232,.7);}
+    .feat-a .feat-card:hover .feat-watch{background:#faf4e8;color:#14110e;}
+    /* b — intro beside the feature */
+    .feat-b{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:64px;align-items:center;}
+    .feat-b .fb-intro .section-desc{max-width:none;}
+    .feat-b .feat-body{margin-top:18px;}
+    .feat-b .video-card-headline{font-size:22px;}
+    .feat-b .video-card-views{margin-bottom:12px;}
+    /* c — stats split */
+    .feat-c .feat-card{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:64px;align-items:center;}
+    .fc-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px;padding-top:28px;border-top:1px solid rgba(20,17,14,.15);}
+    .fc-stats b{display:block;font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(40px,5vw,72px);line-height:1;color:#14110e;}
+    .fc-stats span{display:block;margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6b5d4f;}
+    @media (max-width:800px){
+      .fa-inner,.feat-b,.feat-c .feat-card{grid-template-columns:1fr;gap:24px;}
+      .fa-inner{padding:24px;}
+      .feat-frame{max-width:300px;width:100%;}
+      .feat-b .fb-intro{order:0}
+      .fc-stats{gap:14px}
+    }
 </style>
 </head>
 <body>
@@ -674,19 +702,32 @@ renderGrid('remote-grid', videos.remote.slice(1));
   var box = document.createElement('div');
   box.className = 'feat-row';
   box.id = 'remote-featured';
-  box.innerHTML = videos.remote.slice(0,1).map(function(v,i){
-    var L = LOOPS[i] || {}, media = '';
-    if (L.yt) media = '<img src="https://i.ytimg.com/vi/'+L.yt+'/hqdefault.jpg" alt="" loading="lazy"><iframe class="feat-yt '+L.fit+'" src="https://www.youtube-nocookie.com/embed/'+L.yt+'?autoplay=1&mute=1&loop=1&playlist='+L.yt+'&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true" title=""></iframe>';
-    else if (L.img) media = '<img src="'+L.img+'" alt="" loading="lazy">';
-    return '<div class="video-card-wrap feat-card">' +
-      '<div class="feat-frame"><div class="feat-media">'+media+'</div><span class="feat-play">▶</span></div>' +
-      '<div class="feat-body">' + (v.views ? '<div class="video-card-views">'+v.views+'</div>' : '') +
-        '<div class="video-card-headline">'+v.headline+'</div>' +
-        '<div class="video-card-role">'+v.role+'</div>' +
-        '<span class="feat-watch">▶ Watch</span></div>' +
-      '<a class="video-card-link" href="'+v.link+'" target="_blank" rel="noopener" aria-label="Play '+v.headline.replace(/"/g,'&quot;')+'"></a>' +
-    '</div>';
-  }).join('');
+  var FV = (location.search.match(/[?&]feat=([abc])/) || [])[1] || 'a';
+  var v = videos.remote[0], L = LOOPS[0];
+  function ytLoop(cls){ return '<iframe class="feat-yt '+cls+'" src="https://www.youtube-nocookie.com/embed/'+L.yt+'?autoplay=1&mute=1&loop=1&playlist='+L.yt+'&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true" title=""></iframe>'; }
+  var frame = '<div class="feat-frame"><div class="feat-media"><img src="https://i.ytimg.com/vi/'+L.yt+'/hqdefault.jpg" alt="" loading="lazy">'+ytLoop(L.fit)+'</div><span class="feat-play">▶</span></div>';
+  var views = v.views ? '<div class="video-card-views">'+v.views+'</div>' : '';
+  var head = '<div class="video-card-headline">'+v.headline+'</div><div class="video-card-role">'+v.role+'</div>';
+  var link = '<a class="video-card-link" href="'+v.link+'" target="_blank" rel="noopener" aria-label="Play '+v.headline.replace(/"/g,'&quot;')+'"></a>';
+  var watch = '<span class="feat-watch">▶ Watch the film</span>';
+  box.className = 'feat-row feat-' + FV;
+  if (FV === 'a') {
+    // Cinematic band: dark panel, blurred live loop fills the background
+    box.innerHTML = '<div class="video-card-wrap feat-card">' +
+      '<div class="fa-bg" aria-hidden="true">'+ytLoop('cover')+'</div><div class="fa-tint"></div>' +
+      '<div class="fa-inner">'+frame+'<div class="feat-body"><div class="fa-kicker">Featured story</div>'+views+head+watch+'</div></div>' + link + '</div>';
+  } else if (FV === 'b') {
+    // Intro + feature: the section intro sits beside the vertical loop
+    var intro = Array.prototype.slice.call(grid.parentNode.querySelectorAll(':scope > .section-desc'));
+    box.innerHTML = '<div class="fb-intro"></div><div class="video-card-wrap feat-card">'+frame+'<div class="feat-body">'+views+head+'</div>'+link+'</div>';
+    intro.forEach(function(p){ box.querySelector('.fb-intro').appendChild(p); });
+    label.style.display = 'none';
+  } else {
+    // Stats split: big numbers fill the right side
+    box.innerHTML = '<div class="video-card-wrap feat-card">'+frame+'<div class="feat-body">'+head+
+      '<div class="fc-stats"><div><b>250</b><span>miles</span></div><div><b>56</b><span>hours</span></div><div><b>'+(v.views||'').replace(/\s*views/i,'')+'</b><span>views across all platforms</span></div></div>'+
+      '<span style="display:none">'+views+'</span>'+watch+'</div>'+link+'</div>';
+  }
   var meta = grid.parentNode.querySelector('.section-meta') || grid;
   grid.parentNode.insertBefore(label, meta);
   grid.parentNode.insertBefore(box, meta);
