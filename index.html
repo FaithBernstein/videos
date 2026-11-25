@@ -408,6 +408,9 @@
     .fa-inner{position:relative;display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:64px;align-items:center;padding:56px 64px;}
     .feat-a .video-card-headline{color:#faf4e8;}
     .feat-a .video-card-role{color:var(--amber-light);}
+    .fa-eng{display:flex;gap:22px;margin-top:20px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,244,232,.75);}
+    .fa-eng b{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;letter-spacing:0;color:#faf4e8;margin-right:6px;text-transform:none;}
+    .fa-note{margin:18px 0 0;max-width:460px;font-size:16px;line-height:1.5;color:rgba(250,244,232,.82);}
     .fa-kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,244,232,.7);margin-bottom:18px;}
     .feat-a .feat-watch{color:#faf4e8;border-color:rgba(250,244,232,.7);}
     .feat-a .feat-card:hover .feat-watch{background:#faf4e8;color:#14110e;}
@@ -610,7 +613,7 @@ var videos = {
     { headline: "The Beaver Believers", role: "Post-Production Intern", views: "", award: "BANFF Film Festival Official Selection", thumb: "https://i.imgur.com/5bT6wtS.jpeg", link: "https://www.youtube.com/watch?v=FQbVxvYygvk" }
   ],
   remote: [
-    { headline: "This Woman Just Made Ultramarathon History in 56-Hour, 250-Mile Run in Arizona", role: "Producer, Editor", views: "8M Views", award: "", thumb: "https://i.imgur.com/GYNmRYE.jpeg", link: "https://www.facebook.com/reel/944012738476586" },
+    { headline: "This Woman Just Made Ultramarathon History in 56-Hour, 250-Mile Run in Arizona", role: "Producer, Editor", views: "10M Views", likes: "200K", shares: "30K", note: "Pitched, produced and turned within 2 days of her record-breaking finish", award: "", thumb: "https://i.imgur.com/GYNmRYE.jpeg", link: "https://www.facebook.com/reel/944012738476586" },
     { headline: "Woman Shatters Appalachian Trail Speed Record", role: "Producer, Editor", views: "9M Views", award: "", thumb: "https://i.imgur.com/O4qd3Ku.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1863335494439730" },
     { headline: "Baby Born with Ultra-Rare Dwarfism Lived Life Full of Adventure as 'Perpetual Infant'", role: "Producer, Editor", views: "10M Views", award: "", thumb: "https://i.imgur.com/furABzT.png", link: "https://www.facebook.com/watch/?ref=embed_video&v=1067651284365888" },
     { headline: "This Might Be the Greatest Comeback in Ultramarathon History", role: "Producer, Editor", views: "", award: "", link: "https://www.youtube.com/watch?v=xJelbbYF9z8" },
@@ -719,7 +722,7 @@ renderGrid('remote-grid', videos.remote.slice(1));
   var link = '<a class="video-card-link" href="'+v.link+'" target="_blank" rel="noopener" aria-label="Play '+v.headline.replace(/"/g,'&quot;')+'"></a>';
   box.innerHTML = '<div class="video-card-wrap feat-card">' +
     '<div class="fa-bg" aria-hidden="true">'+ytLoop('cover')+'</div><div class="fa-tint"></div>' +
-    '<div class="fa-inner">'+frame+'<div class="feat-body"><div class="fa-kicker">Featured story</div>'+views+head+'<span class="feat-watch">▶ Watch</span></div></div>' + link + '</div>';
+    '<div class="fa-inner">'+frame+'<div class="feat-body"><div class="fa-kicker">Featured story</div>'+views+head+(v.likes||v.shares ? '<div class="fa-eng">'+(v.likes?'<span><b>'+v.likes+'</b> likes</span>':'')+(v.shares?'<span><b>'+v.shares+'</b> shares</span>':'')+'</div>' : '')+(v.note ? '<p class="fa-note">'+v.note+'</p>' : '')+'<span class="feat-watch">▶ Watch</span></div></div>' + link + '</div>';
   var meta = grid.parentNode.querySelector('.section-meta') || grid;
   grid.parentNode.insertBefore(label, meta);
   grid.parentNode.insertBefore(box, meta);
