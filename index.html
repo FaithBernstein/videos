@@ -379,6 +379,25 @@
     .sig-myrole li{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.35;color:#faf4e8;padding-left:22px;position:relative;}
     .sig-myrole li::before{content:'';position:absolute;left:0;top:.55em;width:10px;height:2px;background:var(--amber);}
     @media (max-width:800px){.sig-myrole{grid-template-columns:1fr}.sig-myrole ul{grid-template-columns:1fr}}
+
+    /* ── REMOTE FEATURED (vertical) ── */
+    .feat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:0 0 64px;}
+    .feat-card{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:#14110e;}
+    .feat-media{position:absolute;inset:0;overflow:hidden;}
+    .feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .feat-yt{position:absolute;top:50%;left:50%;border:0;pointer-events:none;transform:translate(-50%,-50%);}
+    .feat-yt.tall{width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);}
+    .feat-yt.pillar{height:100%;width:calc(100% * 16 / 9 * 16 / 9);}
+    .feat-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,14,0) 45%,rgba(20,17,14,.88) 100%);pointer-events:none;}
+    .feat-body{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 24px;color:#faf4e8;pointer-events:none;}
+    .feat-card .video-card-views{position:static;display:inline-block;margin-bottom:12px;border-radius:2px;}
+    .feat-card .video-card-headline{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(19px,1.7vw,24px);line-height:1.12;letter-spacing:-.01em;color:#faf4e8;}
+    .feat-card .video-card-role{position:static;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-light);margin-top:10px;background:none;padding:0;}
+    .feat-watch{display:inline-block;margin-top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(250,244,232,.55);border-radius:999px;padding:8px 13px;transition:background .2s;}
+    .feat-card:hover .feat-watch{background:rgba(250,244,232,.16);}
+    .feat-card .video-card-link{position:absolute;inset:0;z-index:3;}
+    .feat-card.playing{outline:3px solid var(--amber);outline-offset:3px;}
+    @media (max-width:800px){.feat-row{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
 </style>
 </head>
 <body>
@@ -631,7 +650,38 @@ function renderGrid(id, items) {
   if (el) el.innerHTML = items.map(makeCard).join('');
 }
 renderGrid('field-grid', videos.field);
-renderGrid('remote-grid', videos.remote);
+renderGrid('remote-grid', videos.remote.slice(3));
+(function buildRemoteFeatured(){
+  var grid = document.getElementById('remote-grid');
+  if (!grid) return;
+  var LOOPS = [
+    { yt: 'GE8YaH8YnoI', fit: 'tall' },          // Arizona 250 (vertical Short)
+    { yt: 'tzK-LmXpy8s', fit: 'pillar' },        // Appalachian Trail (vertical inside 16:9)
+    { img: '/remote/leo-loop.webp' }             // Perpetual Infant (built from the Facebook video)
+  ];
+  var label = document.createElement('div');
+  label.className = 'sig-label';
+  label.textContent = 'Featured';
+  var box = document.createElement('div');
+  box.className = 'feat-row';
+  box.id = 'remote-featured';
+  box.innerHTML = videos.remote.slice(0,3).map(function(v,i){
+    var L = LOOPS[i] || {}, media = '';
+    if (L.yt) media = '<img src="https://i.ytimg.com/vi/'+L.yt+'/hqdefault.jpg" alt="" loading="lazy"><iframe class="feat-yt '+L.fit+'" src="https://www.youtube-nocookie.com/embed/'+L.yt+'?autoplay=1&mute=1&loop=1&playlist='+L.yt+'&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true" title=""></iframe>';
+    else if (L.img) media = '<img src="'+L.img+'" alt="" loading="lazy">';
+    return '<div class="video-card-wrap feat-card">' +
+      '<div class="feat-media">'+media+'</div><div class="feat-shade"></div>' +
+      '<div class="feat-body">' + (v.views ? '<div class="video-card-views">'+v.views+'</div>' : '') +
+        '<div class="video-card-headline">'+v.headline+'</div>' +
+        '<div class="video-card-role">'+v.role+'</div>' +
+        '<span class="feat-watch">▶ Watch</span></div>' +
+      '<a class="video-card-link" href="'+v.link+'" target="_blank" rel="noopener" aria-label="Play '+v.headline.replace(/"/g,'&quot;')+'"></a>' +
+    '</div>';
+  }).join('');
+  var meta = grid.parentNode.querySelector('.section-meta') || grid;
+  grid.parentNode.insertBefore(label, meta);
+  grid.parentNode.insertBefore(box, meta);
+})();
 
 // Home grid — sports, triumph, human spirit first
 var homeVideos = [
@@ -672,7 +722,7 @@ function stopPremieres() {
   var meta = grid.parentNode.querySelector('.section-meta') || grid;
   grid.parentNode.insertBefore(prem, meta);
   prem.querySelector('.premiere-close').addEventListener('click', function(){ stopPremieres(); });
-  grid.addEventListener('click', function(ev) {
+  function onCardClick(ev) {
     var link = ev.target.closest('.video-card-link');
     if (!link) return;
     var e = embedFor(link.getAttribute('href'));
@@ -688,7 +738,10 @@ function stopPremieres() {
     if (vEl) { pv.textContent = vEl.textContent; var sm = document.createElement('small'); sm.textContent = 'across all platforms'; pv.appendChild(sm); pv.hidden = false; } else { pv.hidden = true; }
     wrap.classList.add('playing');
     prem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  }
+  grid.addEventListener('click', onCardClick);
+  var feat = document.getElementById(key+'-featured');
+  if (feat) feat.addEventListener('click', onCardClick);
 });
 document.addEventListener('click', function(ev){ if (ev.target.closest('.nav-btn, [data-page]')) stopPremieres(); }, true);
 
