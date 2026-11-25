@@ -673,14 +673,39 @@ function renderGrid(id, items) {
   var el = document.getElementById(id);
   if (el) el.innerHTML = items.map(makeCard).join('');
 }
+// ── Captions off in every embedded YouTube player (videos already have captions edited in) ──
+var YT_NOCC = '&cc_load_policy=0&iv_load_policy=3&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
+(function(){
+  var queue = [], ready = false;
+  function noCaptions(p){ try { p.unloadModule('captions'); p.unloadModule('cc'); if (p.setOption) p.setOption('captions', 'track', {}); } catch(e){} }
+  function hook(f){
+    if (f.__ytHooked) return; f.__ytHooked = true;
+    new YT.Player(f, { events: {
+      onReady: function(e){ noCaptions(e.target); },
+      onApiChange: function(e){ noCaptions(e.target); },
+      onStateChange: function(e){ if (e.data === 1) noCaptions(e.target); }
+    } });
+  }
+  function scan(root){
+    (root.querySelectorAll ? root.querySelectorAll('iframe[src*="enablejsapi=1"]') : []).forEach(function(f){ ready ? hook(f) : queue.push(f); });
+    if (root.tagName === 'IFRAME' && /enablejsapi=1/.test(root.src)) { ready ? hook(root) : queue.push(root); }
+  }
+  new MutationObserver(function(ms){ ms.forEach(function(m){ m.addedNodes.forEach(function(n){ if (n.nodeType === 1) scan(n); }); }); })
+    .observe(document.documentElement, { childList: true, subtree: true });
+  var prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function(){ if (prev) prev(); ready = true; queue.splice(0).forEach(hook); scan(document); };
+  var t = document.createElement('script'); t.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(t);
+})();
+
 renderGrid('field-grid', videos.field);
 renderGrid('field-branded-grid', videos.branded);
 renderGrid('remote-grid', videos.remote.slice(1));
 (function buildRemoteFeatured(){
   var grid = document.getElementById('remote-grid');
   if (!grid) return;
-  // Self-hosted, caption-free loop cut from the finish-line moment (no YouTube/Facebook overlays)
-  var LOOP = '/remote/arizona-loop.webp', STILL = '/remote/arizona-still.jpg';
+  // Arizona 250 YouTube Short, muted loop with YouTube auto-captions turned off
+  var YT_ID = 'GE8YaH8YnoI';
+  function ytLoop(cls){ return '<iframe class="feat-yt '+cls+'" data-ytloop="1" src="https://www.youtube.com/embed/'+YT_ID+'?autoplay=1&mute=1&loop=1&playlist='+YT_ID+'&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1'+YT_NOCC+'" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true" title=""></iframe>'; }
   var label = document.createElement('div');
   label.className = 'sig-label';
   label.textContent = 'Featured';
@@ -688,12 +713,12 @@ renderGrid('remote-grid', videos.remote.slice(1));
   box.className = 'feat-row feat-a';
   box.id = 'remote-featured';
   var v = videos.remote[0];
-  var frame = '<div class="feat-frame"><div class="feat-media"><img src="'+LOOP+'" alt=""></div><span class="feat-play">▶</span></div>';
+  var frame = '<div class="feat-frame"><div class="feat-media"><img src="https://i.ytimg.com/vi/'+YT_ID+'/hqdefault.jpg" alt="">'+ytLoop('tall')+'</div><span class="feat-play">▶</span></div>';
   var views = v.views ? '<div class="video-card-views">'+v.views+'</div>' : '';
   var head = '<div class="video-card-headline">'+v.headline+'</div><div class="video-card-role">'+v.role+'</div>';
   var link = '<a class="video-card-link" href="'+v.link+'" target="_blank" rel="noopener" aria-label="Play '+v.headline.replace(/"/g,'&quot;')+'"></a>';
   box.innerHTML = '<div class="video-card-wrap feat-card">' +
-    '<div class="fa-bg" aria-hidden="true"><img src="'+LOOP+'" alt=""></div><div class="fa-tint"></div>' +
+    '<div class="fa-bg" aria-hidden="true">'+ytLoop('cover')+'</div><div class="fa-tint"></div>' +
     '<div class="fa-inner">'+frame+'<div class="feat-body"><div class="fa-kicker">Featured story</div>'+views+head+'<span class="feat-watch">▶ Watch the film</span></div></div>' + link + '</div>';
   var meta = grid.parentNode.querySelector('.section-meta') || grid;
   grid.parentNode.insertBefore(label, meta);
@@ -716,7 +741,7 @@ var SQUARE_VIDEOS = ['zitHgGLENm0','BtQAkCxgwwY','ul9db2qbbbg','lsoPy5ZbhoI','17
 var TALL_VIDEOS = ['LsWSSCbczQc'];
 function embedFor(url) {
   var m, shape = 'wide', src = null;
-  if ((m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/))) src = 'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1';
+  if ((m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/))) src = 'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1'+YT_NOCC;
   else if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) src = 'https://player.vimeo.com/video/'+m[1]+'?autoplay=1&title=0&byline=0';
   else if (/facebook\.com\//.test(url)) { src = 'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(url)+'&show_text=false&show_captions=false&autoplay=true'; shape = 'tall'; }
   else if ((m = url.match(/instagram\.com\/reels?\/([\w-]+)/))) { src = 'https://www.instagram.com/reel/'+m[1]+'/embed'; shape = 'tall'; }
@@ -849,7 +874,7 @@ var SIG_PROJECTS = [
   var fieldGrid = document.getElementById('field-grid');
   if (!fieldGrid) return;
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function ytEmbed(id){ if (id.indexOf('tt:')===0) return 'https://www.tiktok.com/embed/v2/'+id.slice(3); return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'; }
+  function ytEmbed(id){ if (id.indexOf('tt:')===0) return 'https://www.tiktok.com/embed/v2/'+id.slice(3); return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'+YT_NOCC; }
   function thumb(p,id){ return id.indexOf('tt:')===0 ? p.cover : 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg'; }
   var wrap = document.createElement('div');
   wrap.className = 'sig';
