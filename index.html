@@ -301,6 +301,56 @@
     .premiere-close:hover{background:rgba(250,244,232,.1);}
     .video-card-wrap.playing .video-card{outline:3px solid var(--amber);outline-offset:3px;}
     @media (max-width:700px){.premiere{padding:14px 14px 16px;margin-bottom:36px}.premiere-title{font-size:21px}.premiere-bar{flex-direction:column;gap:12px}}
+
+    /* ── SIGNATURE PROJECTS ── */
+    .sig{margin:8px 0 64px;}
+    .sig-label{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);margin-bottom:18px;display:flex;align-items:center;gap:16px;}
+    .sig-label::after{content:'';flex:1;height:1px;background:rgba(138,74,42,.3);}
+    .sig-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
+    .sig-card{position:relative;display:block;width:100%;aspect-ratio:16/10;border:0;padding:0;border-radius:6px;overflow:hidden;cursor:pointer;background:#14110e;text-align:left;}
+    .sig-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s ease;}
+    .sig-card:hover img{transform:scale(1.04);}
+    .sig-card .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,14,.05) 30%,rgba(20,17,14,.9) 100%);}
+    .sig-card .body{position:absolute;left:0;right:0;bottom:0;padding:28px 30px;color:#faf4e8;}
+    .sig-card .kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-light);}
+    .sig-card h3{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(26px,2.6vw,38px);line-height:1.02;letter-spacing:-.02em;margin:10px 0 12px;color:#faf4e8;}
+    .sig-card .scope{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,244,232,.85);}
+    .sig-card .open{position:absolute;top:22px;right:22px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#faf4e8;border:1px solid rgba(250,244,232,.55);border-radius:999px;padding:9px 14px;background:rgba(20,17,14,.35);}
+    .sig-card.active{outline:3px solid var(--amber);outline-offset:3px;}
+    .sig-panel{display:none;margin-top:24px;background:#14110e;border-radius:6px;padding:32px;color:#faf4e8;scroll-margin-top:96px;}
+    .sig-panel.on{display:block;animation:premIn .45s ease;}
+    .sig-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:22px;}
+    .sig-head h3{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(28px,3vw,44px);line-height:1.02;letter-spacing:-.02em;margin:6px 0 0;color:#faf4e8;}
+    .sig-role{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-light);margin-top:12px;}
+    .sig-close{flex:none;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#faf4e8;background:transparent;border:1px solid rgba(250,244,232,.45);border-radius:999px;padding:10px 16px;cursor:pointer;}
+    .sig-close:hover{background:rgba(250,244,232,.1);}
+    .sig-player{position:relative;width:100%;max-width:calc(68vh * 16 / 9);aspect-ratio:16/9;margin:0 auto;background:#000;border-radius:4px;overflow:hidden;}
+    .sig-player.square{max-width:min(100%,68vh);aspect-ratio:1/1;}
+    .sig-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+    .sig-now{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#faf4e8;text-align:center;margin:14px 0 0;}
+    .sig-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(250,244,232,.15);border:1px solid rgba(250,244,232,.15);border-radius:4px;overflow:hidden;margin:28px 0;}
+    .sig-stats div{background:#14110e;padding:18px 20px;}
+    .sig-stats b{display:block;font-family:'Playfair Display',serif;font-weight:900;font-size:34px;line-height:1;color:var(--amber);}
+    .sig-stats span{display:block;margin-top:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,244,232,.75);}
+    .sig-sub{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,244,232,.7);margin:26px 0 12px;}
+    .sig-desc{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.6;color:rgba(250,244,232,.9);max-width:900px;margin:0;}
+    .sig-strip{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x proximity;}
+    .sig-vid{display:flex;flex-direction:column;justify-content:flex-start;flex:0 0 220px;scroll-snap-align:start;background:none;border:0;padding:0;cursor:pointer;text-align:left;color:#faf4e8;}
+    .sig-vid .th{position:relative;aspect-ratio:16/9;border-radius:3px;overflow:hidden;background:#2a241f;}
+    .sig-vid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+    .sig-vid:hover img{transform:scale(1.05);}
+    .sig-vid .th::after{content:'▶';position:absolute;left:10px;bottom:8px;font-size:12px;color:#faf4e8;background:rgba(20,17,14,.6);border-radius:999px;padding:4px 8px;}
+    .sig-vid.on .th{outline:2px solid var(--amber);outline-offset:2px;}
+    .sig-vid p{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;line-height:1.3;margin:9px 0 0;}
+    .sig-portraits{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;}
+    .sig-portraits figure{margin:0;}
+    .sig-portraits img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;display:block;background:#2a241f;}
+    .sig-portraits figcaption{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,244,232,.7);margin-top:7px;line-height:1.4;}
+    .sig-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid rgba(250,244,232,.15);}
+    .sig-foot small{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(250,244,232,.6);}
+    .sig-foot a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#14110e;background:var(--amber);text-decoration:none;padding:12px 18px;border-radius:999px;}
+    .sig-foot a:hover{background:var(--amber-light);}
+    @media (max-width:800px){.sig-cards{grid-template-columns:1fr}.sig-panel{padding:18px}.sig-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sig-portraits{grid-template-columns:repeat(3,minmax(0,1fr))}.sig-head{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -615,6 +665,125 @@ function stopPremieres() {
   });
 });
 document.addEventListener('click', function(ev){ if (ev.target.closest('.nav-btn, [data-page]')) stopPremieres(); }, true);
+
+// ── Signature Projects (Field Production) ──
+var SIG_PROJECTS = [
+  {
+    id: 'dfs',
+    kicker: 'ABC News · Good Morning America · Dec 2022',
+    title: "Dear Future Survivor",
+    sub: "School shooting survivors pen letters to future survivors",
+    role: "Senior Producer & Director · Camera · Editor · Booker",
+    cover: "https://i.abcnewsfe.com/a/800b2994-a4dd-4ff4-85e2-a4755874f15d/SandyHookMainImage_v04_DG_1670448331969_hpMain_16x9.jpg?w=992",
+    scope: "13 letters · 17 videos · portrait series",
+    stats: [["13","survivor letters"],["17","videos"],["25 yrs","of shootings, 1997–2022"],["13","survivor portraits"]],
+    desc: "Ten years after Sandy Hook, we asked more than a dozen survivors of school shootings, across the country and across generations, to write to the next survivor: what to expect in the days, months and years ahead, and what they wish they had known. Each letter is paired with its own short film and portrait.",
+    lead: ["-JokheVpUmU","School shooting survivors reflect on life after tragedy from Sandy Hook to Uvalde"],
+    videos: [
+      ["KTsVJt0wLEA","Jackie Hegarty · Sandy Hook"],["rkwkJkI_Gsc","Jazmin Cazares · Robb Elementary"],["7QKMKfgxWVA","Dan Williams · Chardon High"],["cIXRnlqPERU","Zoe Touray · Oxford High"],
+      ["J7LAJPAB16g","Natalie Barden · Sandy Hook"],["0qyP6jKYfnM","Missy Jenkins Smith · Heath High"],["k2KeUH6vYMs","Bryanna Love · St. Louis CVPA"],["iVm4ACUNH6s","Heather Martin · Columbine"],
+      ["HxHa4T898x8","Mandy Jenkins · Heath High"],["CYvvxEEGLlM","Isabelle Laymance · Santa Fe High"],["tVPfM0Da_o4","Brandon Abzug · Parkland"],["RMeRUkrKBdc","Missy Mendo · Columbine"],
+      ["Dw4ZIjNUoGw","Nicole Melchionno · Sandy Hook"],["BoVJv1anXv8","Why this necklace, ribbon and mural mean so much"],["CFTdJPfK0vo","Paralyzed in a school shooting, letters gave her hope"],["tWuIEKWQ_-w","Oxford survivors bond with Uvalde survivors","square"]
+    ],
+    portraits: [
+      ["https://i.abcnewsfe.com/a/2a3c2892-b3c9-4818-b11b-616eb197c8de/zoe-touray-abc-jt-221130_1669860150549_hpMain_1x1.jpg?w=608","Zoe Touray, Oxford High"],
+      ["https://i.abcnewsfe.com/a/8a0797ca-7c8f-4dbd-ab0e-c6217ef5f1f3/Natalie-Barden-abc-gmh-221201_1669920606287_hpMain_1x1.jpg?w=608","Natalie Barden, Sandy Hook"],
+      ["https://i.abcnewsfe.com/a/9ddd748b-35cd-4b03-bbf8-b487b4af8d9d/jazmin-cazares-abc-jt-221130_1669860267086_hpMain_1x1.jpg?w=608","Jazmin Cazares, Robb Elementary"],
+      ["https://i.abcnewsfe.com/a/be7a6f6c-e46b-4154-b9e9-34b2413c8f97/dan-williams-abc-jt-221130_1669860388063_hpMain_1x1.jpg?w=608","Dan Williams, Chardon High"],
+      ["https://i.abcnewsfe.com/a/7157204c-431f-40b0-a5b8-2d2395d49f10/heather-martin-abc-jt-221130_1669860514217_hpMain_1x1.jpg?w=608","Heather Martin, Columbine"],
+      ["https://i.abcnewsfe.com/a/757d088d-3002-4e23-bba0-174ba83b403c/Missy-Jenkins-Smith-abc-gmh-221201_1669920606284_hpMain_1x1.jpg?w=608","Missy Jenkins Smith, Heath High"]
+    ],
+    credit: "Portraits: ABC News. Photographers: Adam Wolffbrandt, Meredith Longo, Jeff Swartz & Brandon Thibodeaux.",
+    link: "https://www.goodmorningamerica.com/news/story/dear-future-survivor-school-shooting-survivors-pen-letters-93887965",
+    award: "Webby Award Nominee"
+  },
+  {
+    id: 'clubq',
+    kicker: 'ABC News · Good Morning America · June 2023',
+    title: "Protecting Pride: Club Q",
+    sub: "Gunned down in an LGBTQ+ safe space, these survivors refuse to hide in fear",
+    role: "Senior Producer & Director · Camera · Editor",
+    cover: "https://s.abcnews.com/images/US/pride-svetlana-abc-ps-230612_1686597191123_hpMain_2.jpg",
+    scope: "5 survivor profiles · 5 videos · portrait series",
+    stats: [["5","survivor profiles"],["5","videos"],["1","GLAAD nomination"],["Pride","Month series"]],
+    desc: "Seven months after the mass shooting at Club Q in Colorado Springs, survivors and families reflect on love, loss and what a safe space means now. The package anchored GMA's \"Protecting Pride: Resilience After Tragedy\" series for Pride Month.",
+    lead: ["sty4aH10FRE","Club Q is where they found love. It's also where they lost those they loved."],
+    videos: [
+      ["XBXhWDhShCo","Where is the LGBTQ+ community safe? Survivors reflect, rebuild"],
+      ["Du6z8usXqgg","Drag performer who narrowly missed Pulse and Club Q creates safe spaces"],
+      ["1Fa3EkhNcSA","First came protests at all-ages drag shows. Then, the rainbow umbrellas"]
+    ],
+    portraits: [
+      ["https://s.abcnews.com/images/US/pride-svetlana-abc-ps-230612_1686597191123_hpMain_2.jpg","Svetlana Heim"],
+      ["https://i.abcnewsfe.com/a/4260fe4d-e5f8-4049-bed3-aa5158b43019/pride-ashlin-abc-ps-230612_1686597191133_hpEmbed_3x2.jpg","Ashtin Gamblin"],
+      ["https://i.abcnewsfe.com/a/b93890f8-b553-46a8-b96f-497b594dfe83/pride-charlene-abc-ps-230612_1686597191119_hpEmbed_3x2.jpg","Charlene Slaugh"],
+      ["https://i.abcnewsfe.com/a/a234ca41-93b4-4e75-bba7-9de0ae94d85f/Adriana-Vance-abc-gmh-230613_1686670649185_hpEmbed_3x2.jpg","Adriana Vance"]
+    ],
+    credit: "Portraits: Adam Wolffbrandt/ABC News.",
+    link: "https://www.goodmorningamerica.com/news/story/gunned-lgbtq-safe-space-club-survivors-refuse-hide-99962150",
+    award: "GLAAD Award Nominee"
+  }
+];
+(function buildSignature(){
+  var fieldGrid = document.getElementById('field-grid');
+  if (!fieldGrid) return;
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function ytEmbed(id){ return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'; }
+  var wrap = document.createElement('div');
+  wrap.className = 'sig';
+  wrap.innerHTML = '<div class="sig-label">Signature projects</div><div class="sig-cards">' +
+    SIG_PROJECTS.map(function(p){
+      return '<button type="button" class="sig-card" data-sig="'+p.id+'" aria-label="Open project: '+esc(p.title)+'">' +
+        '<img src="'+p.cover+'" alt="" loading="lazy"><span class="shade"></span><span class="open">Open project</span>' +
+        '<span class="body"><span class="kicker">'+esc(p.award)+'</span><h3>'+esc(p.title)+'</h3><span class="scope">'+esc(p.scope)+'</span></span></button>';
+    }).join('') + '</div><div class="sig-panel" id="sig-panel" role="region" aria-live="polite"></div>';
+  var meta = fieldGrid.parentNode.querySelector('.section-meta') || fieldGrid;
+  fieldGrid.parentNode.insertBefore(wrap, meta);
+  var panel = wrap.querySelector('#sig-panel');
+  function play(p, id, title, shape){
+    var pl = panel.querySelector('.sig-player');
+    pl.className = 'sig-player' + (shape === 'square' ? ' square' : '');
+    pl.innerHTML = '<iframe src="'+ytEmbed(id)+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="'+esc(title)+'"></iframe>';
+    panel.querySelector('.sig-now').textContent = title;
+    panel.querySelectorAll('.sig-vid').forEach(function(b){ b.classList.toggle('on', b.dataset.id === id); });
+  }
+  function open(p){
+    wrap.querySelectorAll('.sig-card').forEach(function(c){ c.classList.toggle('active', c.dataset.sig === p.id); });
+    panel.innerHTML =
+      '<div class="sig-head"><div><div class="kicker" style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,244,232,.7)">'+esc(p.kicker)+'</div><h3>'+esc(p.title)+'</h3><div class="sig-role">'+esc(p.role)+'</div></div><button type="button" class="sig-close">Close ×</button></div>' +
+      '<div class="sig-player"><button type="button" class="sig-poster" style="all:unset;position:absolute;inset:0;cursor:pointer;background:#000 url(https://i.ytimg.com/vi/'+p.lead[0]+'/hqdefault.jpg) center/cover" aria-label="Play '+esc(p.lead[1])+'"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(250,244,232,.92);display:flex;align-items:center;justify-content:center;color:#14110e;font-size:26px">▶</span></button></div>' +
+      '<p class="sig-now">'+esc(p.lead[1])+'</p>' +
+      '<div class="sig-stats">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
+      '<p class="sig-desc">'+esc(p.desc)+'</p>' +
+      '<div class="sig-sub">More from the package · '+(p.videos.length+1)+' videos</div>' +
+      '<div class="sig-strip">' +
+        [[p.lead[0], p.lead[1]]].concat(p.videos).map(function(v){
+          return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="https://i.ytimg.com/vi/'+v[0]+'/mqdefault.jpg" alt="" loading="lazy"></div><p>'+esc(v[1])+'</p></button>';
+        }).join('') + '</div>' +
+      '<div class="sig-sub">Portraits</div>' +
+      '<div class="sig-portraits">'+p.portraits.map(function(x){ return '<figure><img src="'+x[0]+'" alt="'+esc(x[1])+'" loading="lazy"><figcaption>'+esc(x[1])+'</figcaption></figure>'; }).join('')+'</div>' +
+      '<div class="sig-foot"><small>'+esc(p.credit)+'</small><a href="'+p.link+'" target="_blank" rel="noopener">See the full package on GMA ↗</a></div>';
+    panel.classList.add('on');
+    panel.querySelector('.sig-close').addEventListener('click', close);
+    panel.querySelector('.sig-poster').addEventListener('click', function(){ play(p, p.lead[0], p.lead[1]); });
+    panel.querySelectorAll('.sig-vid').forEach(function(b){
+      b.addEventListener('click', function(){ play(p, b.dataset.id, b.dataset.title, b.dataset.shape); panel.querySelector('.sig-player').scrollIntoView({behavior:'smooth', block:'center'}); });
+    });
+    if (typeof stopPremieres === 'function') stopPremieres();
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function close(){
+    panel.classList.remove('on'); panel.innerHTML = '';
+    wrap.querySelectorAll('.sig-card').forEach(function(c){ c.classList.remove('active'); });
+  }
+  wrap.querySelectorAll('.sig-card').forEach(function(c){
+    c.addEventListener('click', function(){
+      var p = SIG_PROJECTS.filter(function(x){ return x.id === c.dataset.sig; })[0];
+      if (c.classList.contains('active')) close(); else open(p);
+    });
+  });
+  document.addEventListener('click', function(ev){ if (ev.target.closest('.nav-btn, .nav-logo')) close(); }, true);
+})();
 
 
 function getThumbs(items) {
