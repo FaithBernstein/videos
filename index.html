@@ -719,7 +719,7 @@ renderGrid('remote-grid', videos.remote.slice(1));
   var link = '<a class="video-card-link" href="'+v.link+'" target="_blank" rel="noopener" aria-label="Play '+v.headline.replace(/"/g,'&quot;')+'"></a>';
   box.innerHTML = '<div class="video-card-wrap feat-card">' +
     '<div class="fa-bg" aria-hidden="true">'+ytLoop('cover')+'</div><div class="fa-tint"></div>' +
-    '<div class="fa-inner">'+frame+'<div class="feat-body"><div class="fa-kicker">Featured story</div>'+views+head+'<span class="feat-watch">▶ Watch the film</span></div></div>' + link + '</div>';
+    '<div class="fa-inner">'+frame+'<div class="feat-body"><div class="fa-kicker">Featured story</div>'+views+head+'<span class="feat-watch">▶ Watch</span></div></div>' + link + '</div>';
   var meta = grid.parentNode.querySelector('.section-meta') || grid;
   grid.parentNode.insertBefore(label, meta);
   grid.parentNode.insertBefore(box, meta);
