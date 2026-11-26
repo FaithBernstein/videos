@@ -426,6 +426,11 @@
     .brand-grid{align-items:start;}
     .brand-cell{display:flex;flex-direction:column;gap:16px;min-width:0;}
     .brand-info{padding:0 2px;}
+    .brand-more{max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .25s ease;}
+    .brand-cell:hover .brand-more,.brand-cell:focus-within .brand-more,.brand-cell.open .brand-more{max-height:420px;opacity:1;}
+    .brand-hint{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9a8b7c;margin-top:10px;transition:opacity .2s;}
+    .brand-cell:hover .brand-hint,.brand-cell:focus-within .brand-hint,.brand-cell.open .brand-hint{opacity:0;height:0;margin:0;overflow:hidden;}
+    @media (hover:none){.brand-hint{display:none}}
     .brand-title{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;line-height:1.2;color:var(--ink,#14110e);}
     .brand-client{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b5d4f;margin-top:6px;}
     .brand-h{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-top:14px;}
@@ -733,10 +738,17 @@ renderGrid('field-branded-grid', videos.branded);
     var d = document.createElement('div');
     d.className = 'brand-info';
     d.innerHTML = '<div class="brand-title">'+esc(v.project)+'</div><div class="brand-client">'+esc(v.client)+'</div>' +
-      '<div class="brand-h">The brief</div><p>'+esc(v.brief)+'</p>' +
-      '<div class="brand-h">My role · '+esc(v.role)+'</div><p>'+esc(v.myrole)+'</p>';
+      '<div class="brand-more"><div class="brand-h">The brief</div><p>'+esc(v.brief)+'</p>' +
+      '<div class="brand-h">My role · '+esc(v.role)+'</div><p>'+esc(v.myrole)+'</p></div>' +
+      '<div class="brand-hint">Hover or click for the brief and my role</div>';
     var cell = document.createElement('div'); cell.className = 'brand-cell';
     w.parentNode.insertBefore(cell, w); cell.appendChild(w); cell.appendChild(d);
+  });
+  // Clicking a film keeps its project notes open (one at a time)
+  g.addEventListener('click', function(ev){
+    var cell = ev.target.closest('.brand-cell'); if (!cell) return;
+    g.querySelectorAll('.brand-cell.open').forEach(function(c){ if (c !== cell) c.classList.remove('open'); });
+    cell.classList.add('open');
   });
 })();
 renderGrid('remote-grid', videos.remote.slice(1));
