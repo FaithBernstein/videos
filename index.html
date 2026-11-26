@@ -869,8 +869,8 @@ var SIG_PROJECTS = [
     sub: "School shooting survivors pen letters to future survivors",
     role: "Senior Producer & Director · Camera · Editor · Booker",
     cover: "/img/campaigns/dfs-cover.jpg",
-    scope: "13 letters · 19 videos · 2.3M views on TikTok",
-    stats: [["13","survivor letters"],["19","videos"],["2.3M","views on TikTok"],["Webby","award nominee"]],
+    scope: "13 letters · 5 videos · 2.3M views on TikTok",
+    stats: [["13","survivor letters"],["5","videos"],["2.3M","views on TikTok"],["Webby","award nominee"]],
     featured: ["Streamed on ABC News Live", "Featured on ABC News' \u201cStart Here\u201d podcast, Dec 2022"],
     brief: true,
     desc: "For the 10-year remembrance of Sandy Hook, we were given a heavy but important brief: capture the lasting impact school shootings have on students and teachers, sometimes decades later, and confront the grim reality that these shootings keep happening. So we asked 13 survivors, across generations and across the country, to write a letter to the next survivor: what to expect in the days, months and years ahead, and what they wish they had known. Each letter became its own short film and portrait.",
@@ -878,7 +878,7 @@ var SIG_PROJECTS = [
       "Found and casted 13 survivors, built relationships and guided them through the letter writing process",
       "Planned all logistics for a 2-week, 7-state shoot with a lean crew",
       "Produced on-location with subjects, ensuring both that they felt safe and supported and that brand standards were met visually and editorially",
-      "Directed and produced 19 videos, plus the social posts and web page layout, for the digital rollout",
+      "Directed and produced 5 videos, plus the social posts and web page layout, for the digital rollout",
       "Worked alongside our DP to art direct portraits and additional visual elements for social media and graphics"
     ],
     lead: ["-JokheVpUmU","School shooting survivors reflect on life after tragedy from Sandy Hook to Uvalde"],
@@ -987,7 +987,7 @@ var SIG_PROJECTS = [
       '<div class="sig-stats" style="grid-template-columns:repeat('+p.stats.length+',minmax(0,1fr))">'+p.stats.map(function(s){ return '<div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>'; }).join('')+'</div>' +
       (p.brief ? '<div class="sig-sub">The brief</div>' : '') + '<p class="sig-desc">'+esc(p.desc)+'</p>' +
       (p.featured ? '<div class="sig-sub">Also featured</div><div class="sig-featured">'+p.featured.map(function(f){ return '<span>'+esc(f)+'</span>'; }).join('')+'</div>' : '') +
-      '<div class="sig-sub">More from the package · '+(p.videos.length+1)+' videos</div>' +
+      '<div class="sig-sub">More from the package</div>' +
       '<div class="sig-strip">' +
         [[p.lead[0], p.lead[1]]].concat(p.videos).map(function(v){
           return '<button type="button" class="sig-vid" data-id="'+v[0]+'" data-title="'+esc(v[1])+'" data-shape="'+(v[2]||'')+'"><div class="th"><img src="'+thumb(p,v[0])+'" alt="" loading="lazy">'+(v[0].indexOf('tt:')===0?'<span class="tt">TikTok</span>':'')+'</div><p>'+esc(v[1])+(v[3]?'<span class="note">'+esc(v[3])+'</span>':'')+'</p></button>';
