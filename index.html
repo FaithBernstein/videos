@@ -399,6 +399,8 @@
     .feat-watch{display:inline-block;margin-top:28px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#14110e;border:1px solid #14110e;border-radius:999px;padding:11px 18px;transition:background .2s,color .2s;}
     .feat-card:hover .feat-watch{background:#14110e;color:#faf4e8;}
     .feat-card .video-card-link{position:absolute;inset:0;z-index:3;}
+    .feat-card.playing-inline .video-card-link,.feat-card.playing-inline .feat-play,.feat-card.playing-inline .feat-watch{display:none;}
+    .feat-yt.feat-full{pointer-events:auto;transform:translate(-50%,-50%);}
     .feat-card.playing .feat-frame{outline:3px solid var(--amber);outline-offset:3px;}
     /* a — cinematic band */
     .feat-a .feat-card{border-radius:8px;overflow:hidden;background:#14110e;}
@@ -726,6 +728,22 @@ renderGrid('remote-grid', videos.remote.slice(1));
   var meta = grid.parentNode.querySelector('.section-meta') || grid;
   grid.parentNode.insertBefore(label, meta);
   grid.parentNode.insertBefore(box, meta);
+  // Click plays the full video right in the vertical frame (no separate player above)
+  var featCard = box.querySelector('.feat-card'), featMedia = box.querySelector('.feat-media'), featLoopHTML = featMedia.innerHTML;
+  window.resetFeature = function(){
+    if (!featCard.classList.contains('playing-inline')) return;
+    featCard.classList.remove('playing-inline', 'playing');
+    featMedia.innerHTML = featLoopHTML;
+  };
+  box.addEventListener('click', function(ev){
+    var link = ev.target.closest('.video-card-link');
+    if (!link) return;
+    ev.preventDefault();
+    if (featCard.classList.contains('playing-inline')) return;
+    stopPremieres();
+    featCard.classList.add('playing-inline', 'playing');
+    featMedia.innerHTML = '<iframe class="feat-yt tall feat-full" src="https://www.youtube-nocookie.com/embed/'+YT_ID+'?autoplay=1&playsinline=1&rel=0&modestbranding=1'+YT_NOCC+'" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="'+v.headline.replace(/"/g,'&quot;')+'"></iframe>';
+  });
 })();
 
 // Home grid — sports, triumph, human spirit first
@@ -755,6 +773,7 @@ function embedFor(url) {
   return { src: src, shape: shape };
 }
 function stopPremieres() {
+  if (window.resetFeature) window.resetFeature();
   document.querySelectorAll('.premiere.on').forEach(function(p){ p.classList.remove('on'); p.querySelector('.premiere-frame').innerHTML = ''; });
   document.querySelectorAll('.video-card-wrap.playing').forEach(function(w){ w.classList.remove('playing'); });
 }
@@ -787,7 +806,6 @@ function stopPremieres() {
   }
   grid.addEventListener('click', onCardClick);
   var feat = document.getElementById(key+'-featured');
-  if (feat) feat.addEventListener('click', onCardClick);
   var branded = document.getElementById(key+'-branded-grid');
   if (branded) branded.addEventListener('click', onCardClick);
 });
