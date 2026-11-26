@@ -742,7 +742,9 @@ renderGrid('remote-grid', videos.remote.slice(1));
     if (featCard.classList.contains('playing-inline')) return;
     stopPremieres();
     featCard.classList.add('playing-inline', 'playing');
-    featMedia.innerHTML = '<iframe class="feat-yt tall feat-full" src="https://www.youtube-nocookie.com/embed/'+YT_ID+'?autoplay=1&playsinline=1&rel=0&modestbranding=1'+YT_NOCC+'" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="'+v.headline.replace(/"/g,'&quot;')+'"></iframe>';
+    // Full video from Facebook (where its view counts live), sized to the vertical frame
+    var fb = embedFor(v.link), w = Math.round(featMedia.clientWidth) || 320;
+    featMedia.innerHTML = '<iframe class="feat-yt tall feat-full" src="'+fb.src+'&width='+w+'" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen" allowfullscreen title="'+v.headline.replace(/"/g,'&quot;')+'"></iframe>';
   });
 })();
 
