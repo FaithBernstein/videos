@@ -421,6 +421,16 @@
       .fa-inner{padding:24px;}
       .feat-frame{max-width:300px;width:100%;}
     }
+
+    /* ── BRANDED MINI PROJECTS ── */
+    .brand-grid{align-items:start;}
+    .brand-cell{display:flex;flex-direction:column;gap:16px;min-width:0;}
+    .brand-info{padding:0 2px;}
+    .brand-title{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;line-height:1.2;color:var(--ink,#14110e);}
+    .brand-client{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b5d4f;margin-top:6px;}
+    .brand-h{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-top:14px;}
+    .brand-info p{margin:4px 0 0;font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.45;color:#3d342b;}
+    .brand-grid .video-card-headline{display:none;}
 </style>
 </head>
 <body>
@@ -593,9 +603,18 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var videos = {
   branded: [
-    { headline: "New Balance", role: "Producer", views: "", award: "", thumb: "/branded/newbalance.jpg", link: "/branded/newbalance.mp4" },
-    { headline: "Coach", role: "Associate Producer", views: "", award: "", thumb: "/branded/coach.jpg", link: "/branded/coach.mp4" },
-    { headline: "Afropunk", role: "Producer", views: "", award: "", thumb: "/branded/afropunk.jpg", link: "/branded/afropunk.mp4" }
+    { headline: "New Balance", role: "Producer", views: "", award: "", thumb: "/branded/newbalance.jpg", link: "/branded/newbalance.mp4",
+      project: "The Wilted Rose Project", client: "Concepts x New Balance · Shearwater Films",
+      brief: "One fan wore the same pair of Concepts x New Balance \u201cWilted Rose\u201d 997s every day and logged each one on Instagram. The brief: turn that daily ritual into a quiet, cinematic portrait of the shoe and the person wearing it.",
+      myrole: "Produced the film, from the interview and coastal location shoot through post." },
+    { headline: "Coach", role: "Associate Producer", views: "", award: "", thumb: "/branded/coach.jpg", link: "/branded/coach.mp4",
+      project: "Coach New York", client: "Coach · Shearwater Films",
+      brief: "A lifestyle film following two friends through New York City, made to show Coach's looks in the city the brand calls home.",
+      myrole: "Supported production on the New York location shoot." },
+    { headline: "Afropunk", role: "Producer", views: "", award: "", thumb: "/branded/afropunk.jpg", link: "/branded/afropunk.mp4",
+      project: "Afropunk Fest Brooklyn 2015: Day One", client: "AFROPUNK · Shearwater Films",
+      brief: "A fast-turnaround recap of the festival's first day, capturing the music, the art and the community behind Afropunk's message of inclusion.",
+      myrole: "Produced the festival-day shoot and recap from capture through delivery." }
   ],
   field: [
     { headline: "After Racist Park Encounter, Chris Cooper Takes Us Birding in Central Park", role: "Producer, Camera, Editor", views: "1M+ Views", award: "", link: "https://www.youtube.com/watch?v=-qd2XyGFTzk" },
@@ -704,6 +723,22 @@ var YT_NOCC = '&cc_load_policy=0&iv_load_policy=3&enablejsapi=1&origin=' + encod
 
 renderGrid('field-grid', videos.field);
 renderGrid('field-branded-grid', videos.branded);
+// Mini project notes under each branded film
+(function(){
+  var g = document.getElementById('field-branded-grid'); if (!g) return;
+  var esc = function(t){ return String(t||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  g.classList.add('brand-grid');
+  g.querySelectorAll(':scope > .video-card-wrap').forEach(function(w, i){
+    var v = videos.branded[i]; if (!v || !v.brief) return;
+    var d = document.createElement('div');
+    d.className = 'brand-info';
+    d.innerHTML = '<div class="brand-title">'+esc(v.project)+'</div><div class="brand-client">'+esc(v.client)+'</div>' +
+      '<div class="brand-h">The brief</div><p>'+esc(v.brief)+'</p>' +
+      '<div class="brand-h">My role · '+esc(v.role)+'</div><p>'+esc(v.myrole)+'</p>';
+    var cell = document.createElement('div'); cell.className = 'brand-cell';
+    w.parentNode.insertBefore(cell, w); cell.appendChild(w); cell.appendChild(d);
+  });
+})();
 renderGrid('remote-grid', videos.remote.slice(1));
 (function buildRemoteFeatured(){
   var grid = document.getElementById('remote-grid');
@@ -869,7 +904,7 @@ var SIG_PROJECTS = [
     brief: true,
     desc: "For Pride Month, seven months after the mass shooting at Club Q in Colorado Springs, we set out to capture what safety means for the LGBTQ+ community now, as threats against it continue to rise. So we spent time with survivors, families and drag performers who refuse to hide, and told their stories of love, loss and resilience. The package anchored GMA's \"Protecting Pride: Resilience After Tragedy\" series and is now streaming on Hulu as Love at Club Q.",
     myrole: [
-      "Found and casted 9 survivors, built relationships and guided them through sharing some of the hardest moments of their lives",
+      "Found and casted survivors, families and drag performers, built relationships and guided them through sharing some of the hardest moments of their lives",
       "Planned all logistics for the Colorado Springs shoot with a lean crew",
       "Produced on-location with subjects, ensuring both that they felt safe and supported and that brand standards were met visually and editorially",
       "Directed, produced and edited 5 videos, plus the social posts and web page layout, for the digital rollout",
